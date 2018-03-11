@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LetItRollApplication {
 
 	public static void main(final String[] args) {
-		SpringApplication.run(BeApplication.class, args);
+		SpringApplication.run(LetItRollApplication.class, args);
 	}
 }

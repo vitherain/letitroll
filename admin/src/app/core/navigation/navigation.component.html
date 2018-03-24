@@ -1,26 +1,9 @@
 <mat-toolbar color="primary">
-  <span>Application Title</span>
+  <a mat-button routerLink="/"><i class="material-icons">flight_takeoff</i> Features!</a>
 
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
 
-  <span>Right Aligned Text</span>
+  <a mat-button routerLink="/login"><i class="material-icons">person</i> Login</a>
 </mat-toolbar>
 
-<button mat-icon-button [matMenuTriggerFor]="menu">
-  <mat-icon>more_vert</mat-icon>
-</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>dialpad</mat-icon>
-    <span>Redial</span>
-  </button>
-  <button mat-menu-item disabled>
-    <mat-icon>voicemail</mat-icon>
-    <span>Check voicemail</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>notifications_off</mat-icon>
-    <span>Disable alerts</span>
-  </button>
-</mat-menu>

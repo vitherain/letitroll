@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from '../app-routing.module';
+import { SharedModule } from '../shared/shared.module';
+
 import { NavigationComponent } from './navigation/navigation.component';
-import { MaterialModule } from '../shared/material.module';
 import { LoginComponent } from './auth/login/login.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     NavigationComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutingModule,
-    MaterialModule
+    SharedModule
   ],
   exports: [
     AppRoutingModule,
-    NavigationComponent
+    NavigationComponent,
+    LoginComponent,
+    FooterComponent
   ]
 })
 export class CoreModule { }

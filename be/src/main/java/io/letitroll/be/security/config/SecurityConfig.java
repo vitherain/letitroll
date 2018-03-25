@@ -15,8 +15,8 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(final ServerHttpSecurity http) {
         return http.authorizeExchange()
-                .anyExchange().authenticated()
-                .and()
-                .build();
+                .anyExchange().permitAll()/*.authenticated()*/
+                .and().formLogin()
+                .and().build();
     }
 }

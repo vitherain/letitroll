@@ -1,26 +1,13 @@
 package io.letitroll.be.emitter.endpoint;
 
-import io.letitroll.be.client.repository.ClientRepository;
-import io.letitroll.be.emitter.service.EventService;
-import io.letitroll.be.feature.repository.FeatureRepository;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-import javax.annotation.PostConstruct;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+//import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 @RestController
 public class EmitterController {
 
-    private final FeatureRepository repository;
+    /*private final FeatureRepository repository;
     private final ClientRepository clientRepository;
 
     @Autowired
@@ -63,13 +50,13 @@ public class EmitterController {
 
         this.emitters.removeAll(deadEmitters);
 
-        /*repository.save(new Feature("" + ThreadLocalRandom.current().nextInt())).map(feature -> {
+        *//*repository.save(new Feature("" + ThreadLocalRandom.current().nextInt())).map(feature -> {
                     LoggerFactory.getLogger("erge").info(feature.getId() + " " + feature.getName());
                     repository.save(new Feature(feature.getId(), feature.getVersion(), "nova pyco")).subscribe(feature1 -> {
                         repository.save(new Feature(feature1.getId(), 0, "nova pyco 50")).subscribe();
                     });
                     return feature;
         }
-                ).subscribe();*/
-    }
+                ).subscribe();*//*
+    }*/
 }

@@ -1,7 +1,5 @@
 package io.letitroll.be.feature.domain;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import io.letitroll.be.shared.serializer.ObjectIdSerializer;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
@@ -12,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public final class Feature {
 
     @Id
-    @JsonSerialize(using = ObjectIdSerializer.class)
     private final ObjectId id;
     @Version
     private final long version;

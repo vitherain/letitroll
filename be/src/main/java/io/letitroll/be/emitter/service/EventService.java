@@ -1,4 +1,4 @@
-package io.letitroll.be.service;
+package io.letitroll.be.emitter.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;

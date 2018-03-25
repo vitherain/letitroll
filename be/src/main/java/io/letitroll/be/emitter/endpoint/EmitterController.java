@@ -1,8 +1,8 @@
-package io.letitroll.be.endpoint;
+package io.letitroll.be.emitter.endpoint;
 
+import io.letitroll.be.emitter.service.EventService;
 import io.letitroll.be.feature.domain.Feature;
 import io.letitroll.be.feature.repository.FeatureRepository;
-import io.letitroll.be.service.EventService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;

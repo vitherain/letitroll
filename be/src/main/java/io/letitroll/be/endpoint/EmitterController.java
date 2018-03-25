@@ -1,7 +1,10 @@
 package io.letitroll.be.endpoint;
 
+import io.letitroll.be.feature.entity.Feature;
+import io.letitroll.be.feature.repository.FeatureRepository;
 import io.letitroll.be.service.EventService;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +15,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 public class EmitterController {
+
+    private final FeatureRepository repository;
+
+    @Autowired
+    public EmitterController(final FeatureRepository repository) {
+        this.repository = repository;
+    }
 
     private final List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
 
@@ -44,5 +55,14 @@ public class EmitterController {
         });
 
         this.emitters.removeAll(deadEmitters);
+
+        repository.save(new Feature("" + ThreadLocalRandom.current().nextInt())).map(feature -> {
+                    LoggerFactory.getLogger("erge").info(feature.getUuid() + " " + feature.getName());
+                    repository.save(new Feature(feature.getUuid(), feature.getVersion(), "nova pyco")).subscribe(feature1 -> {
+                        repository.save(new Feature(feature1.getUuid(), 0, "nova pyco 50")).subscribe();
+                    });
+                    return feature;
+        }
+                ).subscribe();
     }
 }

@@ -1,6 +1,6 @@
 package io.letitroll.be.endpoint;
 
-import io.letitroll.be.feature.entity.Feature;
+import io.letitroll.be.feature.domain.Feature;
 import io.letitroll.be.feature.repository.FeatureRepository;
 import io.letitroll.be.service.EventService;
 import org.slf4j.LoggerFactory;
@@ -57,9 +57,9 @@ public class EmitterController {
         this.emitters.removeAll(deadEmitters);
 
         repository.save(new Feature("" + ThreadLocalRandom.current().nextInt())).map(feature -> {
-                    LoggerFactory.getLogger("erge").info(feature.getUuid() + " " + feature.getName());
-                    repository.save(new Feature(feature.getUuid(), feature.getVersion(), "nova pyco")).subscribe(feature1 -> {
-                        repository.save(new Feature(feature1.getUuid(), 0, "nova pyco 50")).subscribe();
+                    LoggerFactory.getLogger("erge").info(feature.getId() + " " + feature.getName());
+                    repository.save(new Feature(feature.getId(), feature.getVersion(), "nova pyco")).subscribe(feature1 -> {
+                        repository.save(new Feature(feature1.getId(), 0, "nova pyco 50")).subscribe();
                     });
                     return feature;
         }

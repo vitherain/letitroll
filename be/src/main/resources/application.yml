@@ -6,3 +6,5 @@ spring:
       database: letitroll
       username: admin
       password: YeJqDDmHR7Hp
+  jackson:
+    time-zone: UTC

@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      host: ds135196.mlab.com
+      port: 35196
+      database: cars
+      username: admin
+      password: admin

@@ -1,7 +1,7 @@
-package io.letitroll.be.client.dto;
+package io.letitroll.be.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.letitroll.be.client.domain.Role;
+import io.letitroll.be.user.domain.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
-public final class ClientDto implements UserDetails {
+public final class UserDto implements UserDetails {
 
     private final String id;
     private final String username;
@@ -18,7 +18,7 @@ public final class ClientDto implements UserDetails {
     @JsonIgnore
     private final Role role;
 
-    public ClientDto(final String id, final String username, final String password, final Role role) {
+    public UserDto(final String id, final String username, final String password, final Role role) {
         this.id = id;
         this.username = username;
         this.password = password;

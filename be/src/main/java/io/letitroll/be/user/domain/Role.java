@@ -1,4 +1,4 @@
-package io.letitroll.be.client.domain;
+package io.letitroll.be.user.domain;
 
 public enum Role {
 

@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmitterController {
 
     /*private final FeatureRepository repository;
-    private final ClientRepository clientRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public EmitterController(final FeatureRepository repository, final ClientRepository clientRepository) {
+    public EmitterController(final FeatureRepository repository, final UserRepository userRepository) {
         this.repository = repository;
-        this.clientRepository = clientRepository;
+        this.userRepository = userRepository;
     }
 
     @PostConstruct
     public void init() {
-        //clientRepository.save(new Client("reader", "password", Role.READER)).subscribe();
+        //userRepository.save(new User("reader", "password", Role.READER)).subscribe();
     }
 
     private final List<SseEmitter> emitters = new CopyOnWriteArrayList<>();

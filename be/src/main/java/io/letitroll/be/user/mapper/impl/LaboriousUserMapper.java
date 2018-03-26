@@ -1,8 +1,8 @@
-package io.letitroll.be.client.mapper.impl;
+package io.letitroll.be.user.mapper.impl;
 
-import io.letitroll.be.client.domain.Client;
-import io.letitroll.be.client.dto.ClientDto;
-import io.letitroll.be.client.mapper.ClientMapper;
+import io.letitroll.be.user.domain.User;
+import io.letitroll.be.user.dto.UserDto;
+import io.letitroll.be.user.mapper.UserMapper;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Component;
 
@@ -11,23 +11,23 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Component
-public class LaboriousClientMapper implements ClientMapper {
+public class LaboriousUserMapper implements UserMapper {
 
     @Override
-    public ClientDto toDto(@NotNull final Client entity) {
+    public UserDto toDto(@NotNull final User entity) {
         Objects.requireNonNull(entity, "entity must not be null!");
         final String id = Optional.ofNullable(entity.getId())
                 .map(ObjectId::toString)
                 .orElse(null);
-        return new ClientDto(id, entity.getUsername(), entity.getPassword(), entity.getRole());
+        return new UserDto(id, entity.getUsername(), entity.getPassword(), entity.getRole());
     }
 
     @Override
-    public Client toEntity(@NotNull final ClientDto dto) {
+    public User toEntity(@NotNull final UserDto dto) {
         Objects.requireNonNull(dto, "dto must not be null!");
         final ObjectId id = Optional.ofNullable(dto.getId())
                 .map(ObjectId::new)
                 .orElse(null);
-        return new Client(id, dto.getUsername(), dto.getPassword(), dto.getRole());
+        return new User(id, dto.getUsername(), dto.getPassword(), dto.getRole());
     }
 }

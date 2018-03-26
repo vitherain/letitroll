@@ -2,7 +2,7 @@ package io.letitroll.be;
 
 import org.junit.Test;
 
-public class LetItRollApplicationTest extends BaseSpringTest {
+public class BeApplicationTest extends BaseSpringTest {
 
     @Test
     public void contextLoads() {

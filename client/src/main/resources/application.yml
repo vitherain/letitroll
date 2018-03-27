@@ -9,4 +9,4 @@ spring:
   jackson:
     time-zone: UTC
 server:
-  port: 8888
+  port: 8889

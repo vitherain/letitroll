@@ -1,4 +1,4 @@
-package io.letitroll.be.feature.domain;
+package io.letitroll.common.feature.domain;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

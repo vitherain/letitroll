@@ -8,3 +8,5 @@ spring:
       password: YeJqDDmHR7Hp
   jackson:
     time-zone: UTC
+server:
+  port: 8888

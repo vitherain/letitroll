@@ -1,4 +1,4 @@
-package io.letitroll.be.emitter.endpoint;
+package io.letitroll.client.emitter.endpoint;
 
 import org.springframework.web.bind.annotation.RestController;
 

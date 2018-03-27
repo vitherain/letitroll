@@ -1,4 +1,4 @@
-package io.letitroll.be.shared.mapper;
+package io.letitroll.common.mapper;
 
 import javax.validation.constraints.NotNull;
 

@@ -33,4 +33,5 @@ dependencies {
 		exclude module: 'spring-tx'
 		exclude module: 'slf4j-api'
 	}
+    compile('javax.validation:validation-api:2.0.1.Final')
 }

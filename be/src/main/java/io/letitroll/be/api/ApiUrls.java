@@ -1,4 +1,4 @@
-package io.letitroll.be.shared.api;
+package io.letitroll.be.api;
 
 public final class ApiUrls {
 

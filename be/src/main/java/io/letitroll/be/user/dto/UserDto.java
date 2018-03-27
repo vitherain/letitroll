@@ -1,7 +1,7 @@
 package io.letitroll.be.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.letitroll.be.user.domain.Role;
+import io.letitroll.common.user.domain.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

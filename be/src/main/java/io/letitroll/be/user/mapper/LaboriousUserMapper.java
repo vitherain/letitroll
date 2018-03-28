@@ -1,7 +1,6 @@
-package io.letitroll.be.user.mapper.impl;
+package io.letitroll.be.user.mapper;
 
 import io.letitroll.be.user.dto.UserDto;
-import io.letitroll.be.user.mapper.UserMapper;
 import io.letitroll.common.user.domain.User;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Component;

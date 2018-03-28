@@ -1,7 +1,6 @@
-package io.letitroll.be.feature.mapper.impl;
+package io.letitroll.be.feature.mapper;
 
 import io.letitroll.be.feature.dto.FeatureDto;
-import io.letitroll.be.feature.mapper.FeatureMapper;
 import io.letitroll.common.feature.domain.Feature;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Component;

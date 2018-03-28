@@ -1,4 +1,4 @@
-package io.letitroll.be.amqp;
+package io.letitroll.be.tmp;
 
 import io.letitroll.common.feature.domain.Feature;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -7,14 +7,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Runner implements CommandLineRunner {
+public class AmqpRunner implements CommandLineRunner {
 
     private static final String TOPIC_EXCHANGE_NAME = "spring-boot-exchange";
 
     private final RabbitTemplate rabbitTemplate;
 
     @Autowired
-    public Runner(final RabbitTemplate rabbitTemplate) {
+    public AmqpRunner(final RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
 

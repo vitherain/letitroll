@@ -1,4 +1,4 @@
-package io.letitroll.client.amqp.receiver;
+package io.letitroll.client.tmp.amqp.receiver;
 
 import io.letitroll.common.feature.domain.Feature;
 import org.slf4j.Logger;

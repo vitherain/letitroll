@@ -1,4 +1,4 @@
-package io.letitroll.be.config;
+package io.letitroll.be.persistence.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;

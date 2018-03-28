@@ -1,6 +1,6 @@
-package io.letitroll.client.amqp.config;
+package io.letitroll.client.tmp.amqp.config;
 
-import io.letitroll.client.amqp.receiver.SampleReceiver;
+import io.letitroll.client.tmp.amqp.receiver.SampleReceiver;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;

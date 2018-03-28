@@ -8,3 +8,6 @@ spring:
       password: YeJqDDmHR7Hp
   jackson:
     time-zone: UTC
+
+letitroll:
+  bcrypt-rounds: 10

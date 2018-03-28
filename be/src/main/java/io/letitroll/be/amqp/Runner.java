@@ -1,5 +1,6 @@
 package io.letitroll.be.amqp;
 
+import io.letitroll.common.feature.domain.Feature;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,6 +21,6 @@ public class Runner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("Sending message...");
-        rabbitTemplate.convertAndSend(TOPIC_EXCHANGE_NAME, "foo.bar.baz", "Hello from RabbitMQ!");
+        rabbitTemplate.convertAndSend(TOPIC_EXCHANGE_NAME, "foo.bar.baz", new Feature(null, 0, "verified-accounts"));
     }
 }

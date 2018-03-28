@@ -6,8 +6,10 @@ import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
+
 @Document(collection = "features")
-public final class Feature {
+public final class Feature implements Serializable {
 
     @Id
     private final ObjectId id;

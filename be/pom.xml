@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-    <name>Let!tRoll Admin Backend</name>
-    <description>Application for managing feature flags</description>
+    <name>be</name>
+    <description>Let!tRoll Admin Backend</description>
 
 	<artifactId>be</artifactId>
 	<packaging>jar</packaging>
@@ -13,7 +13,7 @@
         <groupId>io.letitroll</groupId>
         <artifactId>parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../parent</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
 	<properties>
@@ -43,19 +43,21 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>io.letitroll</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
         <dependency>
 			<groupId>de.flapdoodle.embed</groupId>
 			<artifactId>de.flapdoodle.embed.mongo</artifactId>
 			<scope>test</scope>
 		</dependency>
-
         <dependency>
 			<groupId>cz.jirutka.spring</groupId>
 			<artifactId>embedmongo-spring</artifactId>

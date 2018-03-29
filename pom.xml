@@ -5,11 +5,11 @@
 
 	<groupId>io.letitroll</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>${project.version}</version>
 	<packaging>pom</packaging>
 
-	<name>Let!tRoll Parent Module</name>
-	<description>Application for features phase rollout</description>
+	<name>parent</name>
+	<description>Let!tRoll Parent Module</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -30,6 +30,17 @@
 		<java.version>1.8</java.version>
         <embedmongo-spring.version>1.3.1</embedmongo-spring.version>
 		<validation-api.version>2.0.1.Final</validation-api.version>
+        <project.version>1.0.0-SNAPSHOT</project.version>
 	</properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.letitroll</groupId>
+                <artifactId>common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

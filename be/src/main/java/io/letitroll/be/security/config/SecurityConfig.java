@@ -1,6 +1,5 @@
 package io.letitroll.be.security.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
@@ -15,12 +14,11 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableReactiveMethodSecurity
 public class SecurityConfig {
 
-    @Value("${letitroll.bcrypt-rounds}")
-    private Integer bCryptRounds;
+    private static final Integer B_CRYPT_ROUNDS = 10;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(bCryptRounds);
+        return new BCryptPasswordEncoder(B_CRYPT_ROUNDS);
     }
 
     @Bean

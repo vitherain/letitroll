@@ -59,7 +59,6 @@
         <dependency>
 			<groupId>cz.jirutka.spring</groupId>
 			<artifactId>embedmongo-spring</artifactId>
-            <version>${embedmongo-spring.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

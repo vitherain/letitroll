@@ -1,7 +1,5 @@
-.gradle
-/build/
-!gradle/wrapper/gradle-wrapper.jar
-out/
+target/
+!.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
 .apt_generated
@@ -10,6 +8,7 @@ out/
 .project
 .settings
 .springBeans
+.sts4-cache
 
 ### IntelliJ IDEA ###
 .idea

@@ -38,7 +38,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
         <dependency>
-            <groupId>io.letitroll</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
         </dependency>
 

@@ -42,7 +42,7 @@
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
         <dependency>
-            <groupId>io.letitroll</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
         </dependency>
 

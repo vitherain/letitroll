@@ -8,7 +8,7 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./features.component.scss']
 })
 export class FeaturesComponent {
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns = ['select', 'position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
 
   selection = new SelectionModel<Element>(true, []);

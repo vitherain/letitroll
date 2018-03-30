@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-features',
@@ -8,10 +9,26 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 })
 export class FeaturesComponent {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
-
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+
+  selection = new SelectionModel<Element>(true, []);
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+  }
 
   /**
    * Set the sort and paginator after the view init since this component will

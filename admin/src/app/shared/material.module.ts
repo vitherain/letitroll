@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CdkTableModule } from '@angular/cdk/table';
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -12,6 +13,7 @@ import {
 
 @NgModule({
   imports: [
+    CdkTableModule,
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
@@ -22,6 +24,7 @@ import {
     MatToolbarModule
   ],
   exports: [
+    CdkTableModule,
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,

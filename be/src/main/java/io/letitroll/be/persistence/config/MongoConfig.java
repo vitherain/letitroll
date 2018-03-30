@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
+import static java.text.MessageFormat.format;
+
 @Configuration
 @EnableReactiveMongoRepositories(basePackages = "io.letitroll.be.*.repository")
 public class MongoConfig {
@@ -18,13 +20,11 @@ public class MongoConfig {
             @Value("${spring.data.mongodb.port}") final String port,
             @Value("${spring.data.mongodb.database}") final String database,
             @Value("${spring.data.mongodb.username}") final String username,
-            @Value("${spring.data.mongodb.password}") final String password){
+            @Value("${spring.data.mongodb.password}") final String password,
+            @Value("${mongobee.changelog-package}") final String changeLogPackage){
 
-        final Mongobee runner = new Mongobee("mongodb://YOUR_DB_HOST:27017/DB_NAME");
-        runner.setDbName("yourDbName");         // host must be set if not set in URI
-        runner.setChangeLogsScanPackage(
-                "com.example.yourapp.changelogs"); // the package to be scanned for changesets
-
+        final Mongobee runner = new Mongobee(format("mongodb://{0}:{1}@{2}:{3}/{4}", username, password, host, port, database));
+        runner.setChangeLogsScanPackage(changeLogPackage);
         return runner;
     }
 }

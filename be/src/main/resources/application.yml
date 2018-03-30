@@ -8,3 +8,6 @@ spring:
       password: YeJqDDmHR7Hp
   jackson:
     time-zone: UTC
+
+mongobee:
+  changelog-package: io.letitroll.be.persistence.changelog

@@ -1,3 +1,5 @@
+import { config } from "../../config/config";
+
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -12,6 +14,9 @@ export class FeaturesComponent {
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
 
   selection = new SelectionModel<Element>(true, []);
+
+  defaultPageSize: Array<number> = config.tables.defaultPageSize;
+  defaultPageSizeOptions: Array<number> = config.tables.defaultPageSizeOptions;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

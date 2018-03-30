@@ -4,8 +4,9 @@ import {
   MatCheckboxModule,
   MatIconModule,
   MatMenuModule,
-  MatTableModule,
   MatPaginatorModule,
+  MatSortModule,
+  MatTableModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -16,6 +17,7 @@ import {
     MatIconModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatSortModule,
     MatTableModule,
     MatToolbarModule
   ],
@@ -25,6 +27,7 @@ import {
     MatIconModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatSortModule,
     MatTableModule,
     MatToolbarModule
   ]

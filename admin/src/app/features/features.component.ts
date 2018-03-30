@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-features',
@@ -11,13 +11,15 @@ export class FeaturesComponent {
 
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   /**
-   * Set the paginator after the view init since this component will
-   * be able to query its view for the initialized paginator.
+   * Set the sort and paginator after the view init since this component will
+   * be able to query its view for the initialized sort and paginator.
    */
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }
 

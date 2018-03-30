@@ -9,14 +9,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
-@Configuration
+/*@Configuration
 @EnableWebFluxSecurity
-@EnableReactiveMethodSecurity
+@EnableReactiveMethodSecurity*/
 public class SecurityConfig {
 
     private static final Integer B_CRYPT_ROUNDS = 10;
 
-    @Bean
+    /*@Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(B_CRYPT_ROUNDS);
     }
@@ -30,5 +30,5 @@ public class SecurityConfig {
                 .httpBasic().and()
                 .formLogin();
         return http.build();
-    }
+    }*/
 }

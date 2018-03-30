@@ -1,0 +1,13 @@
+import * as Actions from './features.actions';
+import { State } from './features.state';
+
+
+
+export function featuresReducer(state: State = { features: [] }, action: Actions.FeaturesActions) {
+  switch (action.type) {
+    case Actions.API_GET_FEATURES:
+      return state + 1;
+    default:
+      return state;
+  }
+}

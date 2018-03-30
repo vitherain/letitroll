@@ -1,8 +1,9 @@
-import { config } from "../../config/config";
+import { config } from "../../../../config/config";
 
 import { Component, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
+import { FeaturesTableDataSource } from '../../data-source/features.table.data-source';
 
 @Component({
   selector: 'app-features',
@@ -11,7 +12,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class FeaturesComponent {
   displayedColumns = ['select', 'position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+  dataSource = new FeaturesTableDataSource<Element>(ELEMENT_DATA);
 
   selection = new SelectionModel<Element>(true, []);
 

@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FeaturesModule } from './features/features.module';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,8 @@ import { FeaturesModule } from './features/features.module';
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([]),
     FeaturesModule,
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],

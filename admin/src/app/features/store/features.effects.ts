@@ -5,7 +5,7 @@ import * as FeatureActions from './features.actions';
 import { Feature } from '../models/feature.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { State } from './features.state';
+import { FeaturesState } from './features.state';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class FeaturesEffects {
 
   constructor(private actions$: Actions,
               private httpClient: HttpClient,
-              private store: Store<State>) {}
+              private store: Store<FeaturesState>) {}
 
   @Effect()
   features$ = this.actions$

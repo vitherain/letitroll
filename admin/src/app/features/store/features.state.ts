@@ -1,5 +1,5 @@
 import { Feature } from '../models/feature.model';
 
-export interface State {
+export interface FeaturesState {
   features: Feature[];
 }

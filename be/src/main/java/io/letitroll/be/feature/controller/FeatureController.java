@@ -5,6 +5,9 @@ import io.letitroll.be.feature.dto.FeatureDto;
 import io.letitroll.be.feature.mapper.FeatureMapper;
 import io.letitroll.be.feature.repository.FeatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +29,11 @@ public class FeatureController {
     @CrossOrigin
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = ApiUrls.API_GET_ALL_FEATURES)
-    public Flux<FeatureDto> getAllFeatures() {
-        return featureRepository.findAll()
+    public Flux<FeatureDto> getAllFeatures(
+            @PageableDefault(sort = "id", direction = Sort.Direction.ASC)
+            final Pageable pageable) {
+
+        return featureRepository.findByName("nova pyco", pageable)
                 .map(featureMapper::toDto);
     }
 }

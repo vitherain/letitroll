@@ -1,4 +1,4 @@
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { FeaturesState } from '../store/features.state';
 import { Store } from '@ngrx/store';
@@ -16,12 +16,12 @@ export class FeaturesTableDataSource extends MatTableDataSource<Feature> {
   }
 
   _orderData(data: Feature[]): Feature[] {
-    this.getFeatures();
+    //this.getFeatures();
     return super._orderData(data);
   }
 
   _pageData(data: Feature[]): Feature[] {
-    this.getFeatures();
+    //this.getFeatures();
     return super._pageData(data);
   }
 
@@ -29,6 +29,7 @@ export class FeaturesTableDataSource extends MatTableDataSource<Feature> {
     this.stateSubscription$ = this.store.select('features').subscribe(data => {
       this.data$.next(data.features);
     });
+    this.store.dispatch(new ApiGetFeatures({}));
 
     this.getFeatures();
     return this.data$;
@@ -40,8 +41,8 @@ export class FeaturesTableDataSource extends MatTableDataSource<Feature> {
   }
 
   getFeatures(): void {
-    const sort: MatSort = this.sort;
-    const paginator: MatPaginator = this.paginator;
-    this.store.dispatch(new ApiGetFeatures({}));
+    //const sort: MatSort = this.sort;
+    //const paginator: MatPaginator = this.paginator;
+    //this.store.dispatch(new ApiGetFeatures({}));
   }
 }

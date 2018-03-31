@@ -33,7 +33,9 @@ public class FeatureController {
             @PageableDefault(sort = "id", direction = Sort.Direction.ASC)
             final Pageable pageable) {
 
-        return featureRepository.findByName("nova pyco", pageable)
+        return featureRepository.findAll()
+                .skip(pageable.getOffset())
+                .take(pageable.getPageSize())
                 .map(featureMapper::toDto);
     }
 }

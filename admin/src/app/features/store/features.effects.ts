@@ -28,7 +28,6 @@ export class FeaturesEffects {
       };
     })
     .catch((err: HttpErrorResponse) => {
-      debugger
       return Observable.of({
         type: FeatureActions.API_GET_FEATURES_FAILURE,
         payload: {

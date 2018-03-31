@@ -13,12 +13,12 @@ export class FeaturesTableDataSource extends MatTableDataSource<Feature> impleme
   data$: BehaviorSubject<Feature[]> = new BehaviorSubject([]);
 
   constructor(private store: Store<FeaturesState>) {
-    super();
+    super([]);
   }
 
   ngOnInit(): void {
-    this.stateSubscription$ = this.store.select('features').subscribe((data: Feature[]) => {
-      this.data$.next(data);
+    this.stateSubscription$ = this.store.select('features').subscribe(data => {
+      this.data$.next(data.features);
     });
     this.store.dispatch(new ApiGetFeatures({}));
   }

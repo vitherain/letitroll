@@ -11,7 +11,9 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { FeaturesComponent } from './features/components/features/features.component';
 import { featuresReducer } from './features/store/features.reducers';
-import { FeatureEffects } from './features/store/features.effects';
+import { FeaturesEffects } from './features/store/features.effects';
+import { environment } from '../environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { FeatureEffects } from './features/store/features.effects';
     SharedModule,
     CoreModule,
     StoreModule.forFeature('features', featuresReducer),
-    EffectsModule.forFeature([FeatureEffects])
+    EffectsModule.forFeature([FeaturesEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [],
   bootstrap: [AppComponent]

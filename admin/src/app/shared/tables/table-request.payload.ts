@@ -1,4 +1,4 @@
-export interface RequestPayload {
+export interface TableRequestPayload {
   page: number,
   size: number,
   sort: SortDefinition

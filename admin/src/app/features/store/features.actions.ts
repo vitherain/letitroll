@@ -1,13 +1,30 @@
 import { Action } from '@ngrx/store';
-import { RequestPayload } from '../../shared/tables/request.payload';
+import { TableRequestPayload } from '../../shared/tables/table-request.payload';
+import { Feature } from '../models/feature.model';
+import { HttpErrorInfo } from '../../shared/http/http-error-info';
 
 export const API_GET_FEATURES = 'API_GET_FEATURES';
 export const API_GET_FEATURES_SUCCESS = 'API_GET_FEATURES_SUCCESS';
+export const API_GET_FEATURES_FAILURE = 'API_GET_FEATURES_FAILURE';
 
 export class ApiGetFeatures implements Action {
   readonly type = API_GET_FEATURES;
 
-  constructor(public payload: RequestPayload) {}
+  constructor(public payload: TableRequestPayload) {}
 }
 
-export type FeaturesActionsUnion = ApiGetFeatures;
+export class ApiGetFeaturesSuccess implements Action {
+  readonly type = API_GET_FEATURES_SUCCESS;
+
+  constructor(public payload: Feature[]) {}
+}
+
+export class ApiGetFeaturesFailure implements Action {
+  readonly type = API_GET_FEATURES_FAILURE;
+
+  constructor(public payload: HttpErrorInfo) {}
+}
+
+export type FeaturesActionsUnion = ApiGetFeatures
+  | ApiGetFeaturesSuccess
+  | ApiGetFeaturesFailure;

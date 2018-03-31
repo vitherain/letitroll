@@ -1,18 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { MaterialModule } from './material.module';
 import { DateTimeProviderService } from './services/date-time-provider.service';
+import { SharedHttpInterceptor } from './interceptors/shared-http.interceptor';
 
 @NgModule({
   imports: [
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   exports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SharedHttpInterceptor,
+      multi: true
+    },
     DateTimeProviderService
   ]
 })

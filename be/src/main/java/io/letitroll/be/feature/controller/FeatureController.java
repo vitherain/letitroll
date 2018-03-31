@@ -6,6 +6,7 @@ import io.letitroll.be.feature.mapper.FeatureMapper;
 import io.letitroll.be.feature.repository.FeatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
@@ -22,6 +23,7 @@ public class FeatureController {
         this.featureMapper = featureMapper;
     }
 
+    @CrossOrigin
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = ApiUrls.API_GET_ALL_FEATURES)
     public Flux<FeatureDto> getAllFeatures() {

@@ -1,7 +1,7 @@
 export interface TableRequestPayload {
-  page: number,
-  size: number,
-  sort: SortDefinition
+  page?: number,
+  size?: number,
+  sort?: SortDefinition
 }
 
 interface SortDefinition {

@@ -3,6 +3,7 @@ package io.letitroll.be.user.service;
 import io.letitroll.be.user.mapper.UserMapper;
 import io.letitroll.be.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class UserService implements ReactiveUserDetailsService {
     }
 
     @Override
-    public Mono<UserDetails> findByUsername(@NotNull final String username) {
+    public Mono<UserDetails> findByUsername(@NonNull final String username) {
         Objects.requireNonNull(username, "username must not be null!");
         return userRepository.findByUsername(username).map(userMapper::toDto);
     }

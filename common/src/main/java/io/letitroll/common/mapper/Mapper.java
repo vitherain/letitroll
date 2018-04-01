@@ -1,5 +1,7 @@
 package io.letitroll.common.mapper;
 
+import org.springframework.lang.NonNull;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -11,7 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 public interface Mapper<T, U> {
 
-    U toDto(@NotNull T entity);
+    U toDto(@NonNull T entity);
 
-    T toEntity(@NotNull U dto);
+    T toEntity(@NonNull U dto);
 }

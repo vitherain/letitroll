@@ -3,10 +3,11 @@ import { Actions, Effect } from '@ngrx/effects';
 
 import * as FeatureActions from './features.actions';
 import { Feature } from '../models/feature.model';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { FeaturesState } from './features.state';
 import { Observable } from 'rxjs/Observable';
+import { toHttpParams } from '../../shared/tables/table-request.payload';
 
 @Injectable()
 export class FeaturesEffects {
@@ -19,7 +20,8 @@ export class FeaturesEffects {
   features$ = this.actions$
     .ofType(FeatureActions.API_GET_FEATURES)
     .switchMap((action: FeatureActions.ApiGetFeatures) => {
-      return this.httpClient.get<Feature[]>('/api/v1/features');
+      const params = toHttpParams(action.payload);
+      return this.httpClient.get<Feature[]>('/api/v1/features', { params });
     })
     .map((features: Feature[]) => {
       return {

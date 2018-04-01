@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
@@ -28,8 +29,9 @@ public class FeatureController {
 
     @CrossOrigin
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping(value = ApiUrls.API_GET_ALL_FEATURES)
-    public Flux<FeatureDto> getAllFeatures(
+    @GetMapping(value = ApiUrls.PROJECT_FEATURES)
+    public Flux<FeatureDto> getProjectFeatures(
+            @PathVariable final String projectId,
             @PageableDefault(sort = "id", direction = Sort.Direction.ASC)
             final Pageable pageable) {
 

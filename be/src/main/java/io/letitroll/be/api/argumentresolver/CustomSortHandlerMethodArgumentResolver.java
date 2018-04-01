@@ -121,4 +121,20 @@ public class CustomSortHandlerMethodArgumentResolver implements SortArgumentReso
 
         return allOrders.isEmpty() ? null : Sort.by(allOrders);
     }
+
+    /**
+     * Creates a new {@link Sort} instance from the given {@link SortDefault} or appends it to the given {@link Sort}
+     * instance if it's not {@literal null}.
+     */
+    private Sort appendOrCreateSortTo(SortDefault sortDefault, Sort sortOrNull) {
+
+        final String[] fields = sortDefault.sort();
+
+        if (fields.length == 0) {
+            return null;
+        }
+
+        final Sort sort = new Sort(sortDefault.direction(), fields);
+        return sortOrNull == null ? sort : sortOrNull.and(sort);
+    }
 }

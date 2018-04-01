@@ -3,6 +3,7 @@ package io.letitroll.be.api.argumentresolver;
 import org.springframework.core.MethodParameter;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.reactive.BindingContext;
 import org.springframework.web.server.ServerWebExchange;
@@ -33,15 +34,15 @@ public class CustomSortHandlerMethodArgumentResolver implements SortArgumentReso
 
     @Override
     public Sort resolveSortArgument(final MethodParameter parameter, final BindingContext bindingContext, final ServerWebExchange exchange) {
-        final String[] directionParameter = exchange.getRequest().getQueryParams().getFirst(PARAMETER_NAME).split(PROPERTY_DELIMITER);
+        final List<String> directionParameter = exchange.getRequest().getQueryParams().get(PARAMETER_NAME);
 
         // No parameter
-        if (directionParameter == null) {
+        if (CollectionUtils.isEmpty(directionParameter)) {
             return getDefaultFromAnnotationOrFallback(parameter);
         }
 
         // Single empty parameter, e.g "sort="
-        if (directionParameter.length == 1 && !StringUtils.hasText(directionParameter[0])) {
+        if (directionParameter.size() == 1 && !StringUtils.hasText(directionParameter.get(0))) {
             return getDefaultFromAnnotationOrFallback(parameter);
         }
 
@@ -54,8 +55,7 @@ public class CustomSortHandlerMethodArgumentResolver implements SortArgumentReso
      * instance then (property ordering).
      *
      * @param parameter will never be {@literal null}.
-     * @return the default {@link Sort} instance derived from the parameter annotations or the configured fallback-sort
-     *         {@link #setFallbackSort(Sort)}.
+     * @return the default {@link Sort} instance derived from the parameter annotations.
      */
     private Sort getDefaultFromAnnotationOrFallback(MethodParameter parameter) {
 
@@ -90,7 +90,7 @@ public class CustomSortHandlerMethodArgumentResolver implements SortArgumentReso
      *
      * @param source will never be {@literal null}.
      */
-    private Sort parseParameterIntoSort(final String[] source) {
+    private Sort parseParameterIntoSort(final List<String> source) {
 
         final List<Sort.Order> allOrders = new ArrayList<>();
 

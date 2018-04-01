@@ -1,4 +1,4 @@
-package io.letitroll.be.feature.dto;
+package io.letitroll.common.feature.dto;
 
 public final class FeatureDto {
 

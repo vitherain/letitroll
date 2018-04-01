@@ -1,9 +1,9 @@
 package io.letitroll.be.feature.controller;
 
 import io.letitroll.be.api.ApiUrls;
-import io.letitroll.be.feature.dto.FeatureDto;
-import io.letitroll.be.feature.mapper.FeatureMapper;
 import io.letitroll.be.feature.repository.FeatureRepository;
+import io.letitroll.common.feature.dto.FeatureDto;
+import io.letitroll.common.feature.mapper.FeatureMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

@@ -6,8 +6,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.data.web.SortArgumentResolver;
-import org.springframework.data.web.SortHandlerMethodArgumentResolver;
 import org.springframework.util.StringUtils;
 import org.springframework.web.reactive.BindingContext;
 import org.springframework.web.reactive.result.method.HandlerMethodArgumentResolver;
@@ -21,18 +19,17 @@ import java.util.Set;
 
 public class CustomPageableHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
 
-    private static final SortHandlerMethodArgumentResolver DEFAULT_SORT_RESOLVER = new SortHandlerMethodArgumentResolver();
     private static final String INVALID_DEFAULT_PAGE_SIZE = "Invalid default page size configured for method %s! Must not be less than one!";
-    private static final String DEFAULT_PAGE_PARAMETER = "page";
-    private static final String DEFAULT_SIZE_PARAMETER = "size";
-    private static final int DEFAULT_MAX_PAGE_SIZE = 2000;
-    private static final Pageable DEFAULT_PAGE_REQUEST = PageRequest.of(0, 20);
+    private static final String PAGE_PARAMETER_NAME = "page";
+    private static final String SIZE_PARAMETER_NAME = "size";
+    private static final int MAX_PAGE_SIZE = 2000;
 
-    private Pageable fallbackPageable = DEFAULT_PAGE_REQUEST;
-    private SortArgumentResolver sortResolver;
-    private String pageParameterName = DEFAULT_PAGE_PARAMETER;
-    private String sizeParameterName = DEFAULT_SIZE_PARAMETER;
-    private int maxPageSize = DEFAULT_MAX_PAGE_SIZE;
+    private final Pageable fallbackPageable = PageRequest.of(0, 20);
+    private final SortArgumentResolver sortResolver;
+
+    public CustomPageableHandlerMethodArgumentResolver(final SortArgumentResolver sortResolver) {
+        this.sortResolver = sortResolver;
+    }
 
     @Override
     public boolean supportsParameter(final MethodParameter parameter) {
@@ -43,23 +40,23 @@ public class CustomPageableHandlerMethodArgumentResolver implements HandlerMetho
     public Mono<Object> resolveArgument(final MethodParameter parameter, final BindingContext bindingContext, final ServerWebExchange exchange) {
         assertPageableUniqueness(parameter);
         final Pageable defaultOrFallback = this.getDefaultFromAnnotationOrFallback(parameter);
-        final String pageString = exchange.getRequest().getQueryParams().getFirst(this.pageParameterName);
-        final String pageSizeString = exchange.getRequest().getQueryParams().getFirst(this.sizeParameterName);
+        final String pageString = exchange.getRequest().getQueryParams().getFirst(PAGE_PARAMETER_NAME);
+        final String pageSizeString = exchange.getRequest().getQueryParams().getFirst(SIZE_PARAMETER_NAME);
         boolean pageAndSizeGiven = StringUtils.hasText(pageString) && StringUtils.hasText(pageSizeString);
         if (!pageAndSizeGiven && defaultOrFallback == null) {
             return null;
         } else {
             final int page = StringUtils.hasText(pageString) ? this.parseAndApplyBoundaries(pageString, Integer.MAX_VALUE) : defaultOrFallback.getPageNumber();
-            int pageSize = StringUtils.hasText(pageSizeString) ? this.parseAndApplyBoundaries(pageSizeString, this.maxPageSize, false) : defaultOrFallback.getPageSize();
+            int pageSize = StringUtils.hasText(pageSizeString) ? this.parseAndApplyBoundaries(pageSizeString, MAX_PAGE_SIZE) : defaultOrFallback.getPageSize();
             pageSize = pageSize < 1 ? defaultOrFallback.getPageSize() : pageSize;
-            pageSize = pageSize > this.maxPageSize ? this.maxPageSize : pageSize;
-            Sort sort = this.sortResolver.resolveArgument(parameter, bindingContext, exchange);
+            pageSize = pageSize > MAX_PAGE_SIZE ? MAX_PAGE_SIZE : pageSize;
+            Sort sort = this.sortResolver.resolveSortArgument(parameter, bindingContext, exchange);
             sort = sort == null && defaultOrFallback != null ? defaultOrFallback.getSort() : sort;
             return Mono.just(PageRequest.of(page, pageSize, sort));
         }
     }
 
-    public void assertPageableUniqueness(final MethodParameter parameter) {
+    private void assertPageableUniqueness(final MethodParameter parameter) {
 
         final Method method = parameter.getMethod();
 

@@ -5,6 +5,7 @@ import io.letitroll.client.emitter.repository.ProjectRepository;
 import io.letitroll.client.emitter.service.EventService;
 import io.letitroll.common.feature.domain.Feature;
 import io.letitroll.common.project.domain.Project;
+import org.bson.types.ObjectId;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -86,5 +87,10 @@ public class EmitterController {
                 feature19, feature20, feature21, feature22, feature23);
         featureRepository.saveAll(features);
         featureRepository.save(new Feature("Prdel vody", project));*/
+
+        /*Project project = projectRepository.findById(new ObjectId("5ac1e829ba2b4612149738a2")).get();
+        System.out.println(project);
+        Feature feature = featureRepository.findById(new ObjectId("5ac1e829ba2b4612149738ab")).get();
+        System.out.println(feature);*/
     }
 }

@@ -4,6 +4,7 @@ import io.letitroll.be.api.ApiUrls;
 import io.letitroll.be.feature.repository.FeatureRepository;
 import io.letitroll.common.feature.dto.FeatureDto;
 import io.letitroll.common.feature.mapper.FeatureMapper;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -35,9 +36,7 @@ public class FeatureController {
             @PageableDefault(sort = "id", direction = Sort.Direction.ASC)
             final Pageable pageable) {
 
-        return featureRepository.findAll()
-                .skip(pageable.getOffset())
-                .take(pageable.getPageSize())
+        return featureRepository.findByProjectId(new ObjectId(projectId), pageable)
                 .map(featureMapper::toDto);
     }
 }

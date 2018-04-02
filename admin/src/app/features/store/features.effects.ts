@@ -21,7 +21,7 @@ export class FeaturesEffects {
     .ofType(FeatureActions.API_GET_FEATURES)
     .switchMap((action: FeatureActions.ApiGetFeatures) => {
       const params = toHttpParams(action.payload);
-      return this.httpClient.get<Feature[]>('/api/v1/features', { params });
+      return this.httpClient.get<Feature[]>('/api/v1/projects/5ac1e829ba2b4612149738a2/features', { params });
     })
     .map((features: Feature[]) => {
       return {

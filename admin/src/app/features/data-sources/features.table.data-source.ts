@@ -1,13 +1,15 @@
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { FeaturesState, State } from '../store/features.state';
 import { Store } from '@ngrx/store';
 import { Feature } from '../models/feature.model';
 import { Subscription } from 'rxjs/Subscription';
 import { ApiGetFeatures } from '../store/features.actions';
+import { SortDefinition } from '../../shared/tables/table-request.payload';
 
 export class FeaturesTableDataSource extends MatTableDataSource<Feature> {
 
+  defaultSort: Array<SortDefinition> = [{ property: 'name', direction: 'asc' }];
   stateSubscription$: Subscription;
   data$: BehaviorSubject<Feature[]> = new BehaviorSubject([]);
 
@@ -44,12 +46,11 @@ export class FeaturesTableDataSource extends MatTableDataSource<Feature> {
 
   getFeatures(): void {
     if (this.store) {
-      const paginator: MatPaginator = this.paginator;
-      const sort: MatSort = this.sort;
+      const sortDefined: boolean = this.sort && this.sort.active && this.sort.direction;
       const tableRequest = {
-        page: paginator ? paginator.pageIndex : 0,
-        size: paginator ? paginator.pageSize : 2000,
-        sort: sort && sort.active && sort.direction ? [{ property: sort.active, direction: sort.direction }] : [{ property: 'name', direction: 'asc' }]
+        page: this.paginator ? this.paginator.pageIndex : 0,
+        size: this.paginator ? this.paginator.pageSize : 2000,
+        sort: sortDefined ? [{ property: this.sort.active, direction: this.sort.direction }] : this.defaultSort
       };
       this.store.dispatch(new ApiGetFeatures(tableRequest));
     }

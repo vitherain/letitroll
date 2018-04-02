@@ -8,7 +8,7 @@ import { DateTimeProviderService } from '../../shared/services/date-time-provide
 })
 export class FooterComponent implements OnInit {
 
-  yearCreated: number = 2018;
+  yearCreated = 2018;
   currentYear: number;
 
   constructor(private dateTimeProviderService: DateTimeProviderService) { }

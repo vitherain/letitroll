@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 
 import * as FeatureActions from './features.actions';
-import { Feature } from '../models/feature.model';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { FeaturesState, State } from './features.state';
 import { Observable } from 'rxjs/Observable';

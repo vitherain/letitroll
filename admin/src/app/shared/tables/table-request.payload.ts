@@ -6,7 +6,7 @@ export interface TableRequestPayload {
   sort?: Array<SortDefinition>;
 }
 
-interface SortDefinition {
+export interface SortDefinition {
   property: string;
   direction: string;
 }

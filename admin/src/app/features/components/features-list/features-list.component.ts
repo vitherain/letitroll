@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FeaturesTableDataSource } from '../../data-sources/features.table.data-source';
 import { config } from '../../../../config/config';
@@ -12,7 +12,7 @@ import { Feature } from '../../models/feature.model';
   templateUrl: './features-list.component.html',
   styleUrls: ['./features-list.component.scss']
 })
-export class FeaturesListComponent implements OnInit {
+export class FeaturesListComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['select', 'id', 'name', 'version'];
   dataSource: MatTableDataSource<Feature>;

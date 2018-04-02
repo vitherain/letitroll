@@ -11,6 +11,7 @@ import org.springframework.lang.NonNull;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@SuppressWarnings("SpringDataRepositoryMethodReturnTypeInspection")
 public interface FeatureRepository extends ReactiveCrudRepository<Feature, ObjectId>, ReactiveSortingRepository<Feature, ObjectId> {
 
     @Query("{ 'project': ?0 }")

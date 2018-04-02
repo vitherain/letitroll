@@ -1,4 +1,4 @@
 export interface HttpErrorInfo {
-  statusCode: number,
-  errorCode?: string
+  statusCode: number;
+  errorCode?: string;
 }

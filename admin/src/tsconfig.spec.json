@@ -10,6 +10,7 @@
     ]
   },
   "files": [
+    "rxjs-imports.ts",
     "test.ts"
   ],
   "include": [

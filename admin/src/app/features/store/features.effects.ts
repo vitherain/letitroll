@@ -5,7 +5,7 @@ import * as FeatureActions from './features.actions';
 import { Feature } from '../models/feature.model';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { FeaturesState } from './features.state';
+import { FeaturesState, State } from './features.state';
 import { Observable } from 'rxjs/Observable';
 import { toHttpParams } from '../../shared/tables/table-request.payload';
 
@@ -21,12 +21,12 @@ export class FeaturesEffects {
     .ofType(FeatureActions.API_GET_FEATURES)
     .switchMap((action: FeatureActions.ApiGetFeatures) => {
       const params = toHttpParams(action.payload);
-      return this.httpClient.get<Feature[]>('/api/v1/projects/5ac1e829ba2b4612149738a2/features', { params });
+      return this.httpClient.get<State>('/api/v1/projects/5ac1e829ba2b4612149738a2/features', { params });
     })
-    .map((features: Feature[]) => {
+    .map((features: State) => {
       return {
         type: FeatureActions.API_GET_FEATURES_SUCCESS,
-        payload: features
+        payload: { content: features.content, totalElements: features.totalElements }
       };
     })
     .catch((err: HttpErrorResponse) => {

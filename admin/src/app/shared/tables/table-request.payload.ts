@@ -1,14 +1,14 @@
 import { HttpParams } from '@angular/common/http';
 
 export interface TableRequestPayload {
-  page?: number,
-  size?: number,
-  sort?: Array<SortDefinition>
+  page?: number;
+  size?: number;
+  sort?: Array<SortDefinition>;
 }
 
 interface SortDefinition {
-  property: string,
-  direction: string
+  property: string;
+  direction: string;
 }
 
 export function toHttpParams(reqPayload: TableRequestPayload = {}): HttpParams {

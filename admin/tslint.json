@@ -100,9 +100,6 @@
       }],
       "severity": "error"
     },
-    "rxjs-no-unused-add": {
-      "severity": "error"
-    },
     "semicolon": [
       true,
       "always"

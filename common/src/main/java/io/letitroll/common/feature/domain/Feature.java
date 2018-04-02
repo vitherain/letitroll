@@ -7,7 +7,11 @@ import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.io.Serializable;
 
 /**
@@ -20,8 +24,11 @@ public final class Feature implements Serializable {
     private final ObjectId id;
     @Version
     private final long version;
+    @NotNull
+    @NonNull
     private final String name;
     @DBRef
+    @NotNull
     private final Project project;
 
     public Feature(final String name, final Project project) {
@@ -48,7 +55,7 @@ public final class Feature implements Serializable {
         return name;
     }
 
-    public Feature name(final String name) {
+    public Feature name(@NonNull final String name) {
         return new Feature(id, version, name, project);
     }
 

@@ -8,7 +8,9 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.lang.NonNull;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,8 @@ public final class Project implements Serializable {
     @Version
     private final long version;
     @Indexed(unique = true)
+    @NotNull
+    @NonNull
     private final String name;
 
     public Project(final String name) {
@@ -49,7 +53,7 @@ public final class Project implements Serializable {
         return name;
     }
 
-    public Project name(final String name) {
+    public Project name(@NonNull final String name) {
         return new Project(id, version, name);
     }
 }

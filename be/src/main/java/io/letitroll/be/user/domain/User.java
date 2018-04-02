@@ -4,6 +4,9 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.lang.NonNull;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Instances are immutable.
@@ -13,8 +16,14 @@ public final class User {
 
     @Id
     private final ObjectId id;
+    @NotNull
+    @NonNull
     private final String username;
+    @NotNull
+    @NonNull
     private final String password;
+    @NotNull
+    @NonNull
     private final Role role;
 
     public User(final String username, final String password, final Role role) {

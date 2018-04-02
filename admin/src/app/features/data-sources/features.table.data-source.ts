@@ -46,7 +46,7 @@ export class FeaturesTableDataSource extends MatTableDataSource<Feature> {
 
   getFeatures(): void {
     if (this.store) {
-      const sortDefined: boolean = this.sort && this.sort.active && this.sort.direction;
+      const sortDefined: boolean = !!this.sort && !!this.sort.active && !!this.sort.direction;
       const tableRequest = {
         page: this.paginator ? this.paginator.pageIndex : 0,
         size: this.paginator ? this.paginator.pageSize : 2000,

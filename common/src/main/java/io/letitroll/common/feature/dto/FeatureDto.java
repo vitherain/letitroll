@@ -3,10 +3,14 @@ package io.letitroll.common.feature.dto;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
+import java.io.Serializable;
+
 /**
  * Instances are immutable.
  */
-public final class FeatureDto {
+public final class FeatureDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private final String id;
     private final long version;

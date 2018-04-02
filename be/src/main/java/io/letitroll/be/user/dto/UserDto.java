@@ -9,13 +9,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 
 /**
  * Instances are immutable.
  */
-public final class UserDto implements UserDetails {
+public final class UserDto implements UserDetails, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private final String id;
     private final String username;

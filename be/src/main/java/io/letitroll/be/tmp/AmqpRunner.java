@@ -1,6 +1,7 @@
 package io.letitroll.be.tmp;
 
 import io.letitroll.common.feature.domain.Feature;
+import io.letitroll.common.feature.dto.FeatureDto;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,6 +22,6 @@ public class AmqpRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("Sending message...");
-        rabbitTemplate.convertAndSend(TOPIC_EXCHANGE_NAME, "foo.bar.baz", new Feature(null, 0, "verified-accounts", project));
+        rabbitTemplate.convertAndSend(TOPIC_EXCHANGE_NAME, "foo.bar.baz", new FeatureDto(null, 0, "verified-accounts", "123456789"));
     }
 }

@@ -18,7 +18,7 @@ import java.io.Serializable;
  * Instances are immutable.
  */
 @Document(collection = "features")
-public final class Feature implements Serializable {
+public final class Feature {
 
     @Id
     private final ObjectId id;

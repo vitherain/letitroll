@@ -1,20 +1,18 @@
-package io.letitroll.common.feature.dto;
+package io.letitroll.common.project.dto;
 
 /**
  * Instances are immutable.
  */
-public final class FeatureDto {
+public final class ProjectDto {
 
     private final String id;
     private final long version;
     private final String name;
-    private final String projectId;
 
-    public FeatureDto(final String id, final long version, final String name, final String projectId) {
+    public ProjectDto(final String id, final long version, final String name) {
         this.id = id;
         this.version = version;
         this.name = name;
-        this.projectId = projectId;
     }
 
     public String getId() {
@@ -27,9 +25,5 @@ public final class FeatureDto {
 
     public String getName() {
         return name;
-    }
-
-    public String getProjectId() {
-        return projectId;
     }
 }

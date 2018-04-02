@@ -13,6 +13,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Instances are immutable.
+ */
 @Document(collection = "projects")
 public final class Project implements Serializable {
 
@@ -22,19 +25,16 @@ public final class Project implements Serializable {
     private final long version;
     @Indexed(unique = true)
     private final String name;
-    @DBRef
-    private final List<Feature> features;
 
     public Project(final String name) {
-        this(null, 0, name, new ArrayList<>());
+        this(null, 0, name);
     }
 
     @PersistenceConstructor
-    public Project(final ObjectId id, final long version, final String name, final List<Feature> features) {
+    public Project(final ObjectId id, final long version, final String name) {
         this.id = id;
         this.version = version;
         this.name = name;
-        this.features = features;
     }
 
     public ObjectId getId() {
@@ -50,10 +50,6 @@ public final class Project implements Serializable {
     }
 
     public Project name(final String name) {
-        return new Project(id, version, name, features);
-    }
-
-    public List<Feature> getFeatures() {
-        return new ArrayList<>(features);
+        return new Project(id, version, name);
     }
 }

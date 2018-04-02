@@ -21,6 +21,6 @@ public class AmqpRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("Sending message...");
-        rabbitTemplate.convertAndSend(TOPIC_EXCHANGE_NAME, "foo.bar.baz", new Feature(null, 0, "verified-accounts"));
+        rabbitTemplate.convertAndSend(TOPIC_EXCHANGE_NAME, "foo.bar.baz", new Feature(null, 0, "verified-accounts", project));
     }
 }

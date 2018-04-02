@@ -9,6 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * Instances are immutable.
+ */
 public final class UserDto implements UserDetails {
 
     private final String id;

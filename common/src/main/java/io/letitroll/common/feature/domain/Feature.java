@@ -12,6 +12,7 @@ import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -25,6 +26,7 @@ public final class Feature {
     @Version
     private final long version;
     @NotNull
+    @Size(max = 50)
     private final String name;
     @DBRef
     @NotNull

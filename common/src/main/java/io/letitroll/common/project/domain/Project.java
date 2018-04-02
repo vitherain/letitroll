@@ -12,6 +12,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public final class Project implements Serializable {
     private final long version;
     @Indexed(unique = true)
     @NotNull
+    @Size(max = 50)
     private final String name;
 
     public Project(@NonNull final String name) {

@@ -8,6 +8,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Instances are immutable.
@@ -18,6 +19,7 @@ public final class User {
     @Id
     private final ObjectId id;
     @NotNull
+    @Size(max = 50)
     private final String username;
     @NotNull
     private final String password;

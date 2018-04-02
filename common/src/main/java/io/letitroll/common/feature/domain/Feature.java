@@ -25,24 +25,24 @@ public final class Feature implements Serializable {
     @Version
     private final long version;
     @NotNull
-    @NonNull
     private final String name;
     @DBRef
     @NotNull
     private final Project project;
 
-    public Feature(final String name, final Project project) {
+    public Feature(@NonNull final String name, @NonNull final Project project) {
         this(null, 0, name, project);
     }
 
     @PersistenceConstructor
-    public Feature(final ObjectId id, final long version, final String name, final Project project) {
+    public Feature(@Nullable final ObjectId id, final long version, @NonNull final String name, @NonNull final Project project) {
         this.id = id;
         this.version = version;
         this.name = name;
         this.project = project;
     }
 
+    @Nullable
     public ObjectId getId() {
         return id;
     }
@@ -51,6 +51,7 @@ public final class Feature implements Serializable {
         return version;
     }
 
+    @NonNull
     public String getName() {
         return name;
     }
@@ -59,11 +60,13 @@ public final class Feature implements Serializable {
         return new Feature(id, version, name, project);
     }
 
+    @NonNull
     public Project getProject() {
         return project;
     }
 
-    public Feature project(final Project project) {
+    @NonNull
+    public Feature project(@NonNull final Project project) {
         return new Feature(id, version, name, project);
     }
 }

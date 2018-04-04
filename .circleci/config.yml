@@ -31,8 +31,8 @@ jobs:
 
     working_directory: ~/repo/admin
     steps:
-      checkout:
-        path: ~/repo
+      - checkout:
+          path: ~/repo
       # Download and cache dependencies
       - restore_cache:
           keys:

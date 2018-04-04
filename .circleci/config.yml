@@ -29,7 +29,7 @@ jobs:
     docker:
       - image: circleci/node:7.10
 
-    - working_directory: ~/repo/admin
+    working_directory: ~/repo/admin
     steps:
       - checkout
         path: ~/repo

@@ -1,8 +1,6 @@
 version: 2
 jobs:
   build_be:
-    working_directory: ~/repo/common
-
     docker:
       - image: circleci/openjdk:8-jdk
 
@@ -28,14 +26,13 @@ jobs:
 
       - run: mvn clean install
   build_admin:
-    working_directory: ~/repo/admin
-
     docker:
       - image: circleci/node:7.10
 
+    - working_directory: ~/repo/admin
     steps:
       - checkout
-
+        path: ~/repo
       # Download and cache dependencies
       - restore_cache:
           keys:

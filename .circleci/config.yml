@@ -51,7 +51,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: yarn test
+      - run: yarn run test-ci
 workflows:
   version: 2
   pipeline:

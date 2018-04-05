@@ -54,6 +54,12 @@ jobs:
           path: test-results.xml
           prefix: tests
       - run:
+          name: angular-e2e
+          command: yarn e2e
+      - store_test_results:
+          path: e2e/junitresults.xml
+          prefix: e2e
+      - run:
           name: angular-lint
           command: yarn lint --format stylish
 workflows:

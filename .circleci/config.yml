@@ -31,9 +31,6 @@ jobs:
     docker:
       - image: circleci/node:6-browsers
 
-    environment:
-      CHROME_BIN: "/usr/bin/google-chrome"
-
     steps:
       - checkout:
           path: ~/repo

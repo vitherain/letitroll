@@ -8,7 +8,6 @@
     "build": "ng build --prod --environment=prod",
     "aot": "ng build --prod --aot --environment=prod",
     "test": "ng test",
-    "test-ci": "ng test --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

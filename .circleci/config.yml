@@ -29,10 +29,10 @@ jobs:
     docker:
       - image: circleci/node:7.10
       - image: circleci/python:3.4-browsers
-        environment:
-          CHROME_BIN: "/usr/bin/google-chrome"
 
     working_directory: ~/repo/admin
+    environment:
+      CHROME_BIN: "/usr/bin/google-chrome"
     steps:
       - checkout:
           path: ~/repo

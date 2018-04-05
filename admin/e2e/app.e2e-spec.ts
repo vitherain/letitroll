@@ -9,6 +9,6 @@ describe('admin App', () => {
 
   it('should display Features heading', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Features');
+    expect(page.getParagraphText()).toEqual('Feature');
   });
 });

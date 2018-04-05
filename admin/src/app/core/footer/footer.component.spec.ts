@@ -50,7 +50,7 @@ describe('FooterComponent', () => {
     const dtpService = TestBed.get(DateTimeProviderService);
     spyOn(dtpService, 'currentYear').and.returnValue(2018);
     fixture.detectChanges();
-    expect(page.copyright.textContent).toBe('© Vít Herain 2018');
+    expect(page.copyright.textContent).toBe('© Vít Herin 2018');
   });
 
   it('should show both year values', () => {

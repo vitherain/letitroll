@@ -5,6 +5,7 @@
 /dist-server
 /tmp
 /out-tsc
+test-results.xml
 
 # dependencies
 /node_modules

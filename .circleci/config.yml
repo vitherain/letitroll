@@ -27,9 +27,9 @@ jobs:
       - run: mvn clean install
   build_admin:
     docker:
-      - image:
-        circleci/node:7.10
-        circleci/python:3.4-browsers
+      image:
+        - circleci/node:7.10
+        - circleci/python:3.4-browsers
 
     working_directory: ~/repo/admin
     steps:

@@ -55,10 +55,7 @@ jobs:
           prefix: tests
       - run:
           name: angular-lint
-          command: yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
-      - store_test_results:
-          path: tslint.xml
-          prefix: lint
+          command: yarn lint --format stylish
 workflows:
   version: 2
   pipeline:

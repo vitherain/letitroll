@@ -56,7 +56,7 @@ jobs:
       - run:
           name: angular-lint
           command: yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
-      - store_artifacts:
+      - store_test_results:
           path: tslint.xml
           prefix: lint
 workflows:

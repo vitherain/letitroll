@@ -23,7 +23,7 @@ public class LaboriousFeatureMapper implements FeatureMapper {
                 .map(Project::getId)
                 .map(ObjectId::toString)
                 .orElse(null);
-        return new FeatureDto(id, entity.getVersion(), entity.getName(), projectId);
+        return new FeatureDto(id, entity.getVersion(), entity.getName(), entity.getKey(), projectId);
     }
 
     @Override
@@ -32,6 +32,6 @@ public class LaboriousFeatureMapper implements FeatureMapper {
         final ObjectId id = Optional.ofNullable(dto.getId())
                 .map(ObjectId::new)
                 .orElse(null);
-        return new Feature(id, dto.getVersion(), dto.getName(), null);
+        return new Feature(id, dto.getVersion(), dto.getName(), dto.getKey(), null);
     }
 }

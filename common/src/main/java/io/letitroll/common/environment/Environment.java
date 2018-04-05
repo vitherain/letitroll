@@ -1,4 +1,4 @@
-package io.letitroll.common.feature.domain;
+package io.letitroll.common.environment;
 
 import io.letitroll.common.project.domain.Project;
 import org.bson.types.ObjectId;
@@ -16,8 +16,8 @@ import javax.validation.constraints.Size;
 /**
  * Instances are immutable.
  */
-@Document(collection = "features")
-public final class Feature {
+@Document(collection = "environments")
+public final class Environment {
 
     @Id
     private final ObjectId id;
@@ -26,23 +26,19 @@ public final class Feature {
     @NotNull
     @Size(max = 50)
     private final String name;
-    @NotNull
-    @Size(max = 50)
-    private final String key;
     @DBRef
     @NotNull
     private final Project project;
 
-    public Feature(@NonNull final String name, @NonNull final String key, @NonNull final Project project) {
-        this(null, 0, name, key, project);
+    public Environment(@NonNull final String name, @NonNull final Project project) {
+        this(null, 0, name, project);
     }
 
     @PersistenceConstructor
-    public Feature(@Nullable final ObjectId id, final long version, @NonNull final String name, @NonNull final String key, @NonNull final Project project) {
+    public Environment(@Nullable final ObjectId id, final long version, @NonNull final String name, @NonNull final Project project) {
         this.id = id;
         this.version = version;
         this.name = name;
-        this.key = key;
         this.project = project;
     }
 
@@ -60,13 +56,8 @@ public final class Feature {
         return name;
     }
 
-    @NonNull
-    public String getKey() {
-        return key;
-    }
-
-    public Feature name(@NonNull final String name) {
-        return new Feature(id, version, name, key, project);
+    public Environment name(@NonNull final String name) {
+        return new Environment(id, version, name, project);
     }
 
     @NonNull
@@ -75,7 +66,7 @@ public final class Feature {
     }
 
     @NonNull
-    public Feature project(@NonNull final Project project) {
-        return new Feature(id, version, name, key, project);
+    public Environment project(@NonNull final Project project) {
+        return new Environment(id, version, name, project);
     }
 }

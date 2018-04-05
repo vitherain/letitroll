@@ -15,12 +15,14 @@ public final class FeatureDto implements Serializable {
     private final String id;
     private final long version;
     private final String name;
+    private final String key;
     private final String projectId;
 
-    public FeatureDto(@Nullable final String id, final long version, @NonNull final String name, @NonNull final String projectId) {
+    public FeatureDto(@Nullable final String id, final long version, @NonNull final String name, @NonNull final String key, @NonNull final String projectId) {
         this.id = id;
         this.version = version;
         this.name = name;
+        this.key = key;
         this.projectId = projectId;
     }
 
@@ -36,6 +38,11 @@ public final class FeatureDto implements Serializable {
     @NonNull
     public String getName() {
         return name;
+    }
+
+    @NonNull
+    public String getKey() {
+        return key;
     }
 
     @NonNull

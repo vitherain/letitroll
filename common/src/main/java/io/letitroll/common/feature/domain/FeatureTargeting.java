@@ -11,6 +11,9 @@ import org.springframework.lang.NonNull;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * Instances are immutable.
+ */
 @Document(collection = "targetings")
 public final class FeatureTargeting {
 

@@ -6,7 +6,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 
-public class BeApplicationTest extends BaseSpringTest {
+public class BeApplicationContextTest extends BaseSpringTest {
 
     /**
      * Temporary

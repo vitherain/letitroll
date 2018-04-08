@@ -56,6 +56,7 @@ public final class Environment {
         return name;
     }
 
+    @NonNull
     public Environment name(@NonNull final String name) {
         return new Environment(id, version, name, project);
     }

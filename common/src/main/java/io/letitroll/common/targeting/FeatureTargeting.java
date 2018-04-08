@@ -1,6 +1,7 @@
-package io.letitroll.common.feature.domain;
+package io.letitroll.common.targeting;
 
 import io.letitroll.common.environment.Environment;
+import io.letitroll.common.feature.domain.Feature;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
@@ -8,6 +9,7 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
 
@@ -33,7 +35,7 @@ public final class FeatureTargeting {
 
     @PersistenceConstructor
     public FeatureTargeting(
-            @NonNull final ObjectId id,
+            @Nullable final ObjectId id,
             final long version,
             @NonNull final Feature feature,
             @NonNull final Environment environment,
@@ -50,6 +52,7 @@ public final class FeatureTargeting {
         this.offValue = offValue;
     }
 
+    @Nullable
     public ObjectId getId() {
         return id;
     }
@@ -58,10 +61,12 @@ public final class FeatureTargeting {
         return version;
     }
 
+    @NonNull
     public Feature getFeature() {
         return feature;
     }
 
+    @NonNull
     public Environment getEnvironment() {
         return environment;
     }

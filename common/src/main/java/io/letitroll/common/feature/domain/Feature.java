@@ -106,6 +106,7 @@ public final class Feature {
         return unmodifiableSet(tags);
     }
 
+    @NonNull
     public Feature name(@NonNull final String name) {
         return new Feature(id, version, name, key, description, tags, type, project);
     }

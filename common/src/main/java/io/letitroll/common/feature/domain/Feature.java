@@ -12,6 +12,9 @@ import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
+
+import static java.util.Collections.unmodifiableSet;
 
 /**
  * Instances are immutable.
@@ -29,20 +32,43 @@ public final class Feature {
     @NotNull
     @Size(max = 50)
     private final String key;
+    @Size(max = 1024)
+    private final String description;
+    @NotNull
+    private final Set<FeatureTag> tags;
+    @NotNull
+    private final FeatureType type;
     @DBRef
     @NotNull
     private final Project project;
 
-    public Feature(@NonNull final String name, @NonNull final String key, @NonNull final Project project) {
-        this(null, 0, name, key, project);
+    public Feature(
+            @NonNull final String name,
+            @NonNull final String key,
+            @Nullable final String description,
+            @NonNull final Set<FeatureTag> tags,
+            @NonNull final FeatureType type,
+            @NonNull final Project project) {
+        this(null, 0, name, key, description, tags, type, project);
     }
 
     @PersistenceConstructor
-    public Feature(@Nullable final ObjectId id, final long version, @NonNull final String name, @NonNull final String key, @NonNull final Project project) {
+    public Feature(
+            @Nullable final ObjectId id,
+            final long version,
+            @NonNull final String name,
+            @NonNull final String key,
+            @Nullable final String description,
+            @NonNull final Set<FeatureTag> tags,
+            @NonNull final FeatureType type,
+            @NonNull final Project project) {
         this.id = id;
         this.version = version;
         this.name = name;
         this.key = key;
+        this.description = description;
+        this.tags = tags;
+        this.type = type;
         this.project = project;
     }
 
@@ -65,8 +91,23 @@ public final class Feature {
         return key;
     }
 
+    @NonNull
+    public FeatureType getType() {
+        return type;
+    }
+
+    @Nullable
+    public String getDescription() {
+        return description;
+    }
+
+    @NonNull
+    public Set<FeatureTag> getTags() {
+        return unmodifiableSet(tags);
+    }
+
     public Feature name(@NonNull final String name) {
-        return new Feature(id, version, name, key, project);
+        return new Feature(id, version, name, key, description, tags, type, project);
     }
 
     @NonNull
@@ -76,6 +117,6 @@ public final class Feature {
 
     @NonNull
     public Feature project(@NonNull final Project project) {
-        return new Feature(id, version, name, key, project);
+        return new Feature(id, version, name, key, description, tags, type, project);
     }
 }

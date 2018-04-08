@@ -1,7 +1,9 @@
 package io.letitroll.common.feature.mapper;
 
 import io.letitroll.common.feature.domain.Feature;
+import io.letitroll.common.feature.domain.FeatureTag;
 import io.letitroll.common.feature.dto.FeatureDto;
+import io.letitroll.common.feature.dto.FeatureTagDto;
 import io.letitroll.common.project.domain.Project;
 import org.bson.types.ObjectId;
 import org.springframework.lang.NonNull;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 import java.util.Optional;
+
+import static java.util.stream.Collectors.toSet;
 
 @Component
 public class LaboriousFeatureMapper implements FeatureMapper {
@@ -23,7 +27,15 @@ public class LaboriousFeatureMapper implements FeatureMapper {
                 .map(Project::getId)
                 .map(ObjectId::toString)
                 .orElse(null);
-        return new FeatureDto(id, entity.getVersion(), entity.getName(), entity.getKey(), projectId);
+        return new FeatureDto(
+                id,
+                entity.getVersion(),
+                entity.getName(),
+                entity.getKey(),
+                entity.getDescription(),
+                entity.getTags().stream().map(this::mapTagToDto).collect(toSet()),
+                entity.getType(),
+                projectId);
     }
 
     @Override
@@ -32,6 +44,22 @@ public class LaboriousFeatureMapper implements FeatureMapper {
         final ObjectId id = Optional.ofNullable(dto.getId())
                 .map(ObjectId::new)
                 .orElse(null);
-        return new Feature(id, dto.getVersion(), dto.getName(), dto.getKey(), null);
+        return new Feature(
+                id,
+                dto.getVersion(),
+                dto.getName(),
+                dto.getKey(),
+                dto.getDescription(),
+                dto.getTags().stream().map(this::mapTagToEntity).collect(toSet()),
+                dto.getType(),
+                null);
+    }
+
+    private FeatureTagDto mapTagToDto(@NonNull final FeatureTag tag) {
+        return new FeatureTagDto(tag.getName());
+    }
+
+    private FeatureTag mapTagToEntity(@NonNull final FeatureTagDto tag) {
+        return new FeatureTag(tag.getName());
     }
 }

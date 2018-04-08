@@ -22,7 +22,12 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      - run: mvn clean install -P integration-test
+      - run:
+          name: Clean install
+          command: mvn clean install -DskipTests=true
+      - run:
+          name: Run Tests
+          command: mvn verify -B -P integration-test --fail-at-end
   build_admin:
     working_directory: ~/repo/admin
 

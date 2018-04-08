@@ -64,15 +64,20 @@ jobs:
       - run:
           name: angular-test
           command: yarn test -- --single-run --no-progress
-      - store_artifacts:
-          path: test-results.xml
-          prefix: tests
       - run:
           name: angular-e2e
           command: yarn e2e
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/junit/
+            find . -type f -regex ".*/junitresults.xml" -exec cp {} ~/junit/ \;
+            find . -type f -regex ".*/test-results.xml" -exec cp {} ~/junit/ \;
+          when: always
+      - store_test_results:
+          path: ~/junit
       - store_artifacts:
-          path: e2e/junitresults.xml
-          prefix: e2e
+          path: ./junit
       - run:
           name: angular-lint
           command: yarn lint --format stylish

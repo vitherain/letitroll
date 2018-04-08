@@ -1,4 +1,4 @@
-package io.letitroll.client.category;
+package io.letitroll.test.category;
 
 public interface SlowIntegrationTest {
 }

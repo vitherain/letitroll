@@ -20,6 +20,7 @@
         <module>be</module>
         <module>client</module>
         <module>common</module>
+        <module>test</module>
     </modules>
 
 	<properties>
@@ -35,6 +36,12 @@
             <dependency>
                 <groupId>io.letitroll</groupId>
                 <artifactId>common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.letitroll</groupId>
+                <artifactId>test</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -157,7 +164,7 @@
                                     <goal>verify</goal>
                                 </goals>
                                 <configuration>
-                                    <groups>io.letitroll.be.category.SlowIntegrationTest,io.letitroll.client.category.SlowIntegrationTest</groups>
+                                    <groups>io.letitroll.test.category.SlowIntegrationTest</groups>
                                     <includes>
                                         <include>**/*Test.java</include>
                                         <include>**/*Tests.java</include>

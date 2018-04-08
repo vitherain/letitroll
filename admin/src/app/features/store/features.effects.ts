@@ -20,7 +20,7 @@ export class FeaturesEffects {
     .ofType(FeatureActions.API_GET_FEATURES)
     .switchMap((action: FeatureActions.ApiGetFeatures) => {
       const params = toHttpParams(action.payload);
-      return this.httpClient.get<State>('/api/v1/projects/5ac1e829ba2b4612149738a2/features', { params });
+      return this.httpClient.get<State>('/api/v1/projects/5ac9deeaf3473c2ea859744f/features', { params });
     })
     .map((features: State) => {
       return {

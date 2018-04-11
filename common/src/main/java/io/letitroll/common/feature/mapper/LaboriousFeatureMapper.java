@@ -35,6 +35,7 @@ public class LaboriousFeatureMapper implements FeatureMapper {
                 entity.getDescription(),
                 entity.getTags().stream().map(this::mapTagToDto).collect(toSet()),
                 entity.getType(),
+                entity.isAvailableToClient(),
                 projectId);
     }
 
@@ -52,6 +53,7 @@ public class LaboriousFeatureMapper implements FeatureMapper {
                 dto.getDescription(),
                 dto.getTags().stream().map(this::mapTagToEntity).collect(toSet()),
                 dto.getType(),
+                dto.isAvailableToClient(),
                 null);
     }
 

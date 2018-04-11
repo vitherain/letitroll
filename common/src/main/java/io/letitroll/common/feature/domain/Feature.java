@@ -38,6 +38,7 @@ public final class Feature {
     private final Set<FeatureTag> tags;
     @NotNull
     private final FeatureType type;
+    private final boolean availableToClient;
     @DBRef
     @NotNull
     private final Project project;
@@ -49,7 +50,7 @@ public final class Feature {
             @NonNull final Set<FeatureTag> tags,
             @NonNull final FeatureType type,
             @NonNull final Project project) {
-        this(null, 0, name, key, description, tags, type, project);
+        this(null, 0, name, key, description, tags, type, false, project);
     }
 
     @PersistenceConstructor
@@ -61,6 +62,7 @@ public final class Feature {
             @Nullable final String description,
             @NonNull final Set<FeatureTag> tags,
             @NonNull final FeatureType type,
+            final boolean availableToClient,
             @NonNull final Project project) {
         this.id = id;
         this.version = version;
@@ -69,6 +71,7 @@ public final class Feature {
         this.description = description;
         this.tags = tags;
         this.type = type;
+        this.availableToClient = availableToClient;
         this.project = project;
     }
 
@@ -91,11 +94,6 @@ public final class Feature {
         return key;
     }
 
-    @NonNull
-    public FeatureType getType() {
-        return type;
-    }
-
     @Nullable
     public String getDescription() {
         return description;
@@ -107,8 +105,17 @@ public final class Feature {
     }
 
     @NonNull
+    public FeatureType getType() {
+        return type;
+    }
+
+    public boolean isAvailableToClient() {
+        return availableToClient;
+    }
+
+    @NonNull
     public Feature name(@NonNull final String name) {
-        return new Feature(id, version, name, key, description, tags, type, project);
+        return new Feature(id, version, name, key, description, tags, type, availableToClient, project);
     }
 
     @NonNull
@@ -118,6 +125,6 @@ public final class Feature {
 
     @NonNull
     public Feature project(@NonNull final Project project) {
-        return new Feature(id, version, name, key, description, tags, type, project);
+        return new Feature(id, version, name, key, description, tags, type, availableToClient, project);
     }
 }

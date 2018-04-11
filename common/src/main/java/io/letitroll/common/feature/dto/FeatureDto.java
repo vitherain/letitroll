@@ -23,6 +23,7 @@ public final class FeatureDto implements Serializable {
     private final String description;
     private final Set<FeatureTagDto> tags;
     private final FeatureType type;
+    private final boolean availableToClient;
     private final String projectId;
 
     public FeatureDto(
@@ -33,6 +34,7 @@ public final class FeatureDto implements Serializable {
             @Nullable final String description,
             @NonNull final Set<FeatureTagDto> tags,
             @NonNull final FeatureType type,
+            final boolean availableToClient,
             @NonNull final String projectId) {
         this.id = id;
         this.version = version;
@@ -41,6 +43,7 @@ public final class FeatureDto implements Serializable {
         this.description = description;
         this.tags = tags;
         this.type = type;
+        this.availableToClient = availableToClient;
         this.projectId = projectId;
     }
 
@@ -69,13 +72,17 @@ public final class FeatureDto implements Serializable {
     }
 
     @NonNull
+    public Set<FeatureTagDto> getTags() {
+        return unmodifiableSet(tags);
+    }
+
+    @NonNull
     public FeatureType getType() {
         return type;
     }
 
-    @NonNull
-    public Set<FeatureTagDto> getTags() {
-        return unmodifiableSet(tags);
+    public boolean isAvailableToClient() {
+        return availableToClient;
     }
 
     @NonNull

@@ -27,7 +27,16 @@ public class AmqpRunner implements CommandLineRunner {
         rabbitTemplate.convertAndSend(
                 TOPIC_EXCHANGE_NAME,
                 "foo.bar.baz",
-                new FeatureDto(null, 0, "Verified Accounts", "verified-accounts", null, emptySet(), FeatureType.BOOLEAN, "123456789")
+                new FeatureDto(
+                        null,
+                        0,
+                        "Verified Accounts",
+                        "verified-accounts",
+                        null,
+                        emptySet(),
+                        FeatureType.BOOLEAN,
+                        false,
+                        "123456789")
         );
     }
 }

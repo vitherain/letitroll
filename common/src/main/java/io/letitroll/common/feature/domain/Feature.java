@@ -1,5 +1,6 @@
 package io.letitroll.common.feature.domain;
 
+import io.letitroll.common.builder.AbstractBuilder;
 import io.letitroll.common.project.domain.Project;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -43,6 +44,20 @@ public final class Feature {
     @NotNull
     private final Project project;
 
+    public Feature(@NonNull final FeatureBuilder builder) {
+        this(
+                builder.id,
+                builder.version,
+                builder.name,
+                builder.key,
+                builder.description,
+                builder.tags,
+                builder.type,
+                builder.availableToClient,
+                builder.project
+        );
+    }
+
     public Feature(
             @NonNull final String name,
             @NonNull final String key,
@@ -73,6 +88,10 @@ public final class Feature {
         this.type = type;
         this.availableToClient = availableToClient;
         this.project = project;
+    }
+
+    public static FeatureBuilder builder() {
+        return new FeatureBuilder();
     }
 
     @Nullable
@@ -126,5 +145,79 @@ public final class Feature {
     @NonNull
     public Feature project(@NonNull final Project project) {
         return new Feature(id, version, name, key, description, tags, type, availableToClient, project);
+    }
+
+    public static final class FeatureBuilder extends AbstractBuilder<Feature> {
+
+        private ObjectId id;
+        private long version;
+        @NotNull
+        @Size(max = 50)
+        private String name;
+        @NotNull
+        @Size(max = 50)
+        private String key;
+        @Size(max = 1024)
+        private String description;
+        @NotNull
+        private Set<FeatureTag> tags;
+        @NotNull
+        private FeatureType type;
+        private boolean availableToClient;
+        @NotNull
+        private Project project;
+
+        private FeatureBuilder() {
+        }
+
+        public FeatureBuilder id(ObjectId id) {
+            this.id = id;
+            return this;
+        }
+
+        public FeatureBuilder version(long version) {
+            this.version = version;
+            return this;
+        }
+
+        public FeatureBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public FeatureBuilder key(String key) {
+            this.key = key;
+            return this;
+        }
+
+        public FeatureBuilder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public FeatureBuilder tags(Set<FeatureTag> tags) {
+            this.tags = tags;
+            return this;
+        }
+
+        public FeatureBuilder type(FeatureType type) {
+            this.type = type;
+            return this;
+        }
+
+        public FeatureBuilder availableToClient(boolean availableToClient) {
+            this.availableToClient = availableToClient;
+            return this;
+        }
+
+        public FeatureBuilder project(Project project) {
+            this.project = project;
+            return this;
+        }
+
+        @Override
+        protected Feature buildInternal() {
+            return new Feature(this);
+        }
     }
 }

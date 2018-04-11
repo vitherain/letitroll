@@ -35,7 +35,7 @@ public final class FeatureDto implements Serializable {
             @NonNull final Set<FeatureTagDto> tags,
             @NonNull final FeatureType type,
             final boolean availableToClient,
-            @NonNull final String projectId) {
+            @Nullable final String projectId) {
         this.id = id;
         this.version = version;
         this.name = name;
@@ -85,7 +85,7 @@ public final class FeatureDto implements Serializable {
         return availableToClient;
     }
 
-    @NonNull
+    @Nullable
     public String getProjectId() {
         return projectId;
     }

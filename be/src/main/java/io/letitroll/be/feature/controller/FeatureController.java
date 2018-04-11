@@ -3,7 +3,7 @@ package io.letitroll.be.feature.controller;
 import io.letitroll.be.api.ApiUrls;
 import io.letitroll.be.feature.repository.FeatureRepository;
 import io.letitroll.common.feature.dto.FeatureDto;
-import io.letitroll.common.feature.mapper.FeatureMapper;
+import io.letitroll.common.feature.mapper.FeatureEntity2DtoMapper;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,12 +24,12 @@ import java.util.List;
 public class FeatureController {
 
     private final FeatureRepository featureRepository;
-    private final FeatureMapper featureMapper;
+    private final FeatureEntity2DtoMapper featureEntity2DtoMapper;
 
     @Autowired
-    public FeatureController(final FeatureRepository featureRepository, final FeatureMapper featureMapper) {
+    public FeatureController(final FeatureRepository featureRepository, final FeatureEntity2DtoMapper featureEntity2DtoMapper) {
         this.featureRepository = featureRepository;
-        this.featureMapper = featureMapper;
+        this.featureEntity2DtoMapper = featureEntity2DtoMapper;
     }
 
     @CrossOrigin
@@ -41,7 +41,7 @@ public class FeatureController {
             final Pageable pageable) {
 
         final Mono<List<FeatureDto>> featuresListMono = featureRepository.findByProjectId(new ObjectId(projectId), pageable)
-                .map(featureMapper::a2B)
+                .map(featureEntity2DtoMapper::map)
                 .collectList();
 
         return Mono.zip(

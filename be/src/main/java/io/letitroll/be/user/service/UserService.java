@@ -1,6 +1,6 @@
 package io.letitroll.be.user.service;
 
-import io.letitroll.be.user.mapper.UserMapper;
+import io.letitroll.be.user.mapper.UserEntity2DtoMapper;
 import io.letitroll.be.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -15,17 +15,17 @@ import java.util.Objects;
 public class UserService implements ReactiveUserDetailsService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
+    private final UserEntity2DtoMapper userEntity2DtoMapper;
 
     @Autowired
-    public UserService(final UserRepository userRepository, final UserMapper userMapper) {
+    public UserService(final UserRepository userRepository, final UserEntity2DtoMapper userEntity2DtoMapper) {
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
+        this.userEntity2DtoMapper = userEntity2DtoMapper;
     }
 
     @Override
     public Mono<UserDetails> findByUsername(@NonNull final String username) {
         Objects.requireNonNull(username, "username must not be null!");
-        return userRepository.findByUsername(username).map(userMapper::a2B);
+        return userRepository.findByUsername(username).map(userEntity2DtoMapper::map);
     }
 }

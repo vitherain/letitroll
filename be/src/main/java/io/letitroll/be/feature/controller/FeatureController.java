@@ -41,7 +41,7 @@ public class FeatureController {
             final Pageable pageable) {
 
         final Mono<List<FeatureDto>> featuresListMono = featureRepository.findByProjectId(new ObjectId(projectId), pageable)
-                .map(featureMapper::toDto)
+                .map(featureMapper::a2B)
                 .collectList();
 
         return Mono.zip(

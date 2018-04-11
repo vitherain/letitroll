@@ -18,7 +18,7 @@ import static java.util.stream.Collectors.toSet;
 public class LaboriousFeatureMapper implements FeatureMapper {
 
     @Override
-    public FeatureDto toDto(@NonNull final Feature entity) {
+    public FeatureDto a2B(@NonNull final Feature entity) {
         Objects.requireNonNull(entity, "entity must not be null!");
         final String id = Optional.ofNullable(entity.getId())
                 .map(ObjectId::toString)
@@ -40,7 +40,7 @@ public class LaboriousFeatureMapper implements FeatureMapper {
     }
 
     @Override
-    public Feature toEntity(@NonNull final FeatureDto dto) {
+    public Feature b2A(@NonNull final FeatureDto dto) {
         Objects.requireNonNull(dto, "dto must not be null!");
         final ObjectId id = Optional.ofNullable(dto.getId())
                 .map(ObjectId::new)

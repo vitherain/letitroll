@@ -2,18 +2,16 @@ package io.letitroll.common.mapper;
 
 import org.springframework.lang.NonNull;
 
-import javax.validation.constraints.NotNull;
-
 /**
- * Base interface for mapping entities to data transfer objects
- * and vice versa.
+ * Base interface for mapping object of one type to
+ * object of another type and vice versa.
  *
- * @param <T> entity type
- * @param <U> data transfer object type
+ * @param <A> first object's type
+ * @param <B> second object's type
  */
-public interface Mapper<T, U> {
+public interface Mapper<A, B> {
 
-    U toDto(@NonNull T entity);
+    B a2B(@NonNull A entity);
 
-    T toEntity(@NonNull U dto);
+    A b2A(@NonNull B dto);
 }

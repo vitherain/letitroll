@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Service
@@ -27,6 +26,6 @@ public class UserService implements ReactiveUserDetailsService {
     @Override
     public Mono<UserDetails> findByUsername(@NonNull final String username) {
         Objects.requireNonNull(username, "username must not be null!");
-        return userRepository.findByUsername(username).map(userMapper::toDto);
+        return userRepository.findByUsername(username).map(userMapper::a2B);
     }
 }

@@ -3,14 +3,10 @@ package io.letitroll.common.project.dto;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
-import java.io.Serializable;
-
 /**
  * Instances are immutable.
  */
-public final class ProjectDto implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public final class ProjectDto {
 
     private final String id;
     private final long version;

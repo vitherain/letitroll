@@ -1,27 +1,22 @@
 package io.letitroll.common.project.domain;
 
-import io.letitroll.common.feature.domain.Feature;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Instances are immutable.
  */
 @Document(collection = "projects")
-public final class Project implements Serializable {
+public final class Project {
 
     @Id
     private final ObjectId id;

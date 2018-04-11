@@ -4,7 +4,6 @@ import io.letitroll.common.feature.domain.FeatureType;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
-import java.io.Serializable;
 import java.util.Set;
 
 import static java.util.Collections.unmodifiableSet;
@@ -12,9 +11,7 @@ import static java.util.Collections.unmodifiableSet;
 /**
  * Instances are immutable.
  */
-public final class FeatureDto implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public final class FeatureDto {
 
     private final String id;
     private final long version;

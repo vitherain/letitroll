@@ -1,4 +1,4 @@
-package io.letitroll.common.targeting;
+package io.letitroll.common.targeting.domain;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

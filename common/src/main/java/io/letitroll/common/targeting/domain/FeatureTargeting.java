@@ -1,4 +1,4 @@
-package io.letitroll.common.targeting;
+package io.letitroll.common.targeting.domain;
 
 import io.letitroll.common.environment.Environment;
 import io.letitroll.common.feature.domain.Feature;

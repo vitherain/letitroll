@@ -1,14 +1,9 @@
 package io.letitroll.be.tmp;
 
-import io.letitroll.common.feature.domain.FeatureType;
-import io.letitroll.common.feature.dto.FeatureDto;
-import io.letitroll.common.user.dto.UserDto;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import static java.util.Collections.emptySet;
 
 @Component
 public class AmqpRunner implements CommandLineRunner {
@@ -24,7 +19,7 @@ public class AmqpRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Sending message...");
+        /*System.out.println("Sending message...");
         rabbitTemplate.convertAndSend(
                 TOPIC_EXCHANGE_NAME,
                 "foo.bar.baz",
@@ -40,6 +35,6 @@ public class AmqpRunner implements CommandLineRunner {
                         FeatureType.BOOLEAN,
                         false,
                         "123456789")
-        );
+        );*/
     }
 }

@@ -46,6 +46,7 @@ public class LaboriousFeatureEntity2DtoMapper implements FeatureEntity2DtoMapper
                 source.getKey(),
                 source.getDescription(),
                 maintainer,
+                source.isPermanent(),
                 source.getTags().stream().map(this::mapTagToDto).collect(toSet()),
                 source.getType(),
                 source.isAvailableToClient(),

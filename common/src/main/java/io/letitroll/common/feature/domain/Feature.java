@@ -39,6 +39,7 @@ public final class Feature {
     @DBRef
     @NotNull
     private final User maintainer;
+    private final boolean permanent;
     @NotNull
     private final Set<FeatureTag> tags;
     @NotNull
@@ -56,6 +57,7 @@ public final class Feature {
                 builder.key,
                 builder.description,
                 builder.maintainer,
+                builder.permanent,
                 builder.tags,
                 builder.type,
                 builder.availableToClient,
@@ -70,7 +72,7 @@ public final class Feature {
             @NonNull final Set<FeatureTag> tags,
             @NonNull final FeatureType type,
             @NonNull final Project project) {
-        this(null, 0, name, key, null, maintainer, tags, type, false, project);
+        this(null, 0, name, key, null, maintainer, false, tags, type, false, project);
     }
 
     @PersistenceConstructor
@@ -81,6 +83,7 @@ public final class Feature {
             @NonNull final String key,
             @Nullable final String description,
             @NonNull final User maintainer,
+            final boolean permanent,
             @NonNull final Set<FeatureTag> tags,
             @NonNull final FeatureType type,
             final boolean availableToClient,
@@ -91,6 +94,7 @@ public final class Feature {
         this.key = key;
         this.description = description;
         this.maintainer = maintainer;
+        this.permanent = permanent;
         this.tags = tags;
         this.type = type;
         this.availableToClient = availableToClient;
@@ -130,6 +134,10 @@ public final class Feature {
         return maintainer;
     }
 
+    public boolean isPermanent() {
+        return permanent;
+    }
+
     @NonNull
     public Set<FeatureTag> getTags() {
         return unmodifiableSet(tags);
@@ -146,7 +154,7 @@ public final class Feature {
 
     @NonNull
     public Feature name(@NonNull final String name) {
-        return new Feature(id, version, name, key, description, maintainer, tags, type, availableToClient, project);
+        return new Feature(id, version, name, key, description, maintainer, permanent, tags, type, availableToClient, project);
     }
 
     @NonNull
@@ -156,7 +164,7 @@ public final class Feature {
 
     @NonNull
     public Feature project(@NonNull final Project project) {
-        return new Feature(id, version, name, key, description, maintainer, tags, type, availableToClient, project);
+        return new Feature(id, version, name, key, description, maintainer, permanent, tags, type, availableToClient, project);
     }
 
     public static final class FeatureBuilder extends AbstractBuilder<Feature> {
@@ -173,6 +181,7 @@ public final class Feature {
         private String description;
         @NotNull
         private User maintainer;
+        private boolean permanent;
         @NotNull
         private Set<FeatureTag> tags;
         @NotNull
@@ -211,6 +220,11 @@ public final class Feature {
 
         public FeatureBuilder maintainer(User maintainer) {
             this.maintainer = maintainer;
+            return this;
+        }
+
+        public FeatureBuilder permanent(boolean permanent) {
+            this.permanent = permanent;
             return this;
         }
 

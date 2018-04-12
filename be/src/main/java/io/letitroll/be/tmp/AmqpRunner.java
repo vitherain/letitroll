@@ -2,6 +2,7 @@ package io.letitroll.be.tmp;
 
 import io.letitroll.common.feature.domain.FeatureType;
 import io.letitroll.common.feature.dto.FeatureDto;
+import io.letitroll.common.user.dto.UserDto;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -33,6 +34,8 @@ public class AmqpRunner implements CommandLineRunner {
                         "Verified Accounts",
                         "verified-accounts",
                         null,
+                        new UserDto("1234", "user1234"),
+                        false,
                         emptySet(),
                         FeatureType.BOOLEAN,
                         false,

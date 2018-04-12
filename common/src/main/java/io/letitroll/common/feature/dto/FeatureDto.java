@@ -20,6 +20,7 @@ public final class FeatureDto {
     private final String key;
     private final String description;
     private final UserDto maintainer;
+    private final boolean permanent;
     private final Set<FeatureTagDto> tags;
     private final FeatureType type;
     private final boolean availableToClient;
@@ -32,6 +33,7 @@ public final class FeatureDto {
             @NonNull final String key,
             @Nullable final String description,
             @NonNull final UserDto maintainer,
+            final boolean permanent,
             @NonNull final Set<FeatureTagDto> tags,
             @NonNull final FeatureType type,
             final boolean availableToClient,
@@ -42,6 +44,7 @@ public final class FeatureDto {
         this.key = key;
         this.description = description;
         this.maintainer = maintainer;
+        this.permanent = permanent;
         this.tags = tags;
         this.type = type;
         this.availableToClient = availableToClient;
@@ -75,6 +78,10 @@ public final class FeatureDto {
     @NonNull
     public UserDto getMaintainer() {
         return maintainer;
+    }
+
+    public boolean isPermanent() {
+        return permanent;
     }
 
     @NonNull

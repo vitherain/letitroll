@@ -6,6 +6,7 @@ import {
   MatIconModule,
   MatMenuModule,
   MatPaginatorModule,
+  MatSlideToggleModule,
   MatSortModule,
   MatTableModule,
   MatToolbarModule
@@ -19,6 +20,7 @@ import {
     MatIconModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatSlideToggleModule,
     MatSortModule,
     MatTableModule,
     MatToolbarModule
@@ -30,6 +32,7 @@ import {
     MatIconModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatSlideToggleModule,
     MatSortModule,
     MatTableModule,
     MatToolbarModule

@@ -5,6 +5,7 @@ import io.letitroll.common.user.dto.UserDto;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
+import java.time.ZonedDateTime;
 import java.util.Set;
 
 import static java.util.Collections.unmodifiableSet;
@@ -15,6 +16,7 @@ import static java.util.Collections.unmodifiableSet;
 public final class FeatureDto {
 
     private final String id;
+    private final ZonedDateTime addedTime;
     private final long version;
     private final String name;
     private final String key;
@@ -28,6 +30,7 @@ public final class FeatureDto {
 
     public FeatureDto(
             @Nullable final String id,
+            @Nullable final ZonedDateTime addedTime,
             final long version,
             @NonNull final String name,
             @NonNull final String key,
@@ -39,6 +42,7 @@ public final class FeatureDto {
             final boolean availableToClient,
             @Nullable final String projectId) {
         this.id = id;
+        this.addedTime = addedTime;
         this.version = version;
         this.name = name;
         this.key = key;
@@ -54,6 +58,11 @@ public final class FeatureDto {
     @Nullable
     public String getId() {
         return id;
+    }
+
+    @Nullable
+    public ZonedDateTime getAddedTime() {
+        return addedTime;
     }
 
     public long getVersion() {

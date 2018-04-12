@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -33,6 +34,10 @@ public class LaboriousFeatureEntity2DtoMapper implements FeatureEntity2DtoMapper
         final String id = Optional.ofNullable(source.getId())
                 .map(ObjectId::toString)
                 .orElse(null);
+        final ZonedDateTime addedTime = Optional.ofNullable(source.getId())
+                .map(ObjectId::getTimestamp)
+                .map(ZonedDateTime::new)
+                .orElse(null);
         final String projectId = Optional.of(source.getProject())
                 .map(Project::getId)
                 .map(ObjectId::toString)
@@ -41,6 +46,7 @@ public class LaboriousFeatureEntity2DtoMapper implements FeatureEntity2DtoMapper
 
         return new FeatureDto(
                 id,
+                null
                 source.getVersion(),
                 source.getName(),
                 source.getKey(),

@@ -1,6 +1,7 @@
 package io.letitroll.common.feature.dto;
 
 import io.letitroll.common.feature.domain.FeatureType;
+import io.letitroll.common.user.dto.UserDto;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
@@ -18,6 +19,7 @@ public final class FeatureDto {
     private final String name;
     private final String key;
     private final String description;
+    private final UserDto maintainer;
     private final Set<FeatureTagDto> tags;
     private final FeatureType type;
     private final boolean availableToClient;
@@ -29,6 +31,7 @@ public final class FeatureDto {
             @NonNull final String name,
             @NonNull final String key,
             @Nullable final String description,
+            @NonNull final UserDto maintainer,
             @NonNull final Set<FeatureTagDto> tags,
             @NonNull final FeatureType type,
             final boolean availableToClient,
@@ -38,6 +41,7 @@ public final class FeatureDto {
         this.name = name;
         this.key = key;
         this.description = description;
+        this.maintainer = maintainer;
         this.tags = tags;
         this.type = type;
         this.availableToClient = availableToClient;
@@ -66,6 +70,11 @@ public final class FeatureDto {
     @Nullable
     public String getDescription() {
         return description;
+    }
+
+    @NonNull
+    public UserDto getMaintainer() {
+        return maintainer;
     }
 
     @NonNull

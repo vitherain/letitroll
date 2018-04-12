@@ -2,6 +2,7 @@ package io.letitroll.common.feature.domain;
 
 import io.letitroll.common.builder.AbstractBuilder;
 import io.letitroll.common.project.domain.Project;
+import io.letitroll.common.user.domain.User;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
@@ -35,6 +36,9 @@ public final class Feature {
     private final String key;
     @Size(max = 1024)
     private final String description;
+    @DBRef
+    @NotNull
+    private final User maintainer;
     @NotNull
     private final Set<FeatureTag> tags;
     @NotNull
@@ -51,6 +55,7 @@ public final class Feature {
                 builder.name,
                 builder.key,
                 builder.description,
+                builder.maintainer,
                 builder.tags,
                 builder.type,
                 builder.availableToClient,
@@ -61,11 +66,11 @@ public final class Feature {
     public Feature(
             @NonNull final String name,
             @NonNull final String key,
-            @Nullable final String description,
+            @NonNull final User maintainer,
             @NonNull final Set<FeatureTag> tags,
             @NonNull final FeatureType type,
             @NonNull final Project project) {
-        this(null, 0, name, key, description, tags, type, false, project);
+        this(null, 0, name, key, null, maintainer, tags, type, false, project);
     }
 
     @PersistenceConstructor
@@ -75,6 +80,7 @@ public final class Feature {
             @NonNull final String name,
             @NonNull final String key,
             @Nullable final String description,
+            @NonNull final User maintainer,
             @NonNull final Set<FeatureTag> tags,
             @NonNull final FeatureType type,
             final boolean availableToClient,
@@ -84,6 +90,7 @@ public final class Feature {
         this.name = name;
         this.key = key;
         this.description = description;
+        this.maintainer = maintainer;
         this.tags = tags;
         this.type = type;
         this.availableToClient = availableToClient;
@@ -119,6 +126,11 @@ public final class Feature {
     }
 
     @NonNull
+    public User getMaintainer() {
+        return maintainer;
+    }
+
+    @NonNull
     public Set<FeatureTag> getTags() {
         return unmodifiableSet(tags);
     }
@@ -134,7 +146,7 @@ public final class Feature {
 
     @NonNull
     public Feature name(@NonNull final String name) {
-        return new Feature(id, version, name, key, description, tags, type, availableToClient, project);
+        return new Feature(id, version, name, key, description, maintainer, tags, type, availableToClient, project);
     }
 
     @NonNull
@@ -144,7 +156,7 @@ public final class Feature {
 
     @NonNull
     public Feature project(@NonNull final Project project) {
-        return new Feature(id, version, name, key, description, tags, type, availableToClient, project);
+        return new Feature(id, version, name, key, description, maintainer, tags, type, availableToClient, project);
     }
 
     public static final class FeatureBuilder extends AbstractBuilder<Feature> {
@@ -159,6 +171,8 @@ public final class Feature {
         private String key;
         @Size(max = 1024)
         private String description;
+        @NotNull
+        private User maintainer;
         @NotNull
         private Set<FeatureTag> tags;
         @NotNull
@@ -192,6 +206,11 @@ public final class Feature {
 
         public FeatureBuilder description(String description) {
             this.description = description;
+            return this;
+        }
+
+        public FeatureBuilder maintainer(User maintainer) {
+            this.maintainer = maintainer;
             return this;
         }
 

@@ -1,7 +1,7 @@
-package io.letitroll.be.user.dto;
+package io.letitroll.common.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.letitroll.be.user.domain.Role;
+import io.letitroll.common.user.domain.Role;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,7 +14,7 @@ import java.util.Collections;
 /**
  * Instances are immutable.
  */
-public final class UserDto implements UserDetails {
+public final class UserDetailsDto implements UserDetails {
 
     private final String id;
     private final String username;
@@ -23,7 +23,7 @@ public final class UserDto implements UserDetails {
     @JsonIgnore
     private final Role role;
 
-    public UserDto(@Nullable final String id, @NonNull final String username, @NonNull final String password, @NonNull final Role role) {
+    public UserDetailsDto(@Nullable final String id, @NonNull final String username, @NonNull final String password, @NonNull final Role role) {
         this.id = id;
         this.username = username;
         this.password = password;

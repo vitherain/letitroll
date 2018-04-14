@@ -5,17 +5,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { DateTimeProviderService } from './services/date-time-provider.service';
 import { SharedHttpInterceptor } from './interceptors/shared-http.interceptor';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
-  imports: [
-    MaterialModule,
-    HttpClientModule
-  ],
-  exports: [
-    CommonModule,
-    MaterialModule,
-    HttpClientModule
-  ],
+  imports: [MaterialModule, HttpClientModule, ClipboardModule],
+  exports: [CommonModule, MaterialModule, HttpClientModule, ClipboardModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -25,4 +19,4 @@ import { SharedHttpInterceptor } from './interceptors/shared-http.interceptor';
     DateTimeProviderService
   ]
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -11,13 +11,23 @@
     <!-- Added Column -->
     <ng-container matColumnDef="added">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Added </mat-header-cell>
-      <mat-cell *matCellDef="let element" class="feature-name"> {{element.addedTime}} </mat-cell>
+      <mat-cell *matCellDef="let element">
+        <span [matTooltip]="(element.addedTime | date: defaultTimeFormat) + ' by ' + element.maintainer.username" matTooltipPosition="below">
+          {{element.addedTime | date}}
+        </span>
+      </mat-cell>
     </ng-container>
 
     <!-- Key Column -->
     <ng-container matColumnDef="key">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Key </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.key}} </mat-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="copiable"
+              ngxClipboard [cbContent]="element.key"
+              matTooltip="Copy to clipboard" matTooltipPosition="below">
+          {{element.key}}
+        </span>
+      </mat-cell>
     </ng-container>
 
     <!-- Targeting Column -->

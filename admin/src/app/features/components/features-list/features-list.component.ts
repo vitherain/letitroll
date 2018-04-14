@@ -12,8 +12,7 @@ import { Feature } from '../../models/feature.model';
   styleUrls: ['./features-list.component.scss']
 })
 export class FeaturesListComponent implements OnInit, AfterViewInit {
-
-  displayedColumns = ['name', 'added', "key", 'targeting', 'actions'];
+  displayedColumns = ['name', 'added', 'key', 'targeting', 'actions'];
   dataSource: MatTableDataSource<Feature>;
 
   defaultPageSize: Array<number> = config.tables.defaultPageSize;
@@ -22,8 +21,7 @@ export class FeaturesListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private store: Store<FeaturesState>) {
-  }
+  constructor(private store: Store<FeaturesState>) {}
 
   ngOnInit(): void {
     this.dataSource = new FeaturesTableDataSource(this.store);

@@ -8,6 +8,8 @@ spring:
       password: YeJqDDmHR7Hp
   jackson:
     time-zone: UTC
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
 
 mongobee:
   changelog-package: io.letitroll.be.persistence.changelog

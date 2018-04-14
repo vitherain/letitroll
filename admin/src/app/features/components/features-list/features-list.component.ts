@@ -13,7 +13,7 @@ import { Feature } from '../../models/feature.model';
 })
 export class FeaturesListComponent implements OnInit, AfterViewInit {
 
-  displayedColumns = ['name', 'added', 'key', 'targeting', 'actions'];
+  displayedColumns = ['name', 'added', "key", 'targeting', 'actions'];
   dataSource: MatTableDataSource<Feature>;
 
   defaultPageSize: Array<number> = config.tables.defaultPageSize;

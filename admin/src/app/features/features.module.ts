@@ -9,18 +9,19 @@ import { FeaturesComponent } from './components/features/features.component';
 import { FeaturesRoutingModule } from './features-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FeaturesListComponent } from './components/features-list/features-list.component';
+import { DeleteFeatureDialogComponent } from './components/delete-feature-dialog/delete-feature-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    FeaturesComponent,
-    FeaturesListComponent
-  ],
+  declarations: [FeaturesComponent, FeaturesListComponent, DeleteFeatureDialogComponent],
+  entryComponents: [DeleteFeatureDialogComponent],
   imports: [
     CommonModule,
     FeaturesRoutingModule,
     SharedModule,
     StoreModule.forFeature('features', featuresReducer),
     EffectsModule.forFeature([FeaturesEffects]),
+    FormsModule
   ]
 })
 export class FeaturesModule {}

@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Delete feature {{data.feature.key}}?</h1>
+<div mat-dialog-content>
+  <p>Please type feature's key again and then submit if you are really sure it can be deleted.</p>
+  <mat-form-field>
+    <input matInput cdkFocusInitial [(ngModel)]="repeatKey">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="warn" [mat-dialog-close]="true" [disabled]="repeatKey !== data.feature.key">
+    <i class="material-icons">delete_sweep</i>
+    Delete
+  </button>
+</div>

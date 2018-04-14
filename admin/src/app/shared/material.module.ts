@@ -3,7 +3,9 @@ import { CdkTableModule } from '@angular/cdk/table';
 import {
   MatButtonModule,
   MatCheckboxModule,
+  MatDialogModule,
   MatIconModule,
+  MatInputModule,
   MatMenuModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
@@ -18,8 +20,10 @@ import {
   imports: [
     CdkTableModule,
     MatButtonModule,
+    MatDialogModule,
     MatCheckboxModule,
     MatIconModule,
+    MatInputModule,
     MatMenuModule,
     MatPaginatorModule,
     MatSlideToggleModule,
@@ -32,8 +36,10 @@ import {
   exports: [
     CdkTableModule,
     MatButtonModule,
+    MatDialogModule,
     MatCheckboxModule,
     MatIconModule,
+    MatInputModule,
     MatMenuModule,
     MatPaginatorModule,
     MatSlideToggleModule,

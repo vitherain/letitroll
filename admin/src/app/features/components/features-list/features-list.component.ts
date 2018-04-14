@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FeaturesTableDataSource } from '../../data-sources/features.table.data-source';
 import { config } from '../../../../config/config';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { FeaturesState } from '../../store/features.state';
+import { DeleteFeatureDialogComponent } from '../delete-feature-dialog/delete-feature-dialog.component';
+import { Feature } from '../../models/feature.model';
 
 @Component({
   selector: 'app-features-list',
@@ -21,7 +23,7 @@ export class FeaturesListComponent implements OnInit, AfterViewInit {
   defaultPageSizeOptions: Array<number> = config.tables.defaultPageSizeOptions;
   defaultTimeFormat: string = config.defaultTimeFormat;
 
-  constructor(private store: Store<FeaturesState>) {}
+  constructor(private store: Store<FeaturesState>, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.dataSource = new FeaturesTableDataSource(this.store);
@@ -31,5 +33,15 @@ export class FeaturesListComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.dataSource.initialize();
+  }
+
+  openDeleteDialog(feature: Feature): void {
+    const dialogRef = this.dialog.open(DeleteFeatureDialogComponent, {
+      data: { feature: feature }
+    });
+
+    dialogRef.afterClosed().subscribe((deleteIt: boolean) => {
+      console.log('The dialog was closed', deleteIt);
+    });
   }
 }

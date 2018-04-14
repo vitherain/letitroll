@@ -16,7 +16,8 @@
     <ng-container matColumnDef="added">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Added </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <span [matTooltip]="(element.addedTime | date: defaultTimeFormat) + ' by ' + element.maintainer.username" matTooltipPosition="below">
+        <span class="additional-info-available"
+              [matTooltip]="(element.addedTime | date: defaultTimeFormat) + ' by ' + element.maintainer.username" matTooltipPosition="below">
           {{element.addedTime | date}}
         </span>
       </mat-cell>
@@ -50,7 +51,7 @@
           <i class="material-icons">mode_edit</i>
           Edit
         </button>
-        <button mat-button color="warn">
+        <button mat-button color="warn" (click)="openDeleteDialog(element)">
           <i class="material-icons">delete_sweep</i>
           Delete
         </button>

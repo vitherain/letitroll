@@ -6,6 +6,7 @@ import {
   MatIconModule,
   MatMenuModule,
   MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatSlideToggleModule,
   MatSortModule,
   MatTableModule,
@@ -23,6 +24,7 @@ import {
     MatPaginatorModule,
     MatSlideToggleModule,
     MatSortModule,
+    MatProgressSpinnerModule,
     MatTableModule,
     MatToolbarModule,
     MatTooltipModule
@@ -36,6 +38,7 @@ import {
     MatPaginatorModule,
     MatSlideToggleModule,
     MatSortModule,
+    MatProgressSpinnerModule,
     MatTableModule,
     MatToolbarModule,
     MatTooltipModule

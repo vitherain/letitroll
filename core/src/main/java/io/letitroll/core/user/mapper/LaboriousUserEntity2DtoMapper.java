@@ -19,6 +19,6 @@ public class LaboriousUserEntity2DtoMapper implements UserEntity2DtoMapper {
                 .map(ObjectId::toString)
                 .orElse(null);
         Objects.requireNonNull(id, "user id must not be null!");
-        return new UserDto(id, source.getUsername());
+        return new UserDto(id, source.getVersion(), source.getUsername());
     }
 }

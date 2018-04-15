@@ -18,6 +18,6 @@ public class LaboriousUserEntity2DetailsDtoMapper implements UserEntity2DetailsD
         final String id = Optional.ofNullable(source.getId())
                 .map(ObjectId::toString)
                 .orElse(null);
-        return new UserDetailsDto(id, source.getUsername(), source.getPassword(), source.getRole());
+        return new UserDetailsDto(id, source.getVersion(), source.getUsername(), source.getPassword(), source.getRole());
     }
 }

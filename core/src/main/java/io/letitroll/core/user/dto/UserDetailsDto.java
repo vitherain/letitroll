@@ -17,14 +17,22 @@ import java.util.Collections;
 public final class UserDetailsDto implements UserDetails {
 
     private final String id;
+    private final long version;
     private final String username;
     @JsonIgnore
     private final String password;
     @JsonIgnore
     private final Role role;
 
-    public UserDetailsDto(@Nullable final String id, @NonNull final String username, @NonNull final String password, @NonNull final Role role) {
+    public UserDetailsDto(
+            @Nullable final String id,
+            final long version,
+            @NonNull final String username,
+            @NonNull final String password,
+            @NonNull final Role role) {
+
         this.id = id;
+        this.version = version;
         this.username = username;
         this.password = password;
         this.role = role;
@@ -33,6 +41,10 @@ public final class UserDetailsDto implements UserDetails {
     @Nullable
     public String getId() {
         return id;
+    }
+
+    public long getVersion() {
+        return version;
     }
 
     @Override

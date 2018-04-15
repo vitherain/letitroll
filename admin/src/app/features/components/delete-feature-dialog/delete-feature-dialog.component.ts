@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-delete-feature-dialog',
@@ -8,8 +7,6 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./delete-feature-dialog.component.scss']
 })
 export class DeleteFeatureDialogComponent {
-  keySpecified$: Observable<boolean>;
-
   repeatKey: string;
 
   constructor(

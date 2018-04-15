@@ -18,6 +18,6 @@ public class LaboriousUserDto2EntityMapper implements UserDto2EntityMapper {
         final ObjectId id = Optional.ofNullable(source.getId())
                 .map(ObjectId::new)
                 .orElse(null);
-        return new User(id, source.getUsername(), source.getPassword(), source.getRole());
+        return new User(id, source.getVersion(), source.getUsername(), source.getPassword(), source.getRole());
     }
 }

@@ -48,6 +48,12 @@
 		<dependency>
 			<groupId>com.github.mongobee</groupId>
 			<artifactId>mongobee</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mongodb</groupId>
+					<artifactId>mongo-java-driver</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>

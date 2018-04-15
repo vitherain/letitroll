@@ -1,0 +1,90 @@
+[
+  {
+    "_id": {
+      "$oid": "5acfba0b85c2500f4007b6f1"
+    },
+    "version": 0,
+    "feature": {
+      "$ref": "features",
+      "$id": {
+        "$oid": "5acfba0a85c2500f4007b6ed"
+      }
+    },
+    "environment": {
+      "$ref": "environments",
+      "$id": {
+        "$oid": "5acfba0b85c2500f4007b6f3"
+      }
+    },
+    "turnedOn": false,
+    "onValue": true,
+    "offValue": false,
+    "_class": "io.letitroll.core.targeting.domain.FeatureTargeting"
+  },
+  {
+    "_id": {
+      "$oid": "5acfba8564c2500f4007b6f1"
+    },
+    "version": 0,
+    "feature": {
+      "$ref": "features",
+      "$id": {
+        "$oid": "5acfba0a85c2500f4007b6ed"
+      }
+    },
+    "environment": {
+      "$ref": "environments",
+      "$id": {
+        "$oid": "5acfba0abcd40a516517b6f3"
+      }
+    },
+    "turnedOn": true,
+    "onValue": true,
+    "offValue": false,
+    "_class": "io.letitroll.core.targeting.domain.FeatureTargeting"
+  },
+  {
+    "_id": {
+      "$oid": "5acfba0b85c25045f007b6f1"
+    },
+    "version": 0,
+    "feature": {
+      "$ref": "features",
+      "$id": {
+        "$oid": "5acfba0b85c2500f4007b6ee"
+      }
+    },
+    "environment": {
+      "$ref": "environments",
+      "$id": {
+        "$oid": "5acfba0b85c2500f4007b6f3"
+      }
+    },
+    "turnedOn": false,
+    "onValue": true,
+    "offValue": false,
+    "_class": "io.letitroll.core.targeting.domain.FeatureTargeting"
+  },
+  {
+    "_id": {
+      "$oid": "5acfba8548b2500f4007b6f1"
+    },
+    "version": 0,
+    "feature": {
+      "$ref": "features",
+      "$id": {
+        "$oid": "5acfba0b85c2500f4007b6ee"
+      }
+    },
+    "environment": {
+      "$ref": "environments",
+      "$id": {
+        "$oid": "5acfba0abcd40a516517b6f3"
+      }
+    },
+    "turnedOn": true,
+    "onValue": true,
+    "offValue": false,
+    "_class": "io.letitroll.core.targeting.domain.FeatureTargeting"
+  }
+]

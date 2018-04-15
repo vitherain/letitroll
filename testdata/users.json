@@ -1,0 +1,11 @@
+[
+  {
+    "_id": {
+      "$oid": "5ab80086a15e546f5cc4e7bb"
+    },
+    "username": "vit.herain",
+    "password": "$2a$10$N1ibOPZhga/kUBPIw/bkCe1ieIprPFKLfYO.nRLD4T4UilfnFuRk2",
+    "role": "ADMIN",
+    "_class": "io.letitroll.core.user.domain.User"
+  }
+]

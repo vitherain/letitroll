@@ -1,0 +1,30 @@
+[
+  {
+    "_id": {
+      "$oid": "5acfba0b85c2500f4007b6f3"
+    },
+    "version": 0,
+    "name": "Production",
+    "project": {
+      "$ref": "projects",
+      "$id": {
+        "$oid": "5ab80086a15e902f5cc4e7cc"
+      }
+    },
+    "_class": "io.letitroll.core.environment.Environment"
+  },
+  {
+    "_id": {
+      "$oid": "5acfba0abcd40a516517b6f3"
+    },
+    "version": 0,
+    "name": "Development",
+    "project": {
+      "$ref": "projects",
+      "$id": {
+        "$oid": "5ab80086a15e902f5cc4e7cc"
+      }
+    },
+    "_class": "io.letitroll.core.environment.Environment"
+  }
+]

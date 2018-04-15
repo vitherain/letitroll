@@ -1,0 +1,10 @@
+[
+  {
+    "_id": {
+      "$oid": "5ab80086a15e902f5cc4e7cc"
+    },
+    "version": 0,
+    "name": "Sample",
+    "_class": "io.letitroll.core.project.domain.Project"
+  }
+]

@@ -3,7 +3,7 @@ package io.letitroll.be.emitter.endpoint;
 import io.letitroll.be.emitter.repository.ProjectRepository;
 import io.letitroll.be.emitter.service.EventService;
 import io.letitroll.be.feature.repository.FeatureRepository;
-import io.letitroll.be.user.repository.UserRepository;
+import io.letitroll.common.user.repository.UserRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;

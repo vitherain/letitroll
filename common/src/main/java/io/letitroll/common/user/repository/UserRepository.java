@@ -1,5 +1,4 @@
-package io.letitroll.be.user.repository;
-
+package io.letitroll.common.user.repository;
 
 import io.letitroll.common.user.domain.User;
 import org.bson.types.ObjectId;

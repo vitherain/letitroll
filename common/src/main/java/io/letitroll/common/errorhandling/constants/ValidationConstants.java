@@ -1,4 +1,4 @@
-package io.letitroll.common.validation;
+package io.letitroll.common.errorhandling.constants;
 
 public final class ValidationConstants {
 

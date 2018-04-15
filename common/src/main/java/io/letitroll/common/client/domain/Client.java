@@ -15,8 +15,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import static io.letitroll.common.validation.ValidationConstants.EMAIL_REGEX;
-import static io.letitroll.common.validation.ValidationConstants.IP_ADDRESS_REGEX;
+import static io.letitroll.common.errorhandling.constants.ValidationConstants.EMAIL_REGEX;
+import static io.letitroll.common.errorhandling.constants.ValidationConstants.IP_ADDRESS_REGEX;
 
 /**
  * Instances are immutable.

@@ -12,5 +12,5 @@ import org.springframework.lang.NonNull;
 public interface FeatureRepository extends PagingAndSortingRepository<Feature, ObjectId> {
 
     @Query("{ 'project': ?0 }")
-    Page<Feature> findByProjectId(@NonNull ObjectId projectId, @NonNull Pageable pageable);
+    Page<Feature> findAllByProjectId(@NonNull ObjectId projectId, @NonNull Pageable pageable);
 }

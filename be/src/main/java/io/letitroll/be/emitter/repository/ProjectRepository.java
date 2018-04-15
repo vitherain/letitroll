@@ -1,6 +1,6 @@
 package io.letitroll.be.emitter.repository;
 
-import io.letitroll.common.project.domain.Project;
+import io.letitroll.core.project.domain.Project;
 import org.bson.types.ObjectId;
 import org.springframework.data.repository.CrudRepository;
 

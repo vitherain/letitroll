@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import static java.text.MessageFormat.format;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "io.letitroll.be.*.repository")
+@EnableMongoRepositories(basePackages = "io.letitroll.**.repository")
 public class MongoConfig {
 
     @Bean

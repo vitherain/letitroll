@@ -2,9 +2,9 @@ package io.letitroll.be.feature.controller;
 
 import io.letitroll.be.api.ApiUrls;
 import io.letitroll.be.feature.repository.FeatureRepository;
-import io.letitroll.common.errorhandling.exception.SecurityViolationException;
-import io.letitroll.common.feature.dto.FeatureDto;
-import io.letitroll.common.feature.mapper.FeatureEntity2DtoMapper;
+import io.letitroll.core.errorhandling.exception.SecurityViolationException;
+import io.letitroll.core.feature.dto.FeatureDto;
+import io.letitroll.core.feature.mapper.FeatureEntity2DtoMapper;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

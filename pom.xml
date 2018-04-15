@@ -18,7 +18,7 @@
 
     <modules>
         <module>be</module>
-        <module>common</module>
+        <module>core</module>
         <module>test</module>
     </modules>
 
@@ -34,7 +34,7 @@
         <dependencies>
             <dependency>
                 <groupId>io.letitroll</groupId>
-                <artifactId>common</artifactId>
+                <artifactId>core</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

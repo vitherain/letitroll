@@ -1,7 +1,7 @@
 package io.letitroll.be.feature.repository;
 
 
-import io.letitroll.common.feature.domain.Feature;
+import io.letitroll.core.feature.domain.Feature;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

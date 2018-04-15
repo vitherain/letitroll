@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
         SecurityAutoConfiguration.class
 })
 @ComponentScan(
-		basePackages = { "io.letitroll.be", "io.letitroll.common" },
+		basePackages = { "io.letitroll.be", "io.letitroll.core" },
 		excludeFilters = {
 				@ComponentScan.Filter(type = FilterType.CUSTOM, classes = { TypeExcludeFilter.class }),
 				@ComponentScan.Filter(type = FilterType.CUSTOM, classes = { AutoConfigurationExcludeFilter.class })

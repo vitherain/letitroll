@@ -9,7 +9,7 @@
     "format:cli-fix": "pretty-quick",
     "precommit": "run-s format:fix lint",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.config.json",
     "build": "ng build --prod --environment=prod",
     "aot": "ng build --prod --aot --environment=prod",
     "test": "ng test",

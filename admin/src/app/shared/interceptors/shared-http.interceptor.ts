@@ -5,10 +5,12 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class SharedHttpInterceptor implements HttpInterceptor {
-
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const newUrl = `${environment.apiUrl}${req.url}`;
-    const newReq: HttpRequest<any> = req.clone({ url: newUrl });
-    return next.handle(newReq);
+    if (environment.production) {
+      const newUrl = `${environment.apiUrl}${req.url}`;
+      const newReq: HttpRequest<any> = req.clone({ url: newUrl });
+      return next.handle(newReq);
+    }
+    return next.handle(req);
   }
 }

@@ -1,4 +1,4 @@
-package io.letitroll.be.feature.repository;
+package io.letitroll.core.feature.repository;
 
 
 import io.letitroll.core.feature.domain.Feature;

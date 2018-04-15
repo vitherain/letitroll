@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
@@ -29,9 +30,11 @@ public final class Feature {
     @Version
     private final long version;
     @NotNull
+    @NotEmpty
     @Size(max = 50)
     private final String name;
     @NotNull
+    @NotEmpty
     @Size(max = 50)
     private final String key;
     @Size(max = 1024)
@@ -172,9 +175,11 @@ public final class Feature {
         private ObjectId id;
         private long version;
         @NotNull
+        @NotEmpty
         @Size(max = 50)
         private String name;
         @NotNull
+        @NotEmpty
         @Size(max = 50)
         private String key;
         @Size(max = 1024)

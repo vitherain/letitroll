@@ -6,15 +6,16 @@ import org.bson.types.ObjectId;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
 import java.util.Optional;
+
+import static java.util.Objects.requireNonNull;
 
 @Component
 public class LaboriousUserEntity2DetailsDtoMapper implements UserEntity2DetailsDtoMapper {
 
     @Override
     public UserDetailsDto map(@NonNull final User source) {
-        Objects.requireNonNull(source, "source must not be null!");
+        requireNonNull(source, "source must not be null!");
         final String id = Optional.ofNullable(source.getId())
                 .map(ObjectId::toString)
                 .orElse(null);

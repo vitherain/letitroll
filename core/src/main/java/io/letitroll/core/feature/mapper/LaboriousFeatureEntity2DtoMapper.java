@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
+import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toSet;
 
 @Component
@@ -32,7 +32,7 @@ public class LaboriousFeatureEntity2DtoMapper implements FeatureEntity2DtoMapper
 
     @Override
     public FeatureDto map(@NonNull final Feature source) {
-        Objects.requireNonNull(source, "source must not be null!");
+        requireNonNull(source, "source must not be null!");
         final String id = Optional.ofNullable(source.getId())
                 .map(ObjectId::toString)
                 .orElse(null);

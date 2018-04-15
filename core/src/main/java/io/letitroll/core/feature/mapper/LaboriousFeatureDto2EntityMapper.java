@@ -8,9 +8,9 @@ import org.bson.types.ObjectId;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
 import java.util.Optional;
 
+import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toSet;
 
 @Component
@@ -18,7 +18,7 @@ public class LaboriousFeatureDto2EntityMapper implements FeatureDto2EntityMapper
 
     @Override
     public Feature.FeatureBuilder map(@NonNull final FeatureDto source) {
-        Objects.requireNonNull(source, "source must not be null!");
+        requireNonNull(source, "source must not be null!");
         final ObjectId id = Optional.ofNullable(source.getId())
                 .map(ObjectId::new)
                 .orElse(null);

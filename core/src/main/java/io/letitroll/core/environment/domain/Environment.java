@@ -1,4 +1,4 @@
-package io.letitroll.core.environment;
+package io.letitroll.core.environment.domain;
 
 import io.letitroll.core.project.domain.Project;
 import org.bson.types.ObjectId;

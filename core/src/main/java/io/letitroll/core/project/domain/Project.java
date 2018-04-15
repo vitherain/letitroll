@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,6 +25,7 @@ public final class Project {
     private final long version;
     @Indexed(unique = true)
     @NotNull
+    @NotEmpty
     @Size(max = 50)
     private final String name;
 

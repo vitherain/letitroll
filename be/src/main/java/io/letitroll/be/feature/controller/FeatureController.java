@@ -43,7 +43,7 @@ public class FeatureController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping(value = ApiUrls.PROJECT_FEATURE)
+    @DeleteMapping(value = ApiUrls.PROJECTS_PROJECT_FEATURES_FEATURE)
     public ResponseEntity<?> deleteProjectFeature(
             @PathVariable final String projectId,
             @PathVariable final String featureId) {

@@ -11,7 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
+import static java.util.Objects.requireNonNull;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(@NonNull final String username) {
-        Objects.requireNonNull(username, "username must not be null!");
+        requireNonNull(username, "username must not be null!");
         final User user = userRepository.findByUsername(username);
         return userMapper.map(user);
     }

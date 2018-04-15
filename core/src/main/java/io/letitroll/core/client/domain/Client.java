@@ -1,6 +1,6 @@
 package io.letitroll.core.client.domain;
 
-import io.letitroll.core.environment.Environment;
+import io.letitroll.core.environment.domain.Environment;
 import io.letitroll.core.project.domain.Project;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

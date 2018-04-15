@@ -1,6 +1,5 @@
-package io.letitroll.client.tmp.amqp.receiver;
+package io.letitroll.be.tmp.amqp.receiver;
 
-import io.letitroll.common.feature.domain.Feature;
 import io.letitroll.common.feature.dto.FeatureDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

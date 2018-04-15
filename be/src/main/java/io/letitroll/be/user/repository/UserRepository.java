@@ -3,10 +3,10 @@ package io.letitroll.be.user.repository;
 
 import io.letitroll.common.user.domain.User;
 import org.bson.types.ObjectId;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-import reactor.core.publisher.Mono;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.lang.NonNull;
 
-public interface UserRepository extends ReactiveCrudRepository<User, ObjectId> {
+public interface UserRepository extends CrudRepository<User, ObjectId> {
 
-    Mono<User> findByUsername(String username);
+    User findByUsername(@NonNull String username);
 }

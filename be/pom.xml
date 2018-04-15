@@ -5,7 +5,7 @@
 
 	<artifactId>be</artifactId>
     <name>be</name>
-    <description>Let!tRoll Admin Backend</description>
+    <description>Let!tRoll Backend</description>
 	<packaging>jar</packaging>
 
     <parent>
@@ -31,7 +31,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -39,16 +39,16 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.github.mongobee</groupId>
-			<artifactId>mongobee</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
         </dependency>
+		<dependency>
+			<groupId>com.github.mongobee</groupId>
+			<artifactId>mongobee</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -70,7 +70,7 @@
 			<artifactId>test</artifactId>
 			<scope>test</scope>
 		</dependency>
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>

@@ -18,7 +18,6 @@
 
     <modules>
         <module>be</module>
-        <module>client</module>
         <module>common</module>
         <module>test</module>
     </modules>

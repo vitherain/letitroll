@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import static java.text.MessageFormat.format;
 
 @Configuration
-@EnableReactiveMongoRepositories(basePackages = "io.letitroll.be.*.repository")
+@EnableMongoRepositories(basePackages = "io.letitroll.be.*.repository")
 public class MongoConfig {
 
     @Bean

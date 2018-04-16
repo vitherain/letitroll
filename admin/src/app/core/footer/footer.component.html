@@ -1,5 +1,9 @@
-<mat-toolbar color="primary">
+<div>
+  <div class="footer-list">
+    <div class="footer-list-item"></div>
+    <div class="footer-list-item"></div>
+    <div class="copyright">&copy; Vít Herain {{ yearCreated }}<span *ngIf="yearCreated !== currentYear"> - {{ currentYear }}</span></div>
+  </div>
   <span class="spacer"></span>
-  <p class="copyright">&copy; Vít Herain {{ yearCreated }}<span *ngIf="yearCreated !== currentYear"> - {{ currentYear }}</span></p>
   <span class="spacer"></span>
-</mat-toolbar>
+</div>

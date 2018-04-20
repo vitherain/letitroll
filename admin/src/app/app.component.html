@@ -1,15 +1,9 @@
-<app-navigation></app-navigation>
+<div class="wrapper">
+  <app-navigation></app-navigation>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <button (click)="createEmitter()">Emitter</button>
-
-  <div>onMessage$ je {{ onMessage$ }}</div>
-  <div>Aktualni zprava je {{ onMessage$ | async }}</div>
-
-  <div>Pokus {{ sample$ | async }}</div>
+  <div class="push"></div>
 </div>
 
 <app-footer></app-footer>

@@ -5,9 +5,6 @@ import io.letitroll.core.environment.dto.EnvironmentDto;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 import static java.util.Collections.unmodifiableList;
@@ -64,12 +61,7 @@ public final class ProjectDto {
     public static final class ProjectDtoBuilder extends AbstractBuilder<ProjectDto> {
         private String id;
         private long version;
-        @NotNull
-        @NotEmpty
-        @Size(max = 50)
         private String name;
-        @NotNull
-        @NotEmpty
         private List<EnvironmentDto> environments;
 
         private ProjectDtoBuilder() {

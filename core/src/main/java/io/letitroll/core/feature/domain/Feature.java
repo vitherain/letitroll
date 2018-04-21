@@ -174,25 +174,14 @@ public final class Feature {
 
         private ObjectId id;
         private long version;
-        @NotNull
-        @NotEmpty
-        @Size(max = 50)
         private String name;
-        @NotNull
-        @NotEmpty
-        @Size(max = 50)
         private String key;
-        @Size(max = 1024)
         private String description;
-        @NotNull
         private User maintainer;
         private boolean permanent;
-        @NotNull
         private Set<FeatureTag> tags;
-        @NotNull
         private FeatureType type;
         private boolean availableToClient;
-        @NotNull
         private Project project;
 
         private FeatureBuilder() {

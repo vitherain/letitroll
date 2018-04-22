@@ -1,13 +1,16 @@
+<app-route-header>
+  <h1>Features</h1>
+</app-route-header>
+
 <mat-sidenav-container class="example-container">
+  <mat-sidenav-content>
+    <div class="sidenav-content-wrapper">
+
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
   <mat-sidenav #sidenav mode="side" [opened]="true">
     Sidenav content
   </mat-sidenav>
-
-  <mat-sidenav-content>
-    <app-route-header>
-      <h1>Features</h1>
-    </app-route-header>
-
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
 </mat-sidenav-container>

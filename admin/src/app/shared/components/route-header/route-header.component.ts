@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-route-header',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./route-header.component.scss']
 })
 export class RouteHeaderComponent {
+  @Input() header: string;
+
   constructor() {}
 }

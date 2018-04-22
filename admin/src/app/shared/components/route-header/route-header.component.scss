@@ -3,10 +3,9 @@
   color: white;
   display: flex;
 
-}
-
-h1 {
-  padding: 28px 8px;
-  font-size: 20px;
-  font-weight: 300;
+  & > h1 {
+    padding: 28px 28px;
+    font-size: 20px;
+    font-weight: 300;
+  }
 }

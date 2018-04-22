@@ -1,7 +1,7 @@
 import * as Actions from './features.actions';
-import { State } from './features.state';
+import { FeaturesState } from './features.state';
 
-const initialState: State = {
+const initialState: FeaturesState = {
   content: [],
   totalElements: 0
 };

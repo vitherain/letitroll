@@ -1,6 +1,6 @@
 import { MatPaginator, MatSort, PageEvent, Sort } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { FeaturesState, State } from '../store/features.state';
+import { FeaturesState } from '../store/features.state';
 import { Store } from '@ngrx/store';
 import { Feature } from '../models/feature.model';
 import { Subscription } from 'rxjs/Subscription';
@@ -47,7 +47,7 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
   }
 
   connect(): BehaviorSubject<Feature[]> {
-    this._stateSubscription$ = this.store.select('features').subscribe((state: State) => {
+    this._stateSubscription$ = this.store.select('features').subscribe((state: FeaturesState) => {
       this._data$.next(state.content);
       if (this._paginator) {
         this._paginator.length = state.totalElements;

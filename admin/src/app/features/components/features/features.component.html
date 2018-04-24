@@ -11,8 +11,8 @@
   <mat-sidenav #sidenav mode="side" [opened]="true">
     <mat-nav-list>
       <a mat-list-item>
-        <button mat-icon-button (click)="showInfo(link)">
-          
+        <button mat-icon-button *ngFor="let project of projects$">
+          {{project.name}}
         </button>
       </a>
     </mat-nav-list>

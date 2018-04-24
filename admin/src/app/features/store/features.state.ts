@@ -1,13 +1,11 @@
 import { Feature } from '../models/feature.model';
 import { AppState } from '../../store/app.state';
-import { Project } from '../../projects/models/project.model';
 
 export interface FeaturesState extends AppState {
-  projects: Project[];
-  features: FeaturesState;
+  features: Features;
 }
 
-export interface FeaturesState {
+export interface Features {
   content: Feature[];
   totalElements: number;
 }

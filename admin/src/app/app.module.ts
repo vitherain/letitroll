@@ -12,11 +12,10 @@ import { FeaturesModule } from './features/features.module';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
+import { ProjectsModule } from './projects/projects.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -25,8 +24,9 @@ import { EffectsModule } from '@ngrx/effects';
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([]),
     FeaturesModule,
+    ProjectsModule,
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

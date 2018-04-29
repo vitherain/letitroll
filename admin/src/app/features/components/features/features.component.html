@@ -11,7 +11,7 @@
   <mat-sidenav #sidenav mode="side" [opened]="true">
     <mat-nav-list>
       <a mat-list-item>
-        <button mat-icon-button *ngFor="let project of projects$">
+        <button mat-icon-button *ngFor="let project of (projects$ | async)">
           {{project.name}}
         </button>
       </a>

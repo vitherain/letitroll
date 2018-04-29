@@ -6,6 +6,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { ProjectsState } from './projects.state';
+import { Project } from '../models/project.model';
 
 @Injectable()
 export class ProjectsEffects {
@@ -15,12 +16,12 @@ export class ProjectsEffects {
   projects$ = this.actions$
     .ofType(ProjectActions.API_GET_PROJECTS)
     .switchMap((action: ProjectActions.ApiGetProjects) => {
-      return this.httpClient.get<ProjectsState>('/api/v1/projects');
+      return this.httpClient.get<Project[]>('/api/v1/projects');
     })
-    .map((state: ProjectsState) => {
+    .map((state: Project[]) => {
       return {
         type: ProjectActions.API_GET_PROJECTS_SUCCESS,
-        payload: state.projects
+        payload: state
       };
     })
     .catch((err: HttpErrorResponse) => {

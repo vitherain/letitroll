@@ -1,6 +1,6 @@
 import { MatPaginator, MatSort, PageEvent, Sort } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Features } from '../store/features.state';
+import { Features, FeaturesState } from '../store/features.state';
 import { Store } from '@ngrx/store';
 import { Feature } from '../models/feature.model';
 import { Subscription } from 'rxjs/Subscription';
@@ -32,7 +32,7 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
     return this._loading$.asObservable();
   }
 
-  constructor(private store: Store<Features>) {
+  constructor(private store: Store<FeaturesState>) {
     super();
   }
 

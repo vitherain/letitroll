@@ -14,7 +14,7 @@ import { ProjectsState } from '../../../projects/store/projects.state';
 })
 export class FeaturesComponent implements OnInit, OnDestroy {
   private projectsSubscription$: Subscription;
-  private projects$: Subject<Project[]> = new BehaviorSubject([]);
+  projects$: Subject<Project[]> = new BehaviorSubject([]);
 
   constructor(private store: Store<ProjectsState>) {}
 

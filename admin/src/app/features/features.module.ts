@@ -11,7 +11,6 @@ import { SharedModule } from '../shared/shared.module';
 import { FeaturesListComponent } from './components/features-list/features-list.component';
 import { DeleteFeatureDialogComponent } from './components/delete-feature-dialog/delete-feature-dialog.component';
 import { FormsModule } from '@angular/forms';
-import { projectsReducer } from '../projects/store/projects.reducers';
 
 @NgModule({
   declarations: [FeaturesComponent, FeaturesListComponent, DeleteFeatureDialogComponent],
@@ -21,7 +20,6 @@ import { projectsReducer } from '../projects/store/projects.reducers';
     FeaturesRoutingModule,
     SharedModule,
     StoreModule.forFeature('features', featuresReducer),
-    StoreModule.forFeature('projects', projectsReducer),
     EffectsModule.forFeature([FeaturesEffects]),
     FormsModule
   ]

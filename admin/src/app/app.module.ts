@@ -25,7 +25,9 @@ import { ProjectsModule } from './projects/projects.module';
     EffectsModule.forRoot([]),
     FeaturesModule,
     ProjectsModule,
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    StoreDevtoolsModule.instrument({
+      logOnly: environment.production
+    })
   ],
   bootstrap: [AppComponent]
 })

@@ -1,9 +1,10 @@
 import * as Actions from './projects.actions';
 import { ApiGetProjectsSuccess } from './projects.actions';
-import { ProjectsState } from './projects.state';
+import { Projects } from './projects.state';
 
-const initialState: ProjectsState = {
-  projects: []
+const initialState: Projects = {
+  content: [],
+  totalElements: 0
 };
 
 export function projectsReducer(state = initialState, action: Actions.ProjectsActionsUnion) {
@@ -15,7 +16,7 @@ export function projectsReducer(state = initialState, action: Actions.ProjectsAc
     case Actions.API_GET_PROJECTS_SUCCESS:
       return {
         ...state,
-        projects: (action as ApiGetProjectsSuccess).payload
+        ...(action as ApiGetProjectsSuccess).payload
       };
     default:
       return state;

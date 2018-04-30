@@ -21,7 +21,7 @@ export class ProjectsEffects {
     .map((state: Project[]) => {
       return {
         type: ProjectActions.API_GET_PROJECTS_SUCCESS,
-        payload: state
+        payload: { content: state, totalElements: state.length }
       };
     })
     .catch((err: HttpErrorResponse) => {

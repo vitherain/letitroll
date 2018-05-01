@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { FeaturesEffects } from './store/features.effects';
-import { featuresReducer } from './store/features.reducers';
+import { featuresReducer, sideNavReducer } from './store/features.reducers';
 import { FeaturesComponent } from './components/features/features.component';
 import { FeaturesRoutingModule } from './features-routing.module';
 import { SharedModule } from '../shared/shared.module';
@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     FeaturesRoutingModule,
     SharedModule,
     StoreModule.forFeature('features', featuresReducer),
+    StoreModule.forFeature('sideNavOpened', sideNavReducer),
     EffectsModule.forFeature([FeaturesEffects]),
     FormsModule
   ]

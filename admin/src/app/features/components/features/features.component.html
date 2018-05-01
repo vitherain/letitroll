@@ -3,7 +3,7 @@
           mat-icon-button
           matTooltip="Projects and environments"
           matTooltipPosition="after"
-          (click)="sidenav.toggle()">
+          (click)="toggleSideNav()">
     <mat-icon>menu</mat-icon>
   </button>
 </app-route-header>
@@ -16,7 +16,7 @@
     </div>
   </mat-sidenav-content>
 
-  <mat-sidenav #sidenav mode="side">
+  <mat-sidenav #sidenav mode="side" [opened]="sideNavOpened$ | async">
     <button mat-icon-button [matMenuTriggerFor]="projectsMenu">
       Select project
     </button>

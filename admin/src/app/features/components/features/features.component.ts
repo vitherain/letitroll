@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ApiGetProjects } from '../../../projects/store/projects.actions';
+import { LoadProjects } from '../../../projects/store/projects.actions';
 import { Projects, ProjectsState } from '../../../projects/store/projects.state';
 import { Observable } from 'rxjs/Observable';
+import { FeaturesState } from '../../store/features.state';
+import { ToggleFeaturesSideNav } from '../../store/features.actions';
 
 @Component({
   selector: 'app-features',
@@ -11,11 +13,17 @@ import { Observable } from 'rxjs/Observable';
 })
 export class FeaturesComponent implements OnInit {
   projects$: Observable<Projects>;
+  sideNavOpened$: Observable<boolean>;
 
-  constructor(private store: Store<ProjectsState>) {}
+  constructor(private featuresStore: Store<FeaturesState>, private projectsStore: Store<ProjectsState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(new ApiGetProjects());
-    this.projects$ = this.store.select('projects');
+    this.projectsStore.dispatch(new LoadProjects());
+    this.projects$ = this.projectsStore.select('projects');
+    this.sideNavOpened$ = this.featuresStore.select('sideNavOpened');
+  }
+
+  toggleSideNav(): void {
+    this.featuresStore.dispatch(new ToggleFeaturesSideNav());
   }
 }

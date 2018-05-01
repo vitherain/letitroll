@@ -14,20 +14,20 @@ export class FeaturesEffects {
 
   @Effect()
   features$ = this.actions$
-    .ofType(FeatureActions.API_GET_FEATURES)
-    .switchMap((action: FeatureActions.ApiGetFeatures) => {
+    .ofType(FeatureActions.LOAD_FEATURES)
+    .switchMap((action: FeatureActions.LoadFeatures) => {
       const params = toHttpParams(action.payload);
       return this.httpClient.get<Features>('/api/v1/projects/5acfba0a85c2500f4007b6eb/features', { params });
     })
     .map((features: Features) => {
       return {
-        type: FeatureActions.API_GET_FEATURES_SUCCESS,
+        type: FeatureActions.LOAD_FEATURES_SUCCESS,
         payload: { content: features.content, totalElements: features.totalElements }
       };
     })
     .catch((err: HttpErrorResponse) => {
       return Observable.of({
-        type: FeatureActions.API_GET_FEATURES_FAILURE,
+        type: FeatureActions.LOAD_FEATURES_FAILURE,
         payload: {
           statusCode: err.status
         }

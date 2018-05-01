@@ -14,19 +14,19 @@ export class ProjectsEffects {
 
   @Effect()
   projects$ = this.actions$
-    .ofType(ProjectActions.API_GET_PROJECTS)
-    .switchMap((action: ProjectActions.ApiGetProjects) => {
+    .ofType(ProjectActions.LOAD_PROJECTS)
+    .switchMap((action: ProjectActions.LoadProjects) => {
       return this.httpClient.get<Project[]>('/api/v1/projects');
     })
     .map((state: Project[]) => {
       return {
-        type: ProjectActions.API_GET_PROJECTS_SUCCESS,
+        type: ProjectActions.LOAD_PROJECTS_SUCCESS,
         payload: { content: state, totalElements: state.length }
       };
     })
     .catch((err: HttpErrorResponse) => {
       return Observable.of({
-        type: ProjectActions.API_GET_PROJECTS_FAILURE,
+        type: ProjectActions.LOAD_PROJECTS_FAILURE,
         payload: {
           statusCode: err.status
         }

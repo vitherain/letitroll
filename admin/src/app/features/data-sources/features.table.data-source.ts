@@ -4,7 +4,7 @@ import { Features, FeaturesState } from '../store/features.state';
 import { Store } from '@ngrx/store';
 import { Feature } from '../models/feature.model';
 import { Subscription } from 'rxjs/Subscription';
-import { ApiGetFeatures } from '../store/features.actions';
+import { LoadFeatures } from '../store/features.actions';
 import { SortDefinition } from '../../shared/tables/table-request.payload';
 import { DataSource } from '@angular/cdk/table';
 import { delay, startWith } from 'rxjs/operators';
@@ -74,7 +74,7 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
         size: this._paginator ? this._paginator.pageSize : 2000,
         sort: sortDefined ? [{ property: this._sort.active, direction: this._sort.direction }] : this._defaultSort
       };
-      this.store.dispatch(new ApiGetFeatures(tableRequest));
+      this.store.dispatch(new LoadFeatures(tableRequest));
     }
   }
 }

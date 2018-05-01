@@ -1,27 +1,27 @@
-import { Action } from '@ngrx/store';
 import { HttpErrorInfo } from '../../shared/http/http-error-info';
 import { Projects } from './projects.state';
+import { CustomAction } from '../../shared/store/custom-action';
 
-export const API_GET_PROJECTS = 'API_GET_PROJECTS';
-export const API_GET_PROJECTS_SUCCESS = 'API_GET_PROJECTS_SUCCESS';
-export const API_GET_PROJECTS_FAILURE = 'API_GET_PROJECTS_FAILURE';
+export const LOAD_PROJECTS = '[PROJECTS] LOAD_PROJECTS';
+export const LOAD_PROJECTS_SUCCESS = '[PROJECTS] LOAD_PROJECTS_SUCCESS';
+export const LOAD_PROJECTS_FAILURE = '[PROJECTS] LOAD_PROJECTS_FAILURE';
 
-export class ApiGetProjects implements Action {
-  readonly type = API_GET_PROJECTS;
+export class LoadProjects implements CustomAction {
+  readonly type = LOAD_PROJECTS;
 
   constructor() {}
 }
 
-export class ApiGetProjectsSuccess implements Action {
-  readonly type = API_GET_PROJECTS_SUCCESS;
+export class LoadProjectsSuccess implements CustomAction {
+  readonly type = LOAD_PROJECTS_SUCCESS;
 
   constructor(public payload: Projects) {}
 }
 
-export class ApiGetProjectsFailure implements Action {
-  readonly type = API_GET_PROJECTS_FAILURE;
+export class LoadProjectsFailure implements CustomAction {
+  readonly type = LOAD_PROJECTS_FAILURE;
 
   constructor(public payload: HttpErrorInfo) {}
 }
 
-export type ProjectsActionsUnion = ApiGetProjects | ApiGetProjectsSuccess | ApiGetProjectsFailure;
+export type ProjectsActionsUnion = LoadProjects | LoadProjectsSuccess | LoadProjectsFailure;

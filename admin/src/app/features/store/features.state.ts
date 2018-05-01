@@ -3,6 +3,7 @@ import { AppState } from '../../store/app.state';
 
 export interface FeaturesState extends AppState {
   features: Features;
+  sideNavOpened: boolean;
 }
 
 export interface Features {

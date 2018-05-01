@@ -1,4 +1,12 @@
-<app-route-header header="Features"></app-route-header>
+<app-route-header header="Features">
+  <button class="sidenav-toggle"
+          mat-icon-button
+          matTooltip="Projects and environments"
+          matTooltipPosition="after"
+          (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</app-route-header>
 
 <mat-sidenav-container class="example-container">
   <mat-sidenav-content>
@@ -8,13 +16,14 @@
     </div>
   </mat-sidenav-content>
 
-  <mat-sidenav #sidenav mode="side" [opened]="true">
-    <mat-nav-list>
-      <a mat-list-item>
-        <button mat-icon-button *ngFor="let project of (projects$ | async).content">
-          {{project.name}}
-        </button>
-      </a>
-    </mat-nav-list>
+  <mat-sidenav #sidenav mode="side">
+    <button mat-icon-button [matMenuTriggerFor]="projectsMenu">
+      Select project
+    </button>
+    <mat-menu #projectsMenu="matMenu">
+      <button mat-menu-item *ngFor="let project of (projects$ | async).content">
+        {{project.name}}
+      </button>
+    </mat-menu>
   </mat-sidenav>
 </mat-sidenav-container>

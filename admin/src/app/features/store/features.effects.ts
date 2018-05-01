@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 
 import * as FeatureActions from './features.actions';
+import { LoadFeatures } from './features.actions';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Features } from './features.state';
 import { Observable } from 'rxjs/Observable';
 import { toHttpParams } from '../../shared/tables/table-request.payload';
+import { ofAction } from 'ngrx-actions';
 
 @Injectable()
 export class FeaturesEffects {
@@ -14,7 +16,7 @@ export class FeaturesEffects {
 
   @Effect()
   features$ = this.actions$
-    .ofType(FeatureActions.LOAD_FEATURES)
+    .pipe(ofAction(LoadFeatures))
     .switchMap((action: FeatureActions.LoadFeatures) => {
       const params = toHttpParams(action.payload);
       return this.httpClient.get<Features>('/api/v1/projects/5acfba0a85c2500f4007b6eb/features', { params });

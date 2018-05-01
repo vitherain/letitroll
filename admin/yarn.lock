@@ -4549,6 +4549,10 @@ next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
+ngrx-actions@^3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/ngrx-actions/-/ngrx-actions-3.1.6.tgz#e8a01403999b548f3d452a51d269709641bd15f4"
+
 ngx-clipboard@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/ngx-clipboard/-/ngx-clipboard-10.0.0.tgz#1facba48db2ffe72f0f7975a50ad6abe1429373a"

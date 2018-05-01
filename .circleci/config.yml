@@ -43,7 +43,7 @@ jobs:
     working_directory: ~/repo/admin
 
     docker:
-      - image: circleci/node:8-browsers
+      - image: circleci/node:9-stretch-browsers
 
     steps:
       - checkout:
@@ -64,11 +64,6 @@ jobs:
       - run:
           name: angular-test
           command: yarn test -- --single-run --no-progress
-      - run:
-          name: Update Chromedriver
-          command: |
-            sudo apt-get update
-            sudo apt-get install google-chrome-stable
       - run:
           name: angular-e2e
           command: yarn e2e

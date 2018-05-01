@@ -13,6 +13,8 @@ import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectsModule } from './projects/projects.module';
+import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './store/router-custom-serializer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +24,9 @@ import { ProjectsModule } from './projects/projects.module';
     SharedModule,
     CoreModule,
     StoreModule.forRoot(appReducers),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router'
+    }),
     EffectsModule.forRoot([]),
     FeaturesModule,
     ProjectsModule,
@@ -29,6 +34,7 @@ import { ProjectsModule } from './projects/projects.module';
       logOnly: environment.production
     })
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }]
 })
 export class AppModule {}

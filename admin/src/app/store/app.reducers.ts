@@ -1,8 +1,8 @@
 import { ActionReducerMap } from '@ngrx/store';
 
 import { AppState } from './app.state';
-import { featuresReducer } from '../features/store/features.reducers';
+import { routerReducer } from '@ngrx/router-store';
 
 export const appReducers: ActionReducerMap<AppState> = {
-  features: featuresReducer
+  router: routerReducer
 };

@@ -12,7 +12,7 @@ export function projectsReducer(state = initialState, action: Actions.ProjectsAc
       return {
         ...state
       };
-    case Actions.API_GET_PROJECTS_SUCCESS:
+    case Actions.LOAD_PROJECTS_SUCCESS:
       return {
         ...state,
         ...action.payload

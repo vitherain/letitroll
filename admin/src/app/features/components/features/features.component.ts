@@ -19,8 +19,8 @@ export class FeaturesComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectsStore.dispatch(new LoadProjects());
-    this.projects$ = this.projectsStore.select('projects');
-    this.sideNavOpened$ = this.featuresStore.select('sideNavOpened');
+    this.projects$ = this.projectsStore.select(state => state.projects);
+    this.sideNavOpened$ = this.featuresStore.select(state => state.sideNavOpened);
   }
 
   toggleSideNav(): void {

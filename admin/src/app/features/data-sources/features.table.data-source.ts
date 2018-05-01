@@ -47,7 +47,7 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
   }
 
   connect(): BehaviorSubject<Feature[]> {
-    this._stateSubscription$ = this.store.select('features').subscribe((state: Features) => {
+    this._stateSubscription$ = this.store.select(state => state.features).subscribe((state: Features) => {
       this._data$.next(state.content);
       if (this._paginator) {
         this._paginator.length = state.totalElements;

@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FeaturesModule } from './features/features.module';
 import { StoreModule } from '@ngrx/store';
-import { appReducers } from './store/app.reducers';
+import { appReducers, metaReducers } from './store/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectsModule } from './projects/projects.module';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -23,7 +23,7 @@ import { CustomSerializer } from './store/router-custom-serializer';
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
-    StoreModule.forRoot(appReducers),
+    StoreModule.forRoot(appReducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router'
     }),

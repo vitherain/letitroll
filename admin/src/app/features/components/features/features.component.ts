@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { LoadProjects } from '../../../projects/store/projects.actions';
 import { Projects, ProjectsState } from '../../../projects/store/projects.state';
 import { Observable } from 'rxjs/Observable';
@@ -20,7 +20,8 @@ export class FeaturesComponent implements OnInit {
   ngOnInit(): void {
     this.projectsStore.dispatch(new LoadProjects());
     this.projects$ = this.projectsStore.select(state => state.projects);
-    this.sideNavOpened$ = this.featuresStore.select(state => state.sideNavOpened);
+    this.projects$.subscribe((projects: Projects) => console.log('projects jsou', projects));
+    this.sideNavOpened$ = this.featuresStore.pipe(select(state => state.features.sideNavOpened));
   }
 
   toggleSideNav(): void {

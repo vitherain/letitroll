@@ -4,14 +4,14 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { SharedModule } from '../shared/shared.module';
-import { projectsReducer } from './store/projects.reducers';
+import { projectsReducers } from './store/projects.reducers';
 import { ProjectsEffects } from './store/projects.effects';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    StoreModule.forFeature('projects', projectsReducer),
+    StoreModule.forFeature('projects', projectsReducers),
     EffectsModule.forFeature([ProjectsEffects])
   ]
 })

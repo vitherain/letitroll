@@ -1,7 +1,7 @@
 import { TableRequestPayload } from '../../shared/tables/table-request.payload';
 import { HttpErrorInfo } from '../../shared/http/http-error-info';
-import { FeaturesState } from './features.state';
 import { CustomAction } from '../../shared/store/custom-action';
+import { LoadFeaturesSuccessPayload } from './features.payloads';
 
 export const LOAD_FEATURES = '[FEATURES] LOAD_FEATURES';
 export const LOAD_FEATURES_SUCCESS = '[FEATURES] LOAD_FEATURES_SUCCESS';
@@ -17,7 +17,7 @@ export class LoadFeatures implements CustomAction {
 export class LoadFeaturesSuccess implements CustomAction {
   readonly type = LOAD_FEATURES_SUCCESS;
 
-  constructor(public payload: FeaturesState) {}
+  constructor(public payload: LoadFeaturesSuccessPayload) {}
 }
 
 export class LoadFeaturesFailure implements CustomAction {

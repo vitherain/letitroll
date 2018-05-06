@@ -20,7 +20,6 @@ export class FeaturesComponent implements OnInit {
   ngOnInit(): void {
     this.projectsStore.dispatch(new LoadProjects());
     this.projects$ = this.projectsStore.select(state => state.projects);
-    this.projects$.subscribe((projects: Projects) => console.log('projects jsou', projects));
     this.sideNavOpened$ = this.featuresStore.pipe(select(state => state.features.sideNavOpened));
   }
 

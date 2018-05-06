@@ -1,6 +1,5 @@
 import { MatPaginator, MatSort, PageEvent, Sort } from '@angular/material';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Features, FeaturesState } from '../store/features.state';
+import { FeaturesState } from '../store/features.state';
 import { Store } from '@ngrx/store';
 import { Feature } from '../models/feature.model';
 import { Subscription } from 'rxjs/Subscription';
@@ -9,13 +8,14 @@ import { SortDefinition } from '../../shared/tables/table-request.payload';
 import { DataSource } from '@angular/cdk/table';
 import { delay, startWith } from 'rxjs/operators';
 import { combineLatest } from 'rxjs/observable/combineLatest';
+import { Observable } from 'rxjs/Observable';
 
 export class FeaturesTableDataSource extends DataSource<Feature> {
   private _defaultSort: Array<SortDefinition> = [{ property: 'name', direction: 'asc' }];
-  private _stateSubscription$: Subscription;
+  private _featuresSubscription$: Subscription;
   private _paginatorAndSortSubscription$: Subscription;
-  private _data$: BehaviorSubject<Feature[]> = new BehaviorSubject([]);
-  private _loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private _data$: Observable<Array<Feature>>;
+  private _loading$: Observable<boolean>;
 
   private _paginator: MatPaginator;
   private _sort: MatSort;
@@ -29,11 +29,23 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
   }
 
   get loading$() {
-    return this._loading$.asObservable();
+    return this._loading$;
   }
 
   constructor(private store: Store<FeaturesState>) {
     super();
+
+    this._data$ = this.store.select((state: FeaturesState) => state.features.content);
+
+    this._loading$ = this.store.select((state: FeaturesState) => state.features.loading);
+
+    this._featuresSubscription$ = this.store
+      .select(state => state.features.totalElements)
+      .subscribe((totalElements: number) => {
+        if (this._paginator) {
+          this._paginator.length = totalElements;
+        }
+      });
   }
 
   initialize(): void {
@@ -46,27 +58,16 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
       .subscribe(() => this.getFeatures());
   }
 
-  connect(): BehaviorSubject<Feature[]> {
-    this._stateSubscription$ = this.store.select(state => state.features).subscribe((state: Features) => {
-      this._data$.next(state.content);
-      if (this._paginator) {
-        this._paginator.length = state.totalElements;
-      }
-      // TODO not working spinner because it is called immediately with initial state
-      this._loading$.next(false);
-    });
+  connect(): Observable<Array<Feature>> {
     return this._data$;
   }
 
   disconnect(): void {
-    this._stateSubscription$.unsubscribe();
+    this._featuresSubscription$.unsubscribe();
     this._paginatorAndSortSubscription$.unsubscribe();
-    this._data$.complete();
-    this._loading$.complete();
   }
 
   private getFeatures(): void {
-    this._loading$.next(true);
     if (this.store) {
       const sortDefined: boolean = !!this._sort && !!this._sort.active && !!this._sort.direction;
       const tableRequest = {

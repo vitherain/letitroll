@@ -33,15 +33,15 @@ export class ProjectsLoadingStore {
   }
 }
 
-function contentReducer(state, action) {
+export function contentReducer(state, action) {
   return createReducer(ProjectsContentStore)(state, action);
 }
 
-function totalElementsReducer(state, action) {
+export function totalElementsReducer(state, action) {
   return createReducer(ProjectsTotalElementsStore)(state, action);
 }
 
-function loadingReducer(state, action) {
+export function loadingReducer(state, action) {
   return createReducer(ProjectsLoadingStore)(state, action);
 }
 

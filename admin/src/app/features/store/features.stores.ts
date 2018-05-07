@@ -41,19 +41,19 @@ export class FeaturesSideNavOpenedStore {
   }
 }
 
-function contentReducer(state, action) {
+export function contentReducer(state, action) {
   return createReducer(FeaturesContentStore)(state, action);
 }
 
-function totalElementsReducer(state, action) {
+export function totalElementsReducer(state, action) {
   return createReducer(FeaturesTotalElementsStore)(state, action);
 }
 
-function loadingReducer(state, action) {
+export function loadingReducer(state, action) {
   return createReducer(FeaturesLoadingStore)(state, action);
 }
 
-function sideNavReducer(state, action) {
+export function sideNavReducer(state, action) {
   return createReducer(FeaturesSideNavOpenedStore)(state, action);
 }
 

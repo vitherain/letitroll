@@ -33,7 +33,7 @@ export class FeaturesLoadingStore {
   }
 }
 
-@Store(false)
+@Store(true)
 export class FeaturesSideNavOpenedStore {
   @Action(ToggleFeaturesSideNav)
   load(state: boolean, action: ToggleFeaturesSideNav) {

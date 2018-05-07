@@ -1,3 +1,11 @@
+.sidenav-container {
+  position: fixed;
+  height: calc(100% - 64px - 144px); // minus footer 64px and header 144px
+  min-height: calc(100% - 64px - 144px); // minus footer 64px and header 144px
+  width: 100%;
+  min-width: 100%;
+}
+
 .sidenav-content-wrapper {
   display: flex;
   flex-direction: column;

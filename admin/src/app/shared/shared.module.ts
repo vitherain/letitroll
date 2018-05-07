@@ -7,10 +7,9 @@ import { DateTimeProviderService } from './services/date-time-provider.service';
 import { SharedHttpInterceptor } from './interceptors/shared-http.interceptor';
 import { ClipboardModule } from 'ngx-clipboard';
 import { RouteHeaderComponent } from './components/route-header/route-header.component';
-import { NgrxActionsModule } from 'ngrx-actions';
 
 @NgModule({
-  imports: [MaterialModule, HttpClientModule, ClipboardModule, NgrxActionsModule],
+  imports: [MaterialModule, HttpClientModule, ClipboardModule],
   declarations: [RouteHeaderComponent],
   exports: [CommonModule, MaterialModule, HttpClientModule, ClipboardModule, RouteHeaderComponent],
   providers: [

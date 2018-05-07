@@ -4,13 +4,14 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { FeaturesEffects } from './store/features.effects';
-import { featuresReducers } from './store/features.reducers';
+import { featuresReducers } from './store/features.stores';
 import { FeaturesComponent } from './components/features/features.component';
 import { FeaturesRoutingModule } from './features-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FeaturesListComponent } from './components/features-list/features-list.component';
 import { DeleteFeatureDialogComponent } from './components/delete-feature-dialog/delete-feature-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { NgrxActionsModule } from 'ngrx-actions';
 
 @NgModule({
   declarations: [FeaturesComponent, FeaturesListComponent, DeleteFeatureDialogComponent],
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FeaturesRoutingModule,
     SharedModule,
+    NgrxActionsModule,
     StoreModule.forFeature('features', featuresReducers),
     EffectsModule.forFeature([FeaturesEffects]),
     FormsModule

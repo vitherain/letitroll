@@ -9,12 +9,16 @@ import { DataSource } from '@angular/cdk/table';
 import { delay, startWith } from 'rxjs/operators';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { Observable } from 'rxjs/Observable';
+import { Select } from 'ngrx-actions';
 
 export class FeaturesTableDataSource extends DataSource<Feature> {
   private _defaultSort: Array<SortDefinition> = [{ property: 'name', direction: 'asc' }];
   private _featuresSubscription$: Subscription;
   private _paginatorAndSortSubscription$: Subscription;
+
+  @Select((state: FeaturesState) => state.features.content)
   private _data$: Observable<Array<Feature>>;
+  @Select((state: FeaturesState) => state.features.loading)
   private _loading$: Observable<boolean>;
 
   private _paginator: MatPaginator;
@@ -34,18 +38,6 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
 
   constructor(private store: Store<FeaturesState>) {
     super();
-
-    this._data$ = this.store.select((state: FeaturesState) => state.features.content);
-
-    this._loading$ = this.store.select((state: FeaturesState) => state.features.loading);
-
-    this._featuresSubscription$ = this.store
-      .select(state => state.features.totalElements)
-      .subscribe((totalElements: number) => {
-        if (this._paginator) {
-          this._paginator.length = totalElements;
-        }
-      });
   }
 
   initialize(): void {
@@ -56,6 +48,13 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
     this._paginatorAndSortSubscription$ = combineLatest(paginator$, sort$)
       .pipe(delay(0))
       .subscribe(() => this.getFeatures());
+    this._featuresSubscription$ = this.store
+      .select(state => state.features.totalElements)
+      .subscribe((totalElements: number) => {
+        if (this._paginator) {
+          this._paginator.length = totalElements;
+        }
+      });
   }
 
   connect(): Observable<Array<Feature>> {

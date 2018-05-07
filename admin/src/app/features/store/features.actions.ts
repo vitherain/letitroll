@@ -31,5 +31,3 @@ export class ToggleFeaturesSideNav implements CustomAction {
 
   constructor() {}
 }
-
-export type FeaturesActionsUnion = LoadFeatures | LoadFeaturesSuccess | LoadFeaturesFailure | ToggleFeaturesSideNav;

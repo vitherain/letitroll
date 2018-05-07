@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 
-import * as ProjectActions from './projects.actions';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { ProjectsState } from './projects.state';
 import { Project } from '../models/project.model';
+import { LoadProjects, LoadProjectsFailure, LoadProjectsSuccess } from './projects.actions';
+import { ofAction } from 'ngrx-actions';
 
 @Injectable()
 export class ProjectsEffects {
@@ -14,22 +15,14 @@ export class ProjectsEffects {
 
   @Effect()
   projects$ = this.actions$
-    .ofType(ProjectActions.LOAD_PROJECTS)
-    .switchMap((action: ProjectActions.LoadProjects) => {
+    .pipe(ofAction(LoadProjects))
+    .switchMap((action: LoadProjects) => {
       return this.httpClient.get<Project[]>('/api/v1/projects');
     })
     .map((state: Project[]) => {
-      return {
-        type: ProjectActions.LOAD_PROJECTS_SUCCESS,
-        payload: { content: state, totalElements: state.length }
-      };
+      return new LoadProjectsSuccess({ content: state, totalElements: state.length });
     })
     .catch((err: HttpErrorResponse) => {
-      return Observable.of({
-        type: ProjectActions.LOAD_PROJECTS_FAILURE,
-        payload: {
-          statusCode: err.status
-        }
-      });
+      return Observable.of(new LoadProjectsFailure({ statusCode: err.status }));
     });
 }

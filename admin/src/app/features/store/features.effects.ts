@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 
-import * as FeatureActions from './features.actions';
 import { LoadFeatures, LoadFeaturesFailure, LoadFeaturesSuccess } from './features.actions';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Features } from './features.state';
@@ -16,7 +15,7 @@ export class FeaturesEffects {
   @Effect()
   features$ = this.actions$
     .pipe(ofAction(LoadFeatures))
-    .switchMap((action: FeatureActions.LoadFeatures) => {
+    .switchMap((action: LoadFeatures) => {
       const params = toHttpParams(action.payload);
       return this.httpClient.get<Features>('/api/v1/projects/5acfba0a85c2500f4007b6eb/features', { params });
     })

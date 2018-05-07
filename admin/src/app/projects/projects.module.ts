@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { SharedModule } from '../shared/shared.module';
-import { projectsReducers } from './store/projects.reducers';
+import { projectsReducers } from './store/projects.stores';
 import { ProjectsEffects } from './store/projects.effects';
 
 @NgModule({

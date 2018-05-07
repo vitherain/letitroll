@@ -1,6 +1,7 @@
 import { HttpErrorInfo } from '../../shared/http/http-error-info';
 import { CustomAction } from '../../shared/store/custom-action';
-import { LoadProjectsSuccessPayload } from './projects.payloads';
+import { ListPayload } from '../../shared/store/list-payload';
+import { Project } from '../models/project.model';
 
 export const LOAD_PROJECTS = '[PROJECTS] LOAD_PROJECTS';
 export const LOAD_PROJECTS_SUCCESS = '[PROJECTS] LOAD_PROJECTS_SUCCESS';
@@ -15,7 +16,7 @@ export class LoadProjects implements CustomAction {
 export class LoadProjectsSuccess implements CustomAction {
   readonly type = LOAD_PROJECTS_SUCCESS;
 
-  constructor(public payload: LoadProjectsSuccessPayload) {}
+  constructor(public payload: ListPayload<Project>) {}
 }
 
 export class LoadProjectsFailure implements CustomAction {
@@ -23,5 +24,3 @@ export class LoadProjectsFailure implements CustomAction {
 
   constructor(public payload: HttpErrorInfo) {}
 }
-
-export type ProjectsActionsUnion = LoadProjects | LoadProjectsSuccess | LoadProjectsFailure;

@@ -20,6 +20,8 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
   private _data$: Observable<Array<Feature>>;
   @Select((state: FeaturesState) => state.features.loading)
   private _loading$: Observable<boolean>;
+  @Select((state: FeaturesState) => state.features.totalElements)
+  private _totalElements$: Observable<number>;
 
   private _paginator: MatPaginator;
   private _sort: MatSort;
@@ -48,13 +50,11 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
     this._paginatorAndSortSubscription$ = combineLatest(paginator$, sort$)
       .pipe(delay(0))
       .subscribe(() => this.getFeatures());
-    this._featuresSubscription$ = this.store
-      .select(state => state.features.totalElements)
-      .subscribe((totalElements: number) => {
-        if (this._paginator) {
-          this._paginator.length = totalElements;
-        }
-      });
+    this._featuresSubscription$ = this._totalElements$.subscribe((totalElements: number) => {
+      if (this._paginator) {
+        this._paginator.length = totalElements;
+      }
+    });
   }
 
   connect(): Observable<Array<Feature>> {

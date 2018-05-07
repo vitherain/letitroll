@@ -11,7 +11,6 @@ import { SharedModule } from '../shared/shared.module';
 import { FeaturesListComponent } from './components/features-list/features-list.component';
 import { DeleteFeatureDialogComponent } from './components/delete-feature-dialog/delete-feature-dialog.component';
 import { FormsModule } from '@angular/forms';
-import { NgrxActionsModule } from 'ngrx-actions';
 
 @NgModule({
   declarations: [FeaturesComponent, FeaturesListComponent, DeleteFeatureDialogComponent],
@@ -20,7 +19,6 @@ import { NgrxActionsModule } from 'ngrx-actions';
     CommonModule,
     FeaturesRoutingModule,
     SharedModule,
-    NgrxActionsModule,
     StoreModule.forFeature('features', featuresReducers),
     EffectsModule.forFeature([FeaturesEffects]),
     FormsModule

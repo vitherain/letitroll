@@ -1,5 +1,10 @@
 import { MatPaginator, MatSort, PageEvent, Sort } from '@angular/material';
-import { FeaturesState } from '../store/features.state';
+import {
+  FeaturesState,
+  getFeaturesContent,
+  getFeaturesLoading,
+  getFeaturesTotalElements
+} from '../store/features.state';
 import { Store } from '@ngrx/store';
 import { Feature } from '../models/feature.model';
 import { Subscription } from 'rxjs/Subscription';
@@ -16,12 +21,9 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
   private _featuresSubscription$: Subscription;
   private _paginatorAndSortSubscription$: Subscription;
 
-  @Select((state: FeaturesState) => state.features.content)
-  private _data$: Observable<Array<Feature>>;
-  @Select((state: FeaturesState) => state.features.loading)
-  private _loading$: Observable<boolean>;
-  @Select((state: FeaturesState) => state.features.totalElements)
-  private _totalElements$: Observable<number>;
+  @Select(getFeaturesContent) private _data$: Observable<Array<Feature>>;
+  @Select(getFeaturesLoading) private _loading$: Observable<boolean>;
+  @Select(getFeaturesTotalElements) private _totalElements$: Observable<number>;
 
   private _paginator: MatPaginator;
   private _sort: MatSort;

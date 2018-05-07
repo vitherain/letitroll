@@ -64,9 +64,9 @@ jobs:
       - run:
           name: angular-test
           command: yarn test -- --single-run --no-progress
-      - run:
-          name: angular-e2e
-          command: yarn e2e
+#      - run:
+#          name: angular-e2e
+#          command: yarn e2e
       - run:
           name: Save test results
           command: |

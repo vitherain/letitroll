@@ -12,9 +12,10 @@ import { FeaturesListComponent } from './components/features-list/features-list.
 import { DeleteFeatureDialogComponent } from './components/delete-feature-dialog/delete-feature-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { NgrxActionsModule } from 'ngrx-actions';
+import { UnselectedProjectComponent } from './components/unselected-project/unselected-project.component';
 
 @NgModule({
-  declarations: [FeaturesComponent, FeaturesListComponent, DeleteFeatureDialogComponent],
+  declarations: [FeaturesComponent, FeaturesListComponent, DeleteFeatureDialogComponent, UnselectedProjectComponent],
   entryComponents: [DeleteFeatureDialogComponent],
   imports: [
     CommonModule,

@@ -4,8 +4,9 @@ import { LoadProjects } from '../../../projects/store/projects.actions';
 import { getProjectsState, Projects, ProjectsState } from '../../../projects/store/projects.state';
 import { Observable } from 'rxjs/Observable';
 import { FeaturesState, getSideNavOpened } from '../../store/features.state';
-import { ToggleFeaturesSideNav } from '../../store/features.actions';
+import { SelectProject, ToggleFeaturesSideNav } from '../../store/features.actions';
 import { Select } from 'ngrx-actions';
+import { Project } from '../../../projects/models/project.model';
 
 @Component({
   selector: 'app-features',
@@ -24,5 +25,9 @@ export class FeaturesComponent implements OnInit {
 
   toggleSideNav(): void {
     this.featuresStore.dispatch(new ToggleFeaturesSideNav());
+  }
+
+  selectProject(project: Project) {
+    this.featuresStore.dispatch(new SelectProject(project));
   }
 }

@@ -5,10 +5,10 @@ import { LoadProjects, LoadProjectsFailure, LoadProjectsSuccess } from './projec
 import { Project } from '../models/project.model';
 
 @Store([])
-export class ProjectsContentStore {
+export class ProjectsEntitiesStore {
   @Action(LoadProjectsSuccess)
   loadSuccess(state: Array<Project>, action: LoadProjectsSuccess) {
-    return [...action.payload.content];
+    return [...action.payload.entities];
   }
 }
 
@@ -33,8 +33,8 @@ export class ProjectsLoadingStore {
   }
 }
 
-export function contentReducer(state, action) {
-  return createReducer(ProjectsContentStore)(state, action);
+export function entitiesReducer(state, action) {
+  return createReducer(ProjectsEntitiesStore)(state, action);
 }
 
 export function totalElementsReducer(state, action) {
@@ -46,7 +46,7 @@ export function loadingReducer(state, action) {
 }
 
 export const projectsReducers: ActionReducerMap<Projects> = {
-  content: contentReducer,
+  entities: entitiesReducer,
   totalElements: totalElementsReducer,
   loading: loadingReducer
 };

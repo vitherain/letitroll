@@ -1,7 +1,7 @@
 import { MatPaginator, MatSort, PageEvent, Sort } from '@angular/material';
 import {
   FeaturesState,
-  getFeaturesContent,
+  getFeaturesEntities,
   getFeaturesLoading,
   getFeaturesTotalElements
 } from '../store/features.state';
@@ -21,7 +21,7 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
   private _featuresSubscription$: Subscription;
   private _paginatorAndSortSubscription$: Subscription;
 
-  @Select(getFeaturesContent) private _data$: Observable<Array<Feature>>;
+  @Select(getFeaturesEntities) private _data$: Observable<Array<Feature>>;
   @Select(getFeaturesLoading) private _loading$: Observable<boolean>;
   @Select(getFeaturesTotalElements) private _totalElements$: Observable<number>;
 

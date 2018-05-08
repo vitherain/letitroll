@@ -20,7 +20,7 @@ export class ProjectsEffects {
       return this.httpClient.get<Project[]>('/api/v1/projects');
     })
     .map((state: Project[]) => {
-      return new LoadProjectsSuccess({ content: state, totalElements: state.length });
+      return new LoadProjectsSuccess({ entities: state, totalElements: state.length });
     })
     .catch((err: HttpErrorResponse) => {
       return Observable.of(new LoadProjectsFailure({ statusCode: err.status }));

@@ -17,13 +17,16 @@
   </mat-sidenav-content>
 
   <mat-sidenav #sidenav mode="side" [opened]="sideNavOpened$ | async">
-    <button mat-icon-button [matMenuTriggerFor]="projectsMenu">
-      Select project
-    </button>
-    <mat-menu #projectsMenu="matMenu">
-      <button mat-menu-item *ngFor="let project of (projects$ | async).content">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Select project
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <button mat-button *ngFor="let project of (projects$ | async).entities" (click)="selectProject(project)">
         {{project.name}}
       </button>
-    </mat-menu>
+    </mat-expansion-panel>
   </mat-sidenav>
 </mat-sidenav-container>

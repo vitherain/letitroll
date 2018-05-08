@@ -20,7 +20,7 @@ export class FeaturesEffects {
       return this.httpClient.get<Features>('/api/v1/projects/5acfba0a85c2500f4007b6eb/features', { params });
     })
     .map((features: Features) => {
-      return new LoadFeaturesSuccess({ content: features.content, totalElements: features.totalElements });
+      return new LoadFeaturesSuccess({ entities: features.entities, totalElements: features.totalElements });
     })
     .catch((err: HttpErrorResponse) => {
       return Observable.of(new LoadFeaturesFailure({ statusCode: err.status }));

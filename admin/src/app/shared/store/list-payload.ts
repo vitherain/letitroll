@@ -1,4 +1,4 @@
 export interface ListPayload<T> {
-  content: Array<T>;
+  entities: Array<T>;
   totalElements: number;
 }

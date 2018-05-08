@@ -1,14 +1,21 @@
 import { Action, createReducer, Store } from 'ngrx-actions';
-import { LoadFeatures, LoadFeaturesFailure, LoadFeaturesSuccess, ToggleFeaturesSideNav } from './features.actions';
+import {
+  LoadFeatures,
+  LoadFeaturesFailure,
+  LoadFeaturesSuccess,
+  SelectProject,
+  ToggleFeaturesSideNav
+} from './features.actions';
 import { Feature } from '../models/feature.model';
 import { Features } from './features.state';
 import { ActionReducerMap } from '@ngrx/store';
+import { Project } from '../../projects/models/project.model';
 
 @Store([])
-export class FeaturesContentStore {
+export class FeaturesEntitiesStore {
   @Action(LoadFeaturesSuccess)
   loadSuccess(state: Array<Feature>, action: LoadFeaturesSuccess) {
-    return [...action.payload.content];
+    return [...action.payload.entities];
   }
 }
 
@@ -41,8 +48,16 @@ export class FeaturesSideNavOpenedStore {
   }
 }
 
-export function contentReducer(state, action) {
-  return createReducer(FeaturesContentStore)(state, action);
+@Store({})
+export class SelectedProjectStore {
+  @Action(SelectProject)
+  load(state: Project, action: SelectProject) {
+    return action.payload;
+  }
+}
+
+export function entitiesReducer(state, action) {
+  return createReducer(FeaturesEntitiesStore)(state, action);
 }
 
 export function totalElementsReducer(state, action) {
@@ -57,9 +72,14 @@ export function sideNavReducer(state, action) {
   return createReducer(FeaturesSideNavOpenedStore)(state, action);
 }
 
+export function selectedProjectReducer(state, action) {
+  return createReducer(FeaturesSideNavOpenedStore)(state, action);
+}
+
 export const featuresReducers: ActionReducerMap<Features> = {
-  content: contentReducer,
+  entities: entitiesReducer,
   totalElements: totalElementsReducer,
   loading: loadingReducer,
-  sideNavOpened: sideNavReducer
+  sideNavOpened: sideNavReducer,
+  selectedProject: selectedProjectReducer
 };

@@ -7,7 +7,7 @@ export interface ProjectsState extends AppState {
 }
 
 export interface Projects {
-  content: Array<Project>;
+  entities: Array<Project>;
   totalElements: number;
   loading: boolean;
 }

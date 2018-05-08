@@ -8,7 +8,7 @@ import {
 import { Store } from '@ngrx/store';
 import { Feature } from '../models/feature.model';
 import { Subscription } from 'rxjs/Subscription';
-import { LoadFeatures } from '../store/features.actions';
+import { LoadFeatures, LoadFeaturesPayload } from '../store/features.actions';
 import { SortDefinition } from '../../shared/tables/table-request.payload';
 import { DataSource } from '@angular/cdk/table';
 import { delay, startWith } from 'rxjs/operators';
@@ -20,6 +20,8 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
   private _defaultSort: Array<SortDefinition> = [{ property: 'name', direction: 'asc' }];
   private _featuresSubscription$: Subscription;
   private _paginatorAndSortSubscription$: Subscription;
+  private _projectId: string;
+  private _environmentId: string;
 
   @Select(getFeaturesEntities) private _data$: Observable<Array<Feature>>;
   @Select(getFeaturesLoading) private _loading$: Observable<boolean>;
@@ -34,6 +36,14 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
 
   set sort(value: MatSort) {
     this._sort = value;
+  }
+
+  set projectId(value: string) {
+    this._projectId = value;
+  }
+
+  set environmentId(value: string) {
+    this._environmentId = value;
   }
 
   get loading$() {
@@ -76,7 +86,12 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
         size: this._paginator ? this._paginator.pageSize : 2000,
         sort: sortDefined ? [{ property: this._sort.active, direction: this._sort.direction }] : this._defaultSort
       };
-      this.store.dispatch(new LoadFeatures(tableRequest));
+      const payload: LoadFeaturesPayload = {
+        projectId: this._projectId,
+        environmentId: this._environmentId,
+        tableRequest: tableRequest
+      };
+      this.store.dispatch(new LoadFeatures(payload));
     }
   }
 }

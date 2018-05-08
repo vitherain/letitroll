@@ -13,10 +13,16 @@ export const TOGGLE_SIDE_NAV = '[FEATURES] TOGGLE_SIDE_NAV';
 export const SELECT_PROJECT = '[FEATURES] SELECT_PROJECT';
 export const SELECT_ENVIRONMENT = '[FEATURES] SELECT_ENVIRONMENT';
 
+export interface LoadFeaturesPayload {
+  projectId: string;
+  environmentId: string;
+  tableRequest: TableRequestPayload;
+}
+
 export class LoadFeatures implements Action {
   readonly type = LOAD_FEATURES;
 
-  constructor(public payload: TableRequestPayload) {}
+  constructor(public payload: LoadFeaturesPayload) {}
 }
 
 export class LoadFeaturesSuccess implements Action {

@@ -16,8 +16,11 @@ export class FeaturesEffects {
   features$ = this.actions$
     .pipe(ofAction(LoadFeatures))
     .switchMap((action: LoadFeatures) => {
-      const params = toHttpParams(action.payload);
-      return this.httpClient.get<Features>('/api/v1/projects/5acfba0a85c2500f4007b6eb/features', { params });
+      const params = toHttpParams(action.payload.tableRequest);
+      return this.httpClient.get<Features>(
+        `/api/v1/projects/${action.payload.projectId}/environments/${action.payload.environmentId}/targeted-features`,
+        { params }
+      );
     })
     .map((features: Features) => {
       return new LoadFeaturesSuccess({ entities: features.entities, totalElements: features.totalElements });

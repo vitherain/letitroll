@@ -26,6 +26,6 @@ export class Project {
   }
 
   get environments(): Environment[] {
-    return this._environments.slice();
+    return this._environments ? this._environments.slice() : [];
   }
 }

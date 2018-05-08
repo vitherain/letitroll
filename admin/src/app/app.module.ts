@@ -34,6 +34,7 @@ import { AppEffects } from './store/app.effects';
     FeaturesModule,
     ProjectsModule,
     StoreDevtoolsModule.instrument({
+      name: 'Let!tRoll',
       logOnly: environment.production
     })
   ],

@@ -3,10 +3,15 @@ import { Actions, Effect } from '@ngrx/effects';
 
 import { LoadFeatures, LoadFeaturesFailure, LoadFeaturesSuccess } from './features.actions';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Features } from './features.state';
 import { Observable } from 'rxjs/Observable';
 import { toHttpParams } from '../../shared/tables/table-request.payload';
 import { ofAction } from 'ngrx-actions';
+import { Feature } from '../models/feature.model';
+
+export interface FeaturesResponse {
+  content: Array<Feature>;
+  totalElements: number;
+}
 
 @Injectable()
 export class FeaturesEffects {
@@ -17,13 +22,13 @@ export class FeaturesEffects {
     .pipe(ofAction(LoadFeatures))
     .switchMap((action: LoadFeatures) => {
       const params = toHttpParams(action.payload.tableRequest);
-      return this.httpClient.get<Features>(
+      return this.httpClient.get<FeaturesResponse>(
         `/api/v1/projects/${action.payload.projectId}/environments/${action.payload.environmentId}/targeted-features`,
         { params }
       );
     })
-    .map((features: Features) => {
-      return new LoadFeaturesSuccess({ entities: features.entities, totalElements: features.totalElements });
+    .map((features: FeaturesResponse) => {
+      return new LoadFeaturesSuccess({ entities: features.content, totalElements: features.totalElements });
     })
     .catch((err: HttpErrorResponse) => {
       return Observable.of(new LoadFeaturesFailure({ statusCode: err.status }));

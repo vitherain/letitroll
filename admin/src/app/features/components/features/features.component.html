@@ -41,7 +41,7 @@
 
       <button mat-button *ngFor="let environment of selectedProject?.environments" (click)="selectEnvironment(environment)">
         <span>{{environment.name}}</span>
-        <i class="material-icons" *ngIf="selectedEnvironment?.id === environment.id">keyboard_arrow_left</i>
+        <i class="material-icons" *ngIf="(selectedEnvironment$ | async)?.id === environment.id">keyboard_arrow_left</i>
       </button>
     </mat-expansion-panel>
   </mat-sidenav>

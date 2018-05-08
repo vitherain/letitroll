@@ -29,8 +29,6 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   @Select(getSelectedEnvironment) selectedEnvironment$: Observable<Environment>;
   selectedProjectSubscription: Subscription;
   selectedProject: Project;
-  selectedEnvironmentSubscription: Subscription;
-  selectedEnvironment: Environment;
 
   constructor(
     private featuresStore: Store<FeaturesState>,
@@ -43,16 +41,6 @@ export class FeaturesComponent implements OnInit, OnDestroy {
     this.selectedProjectSubscription = this.selectedProject$.subscribe(
       (next: Project) => (this.selectedProject = next)
     );
-    this.selectedEnvironmentSubscription = this.selectedEnvironment$.subscribe((next: Environment) => {
-      this.selectedEnvironment = next;
-      if (this.selectedEnvironment) {
-        this.appStore.dispatch(
-          new Go({
-            path: ['features', this.selectedProject.name.toLowerCase(), this.selectedEnvironment.name.toLowerCase()]
-          })
-        );
-      }
-    });
   }
 
   toggleSideNav(): void {
@@ -65,10 +53,14 @@ export class FeaturesComponent implements OnInit, OnDestroy {
 
   selectEnvironment(environment: Environment) {
     this.featuresStore.dispatch(new SelectEnvironment(environment));
+    this.appStore.dispatch(
+      new Go({
+        path: ['features', this.selectedProject.name.toLowerCase(), environment.name.toLowerCase()]
+      })
+    );
   }
 
   ngOnDestroy(): void {
     this.selectedProjectSubscription.unsubscribe();
-    this.selectedEnvironmentSubscription.unsubscribe();
   }
 }

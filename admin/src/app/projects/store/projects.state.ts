@@ -1,6 +1,6 @@
 import { AppState } from '../../store/app.state';
 import { Project } from '../models/project.model';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { createFeatureSelector } from '@ngrx/store';
 
 export interface ProjectsState extends AppState {
   projects: Projects;
@@ -12,6 +12,5 @@ export interface Projects {
   loading: boolean;
 }
 
-export const getProjectsState = createFeatureSelector<ProjectsState>('projects');
-
-export const getProjects = createSelector(getProjectsState, (state: ProjectsState) => state.projects);
+// I don't understand why this returns Projects and not ProjectsState effectively :-(
+export const getProjectsState = createFeatureSelector<Projects>('projects');

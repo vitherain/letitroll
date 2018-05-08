@@ -13,14 +13,13 @@ export interface Features {
   sideNavOpened: boolean;
 }
 
-export const getFeaturesState = createFeatureSelector<FeaturesState>('features');
+// I don't understand why this returns Features and not FeaturesState effectively :-(
+export const getFeaturesState = createFeatureSelector<Features>('features');
 
-export const getFeatures = createSelector(getFeaturesState, (state: FeaturesState) => state.features);
+export const getFeaturesContent = createSelector(getFeaturesState, (state: Features) => state.content);
 
-export const getFeaturesContent = createSelector(getFeatures, (state: Features) => state.content);
+export const getFeaturesTotalElements = createSelector(getFeaturesState, (state: Features) => state.totalElements);
 
-export const getFeaturesTotalElements = createSelector(getFeatures, (state: Features) => state.totalElements);
+export const getFeaturesLoading = createSelector(getFeaturesState, (state: Features) => state.loading);
 
-export const getFeaturesLoading = createSelector(getFeatures, (state: Features) => state.loading);
-
-export const getSideNavOpened = createSelector(getFeatures, (state: Features) => state.sideNavOpened);
+export const getSideNavOpened = createSelector(getFeaturesState, (state: Features) => state.sideNavOpened);

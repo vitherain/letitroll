@@ -3,12 +3,9 @@ import { FeaturesTableDataSource } from '../../data-sources/features.table.data-
 import { config } from '../../../../config/config';
 import { MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { Store } from '@ngrx/store';
-import { FeaturesState, getSelectedProject } from '../../store/features.state';
+import { FeaturesState } from '../../store/features.state';
 import { DeleteFeatureDialogComponent } from '../delete-feature-dialog/delete-feature-dialog.component';
 import { Feature } from '../../models/feature.model';
-import { Project } from '../../../projects/models/project.model';
-import { Observable } from 'rxjs/Observable';
-import { Select } from 'ngrx-actions';
 
 @Component({
   selector: 'app-features-list',
@@ -16,7 +13,6 @@ import { Select } from 'ngrx-actions';
   styleUrls: ['./features-list.component.scss']
 })
 export class FeaturesListComponent implements OnInit, AfterViewInit {
-  @Select(getSelectedProject) selectedProject$: Observable<Project>;
   displayedColumns = ['name', 'added', 'key', 'targeting', 'actions'];
   dataSource: FeaturesTableDataSource;
 

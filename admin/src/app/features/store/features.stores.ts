@@ -3,6 +3,7 @@ import {
   LoadFeatures,
   LoadFeaturesFailure,
   LoadFeaturesSuccess,
+  SelectEnvironment,
   SelectProject,
   ToggleFeaturesSideNav
 } from './features.actions';
@@ -10,6 +11,7 @@ import { Feature } from '../models/feature.model';
 import { Features } from './features.state';
 import { ActionReducerMap } from '@ngrx/store';
 import { Project } from '../../projects/models/project.model';
+import { Environment } from '../../environments/models/environment.model';
 
 @Store([])
 export class FeaturesEntitiesStore {
@@ -56,6 +58,14 @@ export class SelectedProjectStore {
   }
 }
 
+@Store(null)
+export class SelectedEnvironmentStore {
+  @Action(SelectEnvironment)
+  load(state: Environment, action: SelectEnvironment) {
+    return action.payload;
+  }
+}
+
 export function entitiesReducer(state, action) {
   return createReducer(FeaturesEntitiesStore)(state, action);
 }
@@ -76,10 +86,15 @@ export function selectedProjectReducer(state, action) {
   return createReducer(SelectedProjectStore)(state, action);
 }
 
+export function selectedEnvironmentReducer(state, action) {
+  return createReducer(SelectedEnvironmentStore)(state, action);
+}
+
 export const featuresReducers: ActionReducerMap<Features> = {
   entities: entitiesReducer,
   totalElements: totalElementsReducer,
   loading: loadingReducer,
   sideNavOpened: sideNavReducer,
-  selectedProject: selectedProjectReducer
+  selectedProject: selectedProjectReducer,
+  selectedEnvironment: selectedEnvironmentReducer
 };

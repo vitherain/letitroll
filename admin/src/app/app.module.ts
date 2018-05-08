@@ -15,6 +15,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { ProjectsModule } from './projects/projects.module';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './store/router-custom-serializer';
+import { NgrxActionsModule } from 'ngrx-actions';
+import { AppEffects } from './store/app.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,11 +25,12 @@ import { CustomSerializer } from './store/router-custom-serializer';
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
+    NgrxActionsModule,
     StoreModule.forRoot(appReducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router'
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AppEffects]),
     FeaturesModule,
     ProjectsModule,
     StoreDevtoolsModule.instrument({

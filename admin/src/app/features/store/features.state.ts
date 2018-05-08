@@ -2,6 +2,7 @@ import { Feature } from '../models/feature.model';
 import { AppState } from '../../store/app.state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Project } from '../../projects/models/project.model';
+import { Environment } from '../../environments/models/environment.model';
 
 export interface FeaturesState extends AppState {
   features: Features;
@@ -13,6 +14,7 @@ export interface Features {
   loading: boolean;
   sideNavOpened: boolean;
   selectedProject: Project;
+  selectedEnvironment: Environment;
 }
 
 // I don't understand why this returns Features and not FeaturesState effectively :-(
@@ -27,3 +29,5 @@ export const getFeaturesLoading = createSelector(getFeaturesState, (state: Featu
 export const getSideNavOpened = createSelector(getFeaturesState, (state: Features) => state.sideNavOpened);
 
 export const getSelectedProject = createSelector(getFeaturesState, (state: Features) => state.selectedProject);
+
+export const getSelectedEnvironment = createSelector(getFeaturesState, (state: Features) => state.selectedEnvironment);

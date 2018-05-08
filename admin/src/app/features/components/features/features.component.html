@@ -17,7 +17,7 @@
   </mat-sidenav-content>
 
   <mat-sidenav #sidenav mode="side" [opened]="sideNavOpened$ | async">
-    <mat-expansion-panel>
+    <mat-expansion-panel [hideToggle]="true" [expanded]="true" class="expansion-panel">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Select project
@@ -25,7 +25,23 @@
       </mat-expansion-panel-header>
 
       <button mat-button *ngFor="let project of (projects$ | async).entities" (click)="selectProject(project)">
-        {{project.name}}
+        <span>{{project.name}}</span>
+        <i class="material-icons" *ngIf="selectedProject?.id === project.id">keyboard_arrow_left</i>
+      </button>
+    </mat-expansion-panel>
+
+    <mat-divider></mat-divider>
+
+    <mat-expansion-panel [hideToggle]="true" [expanded]="true" *ngIf="selectedProject" class="expansion-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Select environment
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <button mat-button *ngFor="let environment of selectedProject?.environments" (click)="selectEnvironment(environment)">
+        <span>{{environment.name}}</span>
+        <i class="material-icons" *ngIf="selectedEnvironment?.id === environment.id">keyboard_arrow_left</i>
       </button>
     </mat-expansion-panel>
   </mat-sidenav>

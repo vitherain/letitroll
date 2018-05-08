@@ -2,16 +2,14 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { ProjectsState } from './projects.state';
 import { Project } from '../models/project.model';
 import { LoadProjects, LoadProjectsFailure, LoadProjectsSuccess } from './projects.actions';
 import { ofAction } from 'ngrx-actions';
 
 @Injectable()
 export class ProjectsEffects {
-  constructor(private actions$: Actions, private httpClient: HttpClient, private store: Store<ProjectsState>) {}
+  constructor(private actions$: Actions, private httpClient: HttpClient) {}
 
   @Effect()
   projects$ = this.actions$

@@ -48,7 +48,7 @@ export class FeaturesSideNavOpenedStore {
   }
 }
 
-@Store({})
+@Store(null)
 export class SelectedProjectStore {
   @Action(SelectProject)
   load(state: Project, action: SelectProject) {
@@ -73,7 +73,7 @@ export function sideNavReducer(state, action) {
 }
 
 export function selectedProjectReducer(state, action) {
-  return createReducer(FeaturesSideNavOpenedStore)(state, action);
+  return createReducer(SelectedProjectStore)(state, action);
 }
 
 export const featuresReducers: ActionReducerMap<Features> = {

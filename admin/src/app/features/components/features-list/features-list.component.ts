@@ -14,6 +14,7 @@ import { Select } from 'ngrx-actions';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { Project } from '../../../projects/models/project.model';
 import { Environment } from '../../../environments/models/environment.model';
+import { findEnvironment, findProject } from '../../utils/features-utils';
 
 @Component({
   selector: 'app-features-list',
@@ -50,22 +51,14 @@ export class FeaturesListComponent implements OnInit, AfterViewInit, OnDestroy {
         if (projects.length) {
           const projectName = params['projectName'];
           const environmentName = params['environmentName'];
-          const project: Project = this.findProject(projectName, projects);
-          const environment: Environment = this.findEnvironment(environmentName, project.environments);
+          const project: Project = findProject(projectName, projects);
+          const environment: Environment = findEnvironment(environmentName, project.environments);
           this.dataSource.projectId = project.id;
           this.dataSource.environmentId = environment.id;
           this.dataSource.initialize();
         }
       }
     );
-  }
-
-  findProject(projectName: string, projects: Array<Project>): Project {
-    return projects.find((project: Project) => project.name.toLowerCase() === projectName);
-  }
-
-  findEnvironment(environmentName: string, environments: Array<Environment>): Environment {
-    return environments.find((environment: Environment) => environment.name.toLowerCase() === environmentName);
   }
 
   openDeleteDialog(feature: Feature): void {

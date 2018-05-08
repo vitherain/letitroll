@@ -15,6 +15,7 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
 import { Project } from '../../../projects/models/project.model';
 import { Environment } from '../../../environments/models/environment.model';
 import { findEnvironment, findProject } from '../../utils/features-utils';
+import { ToggleFeaturesSideNav } from '../../store/features.actions';
 
 @Component({
   selector: 'app-features-list',
@@ -56,6 +57,7 @@ export class FeaturesListComponent implements OnInit, AfterViewInit, OnDestroy {
           this.dataSource.projectId = project.id;
           this.dataSource.environmentId = environment.id;
           this.dataSource.initialize();
+          this.store.dispatch(new ToggleFeaturesSideNav());
         }
       }
     );

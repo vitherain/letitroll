@@ -15,6 +15,7 @@ import org.springframework.lang.Nullable;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 import static java.util.Collections.unmodifiableSet;
@@ -98,7 +99,7 @@ public final class Feature {
         this.description = description;
         this.maintainer = maintainer;
         this.permanent = permanent;
-        this.tags = tags;
+        this.tags = unmodifiableSet(new HashSet<>(tags));
         this.type = type;
         this.availableToClient = availableToClient;
         this.project = project;
@@ -143,7 +144,7 @@ public final class Feature {
 
     @NonNull
     public Set<FeatureTag> getTags() {
-        return unmodifiableSet(tags);
+        return tags;
     }
 
     @NonNull

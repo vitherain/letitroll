@@ -2,9 +2,11 @@ package io.letitroll.be.feature.controller;
 
 import io.letitroll.be.api.ApiUrls;
 import io.letitroll.core.errorhandling.exception.SecurityViolationException;
-import io.letitroll.core.feature.dto.FeatureDto;
 import io.letitroll.core.feature.mapper.FeatureEntity2DtoMapper;
 import io.letitroll.core.feature.repository.FeatureRepository;
+import io.letitroll.core.targeting.dto.FeatureTargetingDto;
+import io.letitroll.core.targeting.mapper.FeatureTargetingEntity2DtoMapper;
+import io.letitroll.core.targeting.repository.FeatureTargetingRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,22 +26,31 @@ public class FeatureController {
 
     private final FeatureRepository featureRepository;
     private final FeatureEntity2DtoMapper featureEntity2DtoMapper;
+    private final FeatureTargetingRepository featureTargetingRepository;
+    private final FeatureTargetingEntity2DtoMapper featureTargetingEntity2DtoMapper;
 
     @Autowired
-    public FeatureController(final FeatureRepository featureRepository, final FeatureEntity2DtoMapper featureEntity2DtoMapper) {
+    public FeatureController(
+            final FeatureRepository featureRepository,
+            final FeatureTargetingRepository featureTargetingRepository,
+            final FeatureEntity2DtoMapper featureEntity2DtoMapper,
+            final FeatureTargetingEntity2DtoMapper featureTargetingEntity2DtoMapper) {
         this.featureRepository = featureRepository;
+        this.featureTargetingRepository = featureTargetingRepository;
         this.featureEntity2DtoMapper = featureEntity2DtoMapper;
+        this.featureTargetingEntity2DtoMapper = featureTargetingEntity2DtoMapper;
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = ApiUrls.PROJECTS_PROJECT_ENVIRONMENTS_ENVIRONMENT_TARGETED_FEATURES)
-    public Page<FeatureDto> getTargetedFeaturesByProjectAndEnvironment(
-            @PathVariable final String projectId,
+    public Page<FeatureTargetingDto> getTargetedFeaturesByProjectAndEnvironment(
+            @PathVariable("environmentId") final String environmentId,
             @PageableDefault(sort = "id", direction = Sort.Direction.ASC)
             final Pageable pageable) {
 
-        return featureRepository.findAllByProjectId(new ObjectId(projectId), pageable)
-                .map(featureEntity2DtoMapper::map);
+        // TODO some assert that environment belongs to project?
+        return featureTargetingRepository.findAllByEnvironmentId(new ObjectId(environmentId), pageable)
+                .map(featureTargetingEntity2DtoMapper::map);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

@@ -6,6 +6,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
 import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import static java.util.Collections.unmodifiableSet;
@@ -49,7 +50,7 @@ public final class FeatureDto {
         this.description = description;
         this.maintainer = maintainer;
         this.permanent = permanent;
-        this.tags = tags;
+        this.tags = unmodifiableSet(new HashSet<>(tags));
         this.type = type;
         this.availableToClient = availableToClient;
         this.projectId = projectId;
@@ -95,7 +96,7 @@ public final class FeatureDto {
 
     @NonNull
     public Set<FeatureTagDto> getTags() {
-        return unmodifiableSet(tags);
+        return tags;
     }
 
     @NonNull

@@ -30,7 +30,7 @@ public final class ValidationErrorInfo {
     public ValidationErrorInfo(@NonNull final String code, @Nullable final String description, @NonNull final List<FieldErrorInfo> fieldErrors) {
         this.code = code;
         this.description = description;
-        this.fieldErrors = unmodifiableList(fieldErrors);
+        this.fieldErrors = unmodifiableList(new ArrayList<>(fieldErrors));
     }
 
     @NonNull

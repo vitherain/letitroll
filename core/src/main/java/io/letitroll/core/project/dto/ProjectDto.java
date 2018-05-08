@@ -5,6 +5,7 @@ import io.letitroll.core.environment.dto.EnvironmentDto;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.unmodifiableList;
@@ -32,7 +33,7 @@ public final class ProjectDto {
         this.id = id;
         this.version = version;
         this.name = name;
-        this.environments = unmodifiableList(environments);
+        this.environments = unmodifiableList(new ArrayList<>(environments));
     }
 
     public static ProjectDtoBuilder builder() {

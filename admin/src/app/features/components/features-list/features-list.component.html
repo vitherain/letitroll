@@ -19,7 +19,7 @@
         <span class="additional-info-available"
               [matTooltip]="(element.feature.addedTime | date: defaultTimeFormat) + ' by ' + element.feature.maintainer.username"
               matTooltipPosition="below">
-          {{element.addedTime | date}}
+          {{element.feature.addedTime | date}}
         </span>
       </mat-cell>
     </ng-container>

@@ -9,7 +9,7 @@ export class FeatureTag {
 export class Feature {
   constructor(
     private _id: string,
-    private _addedTime: string,
+    private _addedTime: Date,
     private _version: number,
     private _name: string,
     private _key: string,
@@ -26,7 +26,7 @@ export class Feature {
     return this._id;
   }
 
-  get addedTime(): string {
+  get addedTime(): Date {
     return this._addedTime;
   }
 

@@ -6,10 +6,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { toHttpParams } from '../../shared/tables/table-request.payload';
 import { ofAction } from 'ngrx-actions';
-import { Feature } from '../models/feature.model';
+import { FeatureTargeting } from '../models/feature-targeting.model';
 
-export interface FeaturesResponse {
-  content: Array<Feature>;
+export interface FeatureTargetingsResponse {
+  content: Array<FeatureTargeting>;
   totalElements: number;
 }
 
@@ -22,13 +22,13 @@ export class FeaturesEffects {
     .pipe(ofAction(LoadFeatures))
     .switchMap((action: LoadFeatures) => {
       const params = toHttpParams(action.payload.tableRequest);
-      return this.httpClient.get<FeaturesResponse>(
+      return this.httpClient.get<FeatureTargetingsResponse>(
         `/api/v1/environments/${action.payload.environmentId}/targeted-features`,
         { params }
       );
     })
-    .map((features: FeaturesResponse) => {
-      return new LoadFeaturesSuccess({ entities: features.content, totalElements: features.totalElements });
+    .map((targetings: FeatureTargetingsResponse) => {
+      return new LoadFeaturesSuccess({ entities: targetings.content, totalElements: targetings.totalElements });
     })
     .catch((err: HttpErrorResponse) => {
       return Observable.of(new LoadFeaturesFailure({ statusCode: err.status }));

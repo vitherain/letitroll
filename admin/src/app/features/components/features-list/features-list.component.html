@@ -8,7 +8,7 @@
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <span class="feature-name">{{element.name}}</span>
+        <span class="feature-name">{{element.feature.name}}</span>
       </mat-cell>
     </ng-container>
 
@@ -17,7 +17,8 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> Added </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <span class="additional-info-available"
-              [matTooltip]="(element.addedTime | date: defaultTimeFormat) + ' by ' + element.maintainer.username" matTooltipPosition="below">
+              [matTooltip]="(element.feature.addedTime | date: defaultTimeFormat) + ' by ' + element.feature.maintainer.username"
+              matTooltipPosition="below">
           {{element.addedTime | date}}
         </span>
       </mat-cell>
@@ -28,9 +29,9 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> Key </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <span class="copiable"
-              ngxClipboard [cbContent]="element.key"
+              ngxClipboard [cbContent]="element.feature.key"
               matTooltip="Copy to clipboard" matTooltipPosition="below">
-          {{element.key}}
+          {{element.feature.key}}
         </span>
       </mat-cell>
     </ng-container>
@@ -39,7 +40,7 @@
     <ng-container matColumnDef="targeting">
       <mat-header-cell *matHeaderCellDef> Targeting </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <mat-slide-toggle color="primary" [checked]="true"></mat-slide-toggle>
+        <mat-slide-toggle color="primary" [checked]="element.turnedOn"></mat-slide-toggle>
       </mat-cell>
     </ng-container>
 

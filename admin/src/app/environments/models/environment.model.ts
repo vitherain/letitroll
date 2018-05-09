@@ -1,13 +1,5 @@
 export class Environment {
-  private readonly _id: string;
-  private readonly _version: number;
-  private readonly _name: string;
-
-  constructor(id: string, version: number, name: string) {
-    this._id = id;
-    this._version = version;
-    this._name = name;
-  }
+  constructor(private _id: string, private _version: number, private _name: string) {}
 
   get id(): string {
     return this._id;

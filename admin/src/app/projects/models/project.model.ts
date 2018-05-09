@@ -1,17 +1,12 @@
 import { Environment } from '../../environments/models/environment.model';
 
 export class Project {
-  private readonly _id: string;
-  private readonly _version: number;
-  private readonly _name: string;
-  private readonly _environments: Environment[];
-
-  constructor(id: string, version: number, name: string, environments: Environment[]) {
-    this._id = id;
-    this._version = version;
-    this._name = name;
-    this._environments = environments;
-  }
+  constructor(
+    private _id: string,
+    private _version: number,
+    private _name: string,
+    private _environments: Array<Environment>
+  ) {}
 
   get id(): string {
     return this._id;
@@ -25,7 +20,7 @@ export class Project {
     return this._name;
   }
 
-  get environments(): Environment[] {
-    return this._environments ? this._environments.slice() : [];
+  get environments(): Array<Environment> {
+    return this._environments;
   }
 }

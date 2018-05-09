@@ -48,7 +48,6 @@ public class FeatureController {
             @PageableDefault(sort = "id", direction = Sort.Direction.ASC)
             final Pageable pageable) {
 
-        // TODO some assert that environment belongs to project?
         return featureTargetingRepository.findAllByEnvironmentId(new ObjectId(environmentId), pageable)
                 .map(featureTargetingEntity2DtoMapper::map);
     }

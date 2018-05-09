@@ -1,15 +1,15 @@
-import { Feature } from '../models/feature.model';
 import { AppState } from '../../store/app.state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Project } from '../../projects/models/project.model';
 import { Environment } from '../../environments/models/environment.model';
+import { FeatureTargeting } from '../models/feature-targeting.model';
 
 export interface FeaturesState extends AppState {
   features: Features;
 }
 
 export interface Features {
-  entities: Array<Feature>;
+  entities: Array<FeatureTargeting>;
   totalElements: number;
   loading: boolean;
   sideNavOpened: boolean;

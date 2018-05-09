@@ -1,10 +1,10 @@
 import { TableRequestPayload } from '../../shared/tables/table-request.payload';
 import { HttpErrorInfo } from '../../shared/http/http-error-info';
 import { ListPayload } from '../../shared/store/list-payload';
-import { Feature } from '../models/feature.model';
 import { Action } from '@ngrx/store';
 import { Project } from '../../projects/models/project.model';
 import { Environment } from '../../environments/models/environment.model';
+import { FeatureTargeting } from '../models/feature-targeting.model';
 
 export const LOAD_FEATURES = '[FEATURES] LOAD_FEATURES';
 export const LOAD_FEATURES_SUCCESS = '[FEATURES] LOAD_FEATURES_SUCCESS';
@@ -27,7 +27,7 @@ export class LoadFeatures implements Action {
 export class LoadFeaturesSuccess implements Action {
   readonly type = LOAD_FEATURES_SUCCESS;
 
-  constructor(public payload: ListPayload<Feature>) {}
+  constructor(public payload: ListPayload<FeatureTargeting>) {}
 }
 
 export class LoadFeaturesFailure implements Action {

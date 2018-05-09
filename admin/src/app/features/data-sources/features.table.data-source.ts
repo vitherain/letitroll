@@ -20,7 +20,6 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
   private _defaultSort: Array<SortDefinition> = [{ property: 'name', direction: 'asc' }];
   private _featuresSubscription$: Subscription;
   private _paginatorAndSortSubscription$: Subscription;
-  private _projectId: string;
   private _environmentId: string;
 
   @Select(getFeaturesEntities) private _data$: Observable<Array<Feature>>;
@@ -36,10 +35,6 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
 
   set sort(value: MatSort) {
     this._sort = value;
-  }
-
-  set projectId(value: string) {
-    this._projectId = value;
   }
 
   set environmentId(value: string) {
@@ -87,7 +82,6 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
         sort: sortDefined ? [{ property: this._sort.active, direction: this._sort.direction }] : this._defaultSort
       };
       const payload: LoadFeaturesPayload = {
-        projectId: this._projectId,
         environmentId: this._environmentId,
         tableRequest: tableRequest
       };

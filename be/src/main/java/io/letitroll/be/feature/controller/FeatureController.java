@@ -42,8 +42,8 @@ public class FeatureController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping(value = ApiUrls.PROJECTS_PROJECT_ENVIRONMENTS_ENVIRONMENT_TARGETED_FEATURES)
-    public Page<FeatureTargetingDto> getTargetedFeaturesByProjectAndEnvironment(
+    @GetMapping(value = ApiUrls.ENVIRONMENTS_ENVIRONMENT_TARGETED_FEATURES)
+    public Page<FeatureTargetingDto> getTargetedFeaturesByEnvironment(
             @PathVariable("environmentId") final String environmentId,
             @PageableDefault(sort = "id", direction = Sort.Direction.ASC)
             final Pageable pageable) {

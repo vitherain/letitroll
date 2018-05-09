@@ -23,7 +23,7 @@ export class FeaturesEffects {
     .switchMap((action: LoadFeatures) => {
       const params = toHttpParams(action.payload.tableRequest);
       return this.httpClient.get<FeaturesResponse>(
-        `/api/v1/projects/${action.payload.projectId}/environments/${action.payload.environmentId}/targeted-features`,
+        `/api/v1/environments/${action.payload.environmentId}/targeted-features`,
         { params }
       );
     })

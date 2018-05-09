@@ -54,7 +54,6 @@ export class FeaturesListComponent implements OnInit, AfterViewInit, OnDestroy {
           const environmentName = params['environmentName'];
           const project: Project = findProject(projectName, projects);
           const environment: Environment = findEnvironment(environmentName, project.environments);
-          this.dataSource.projectId = project.id;
           this.dataSource.environmentId = environment.id;
           this.dataSource.initialize();
           this.store.dispatch(new ToggleFeaturesSideNav()); // close sidenav

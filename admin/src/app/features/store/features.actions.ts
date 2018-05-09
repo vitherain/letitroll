@@ -14,7 +14,6 @@ export const SELECT_PROJECT = '[FEATURES] SELECT_PROJECT';
 export const SELECT_ENVIRONMENT = '[FEATURES] SELECT_ENVIRONMENT';
 
 export interface LoadFeaturesPayload {
-  projectId: string;
   environmentId: string;
   tableRequest: TableRequestPayload;
 }

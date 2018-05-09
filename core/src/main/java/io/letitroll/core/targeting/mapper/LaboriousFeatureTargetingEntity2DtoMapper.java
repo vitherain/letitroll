@@ -1,18 +1,14 @@
 package io.letitroll.core.targeting.mapper;
 
-import io.letitroll.core.feature.domain.Feature;
+import io.letitroll.core.feature.dto.FeatureDto;
+import io.letitroll.core.feature.mapper.FeatureEntity2DtoMapper;
 import io.letitroll.core.targeting.domain.FeatureTargeting;
 import io.letitroll.core.targeting.dto.FeatureTargetingDto;
-import io.letitroll.core.user.dto.UserDto;
-import io.letitroll.core.user.mapper.UserEntity2DtoMapper;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
-import java.time.Instant;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
@@ -20,11 +16,11 @@ import static java.util.Objects.requireNonNull;
 @Component
 public class LaboriousFeatureTargetingEntity2DtoMapper implements FeatureTargetingEntity2DtoMapper {
 
-    private final UserEntity2DtoMapper userMapper;
+    private final FeatureEntity2DtoMapper featureMapper;
 
     @Autowired
-    public LaboriousFeatureTargetingEntity2DtoMapper(final UserEntity2DtoMapper userMapper) {
-        this.userMapper = userMapper;
+    public LaboriousFeatureTargetingEntity2DtoMapper(final FeatureEntity2DtoMapper featureMapper) {
+        this.featureMapper = featureMapper;
     }
 
     @Override
@@ -33,28 +29,15 @@ public class LaboriousFeatureTargetingEntity2DtoMapper implements FeatureTargeti
         final String id = Optional.ofNullable(source.getId())
                 .map(ObjectId::toString)
                 .orElse(null);
-        final String featureId = Optional.of(source.getFeature())
-                .map(Feature::getId)
-                .map(ObjectId::toString)
-                .orElseThrow(() -> new IllegalStateException("Expected Feature had non null ID"));
-        final ZonedDateTime featureAddedTime = Optional.of(source.getFeature())
-                .map(Feature::getId)
-                .map(ObjectId::getTimestamp)
-                .map(Instant::ofEpochSecond)
-                .map(instant -> ZonedDateTime.ofInstant(instant, ZoneOffset.UTC))
-                .orElseThrow(() -> new IllegalStateException("Expected Feature had non null ID"));
-        final UserDto maintainer = userMapper.map(source.getFeature().getMaintainer());
+        final FeatureDto feature = featureMapper.map(source.getFeature());
 
         return new FeatureTargetingDto(
                 id,
                 source.getVersion(),
-                featureId,
-                source.getFeature().getName(),
-                featureAddedTime,
-                source.getFeature().getKey(),
-                source.getFeature().getDescription(),
-                maintainer,
-                source.isTurnedOn()
+                feature,
+                source.isTurnedOn(),
+                source.isOnValue(),
+                source.isOffValue()
         );
     }
 }

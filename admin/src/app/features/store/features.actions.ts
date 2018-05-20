@@ -5,14 +5,19 @@ import { Action } from '@ngrx/store';
 import { Project } from '../../projects/models/project.model';
 import { Environment } from '../../environments/models/environment.model';
 import { FeatureTargeting } from '../models/feature-targeting.model';
+import { Feature } from '../models/feature.model';
 
 export const LOAD_FEATURES = '[FEATURES] LOAD_FEATURES';
 export const LOAD_FEATURES_SUCCESS = '[FEATURES] LOAD_FEATURES_SUCCESS';
 export const LOAD_FEATURES_FAILURE = '[FEATURES] LOAD_FEATURES_FAILURE';
+export const DELETE_FEATURE = '[FEATURES] DELETE_FEATURE';
+export const DELETE_FEATURE_SUCCESS = '[FEATURES] DELETE_FEATURE_SUCCESS';
+export const DELETE_FEATURE_FAILURE = '[FEATURES] DELETE_FEATURE_FAILURE';
 export const TOGGLE_SIDE_NAV = '[FEATURES] TOGGLE_SIDE_NAV';
 export const SELECT_PROJECT = '[FEATURES] SELECT_PROJECT';
 export const SELECT_ENVIRONMENT = '[FEATURES] SELECT_ENVIRONMENT';
 export const OPEN_DELETE_CONFIRM_DIALOG = '[FEATURES] OPEN_DELETE_CONFIRM_DIALOG';
+export const CLOSE_DELETE_CONFIRM_DIALOG = '[FEATURES] CLOSE_DELETE_CONFIRM_DIALOG';
 
 export interface LoadFeaturesPayload {
   environmentId: string;
@@ -59,4 +64,28 @@ export class OpenDeleteConfirmDialog implements Action {
   readonly type = OPEN_DELETE_CONFIRM_DIALOG;
 
   constructor(public payload: FeatureTargeting) {}
+}
+
+export class CloseDeleteConfirmDialog implements Action {
+  readonly type = CLOSE_DELETE_CONFIRM_DIALOG;
+
+  constructor(public payload: { deleteIt: boolean; feature: Feature }) {}
+}
+
+export class DeleteFeature implements Action {
+  readonly type = DELETE_FEATURE;
+
+  constructor(public payload: Feature) {}
+}
+
+export class DeleteFeatureSuccess implements Action {
+  readonly type = DELETE_FEATURE_SUCCESS;
+
+  constructor() {}
+}
+
+export class DeleteFeatureFailure implements Action {
+  readonly type = DELETE_FEATURE_FAILURE;
+
+  constructor(public payload: HttpErrorInfo) {}
 }

@@ -16,6 +16,6 @@ export class DeleteFeatureDialogComponent {
   ) {}
 
   onCancel(): void {
-    this.dialogRef.close(false);
+    this.dialogRef.close({ deleteIt: false, feature: this.data.featureTargeting.feature });
   }
 }

@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 
-import { LoadFeatures, LoadFeaturesFailure, LoadFeaturesSuccess } from './features.actions';
+import { LoadFeatures, LoadFeaturesFailure, LoadFeaturesSuccess, OpenDeleteConfirmDialog } from './features.actions';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { toHttpParams } from '../../shared/tables/table-request.payload';
 import { ofAction } from 'ngrx-actions';
 import { FeatureTargeting } from '../models/feature-targeting.model';
+import { tap } from 'rxjs/operators';
+import { DeleteFeatureDialogComponent } from '../components/delete-feature-dialog/delete-feature-dialog.component';
+import { MatDialog } from '@angular/material';
 
 export interface FeatureTargetingsResponse {
   content: Array<FeatureTargeting>;
@@ -15,7 +18,7 @@ export interface FeatureTargetingsResponse {
 
 @Injectable()
 export class FeaturesEffects {
-  constructor(private actions$: Actions, private httpClient: HttpClient) {}
+  constructor(private actions$: Actions, private dialog: MatDialog, private httpClient: HttpClient) {}
 
   @Effect()
   features$ = this.actions$
@@ -33,4 +36,17 @@ export class FeaturesEffects {
     .catch((err: HttpErrorResponse) => {
       return Observable.of(new LoadFeaturesFailure({ statusCode: err.status }));
     });
+
+  @Effect({ dispatch: false })
+  deleteConfirmDialog$ = this.actions$.pipe(ofAction(OpenDeleteConfirmDialog)).pipe(
+    tap((action: OpenDeleteConfirmDialog) => {
+      const dialogRef = this.dialog.open(DeleteFeatureDialogComponent, {
+        data: { featureTargeting: action.payload }
+      });
+
+      dialogRef.afterClosed().subscribe((deleteIt: boolean) => {
+        console.log('The dialog was closed', deleteIt);
+      });
+    })
+  );
 }

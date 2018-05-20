@@ -12,6 +12,7 @@ export const LOAD_FEATURES_FAILURE = '[FEATURES] LOAD_FEATURES_FAILURE';
 export const TOGGLE_SIDE_NAV = '[FEATURES] TOGGLE_SIDE_NAV';
 export const SELECT_PROJECT = '[FEATURES] SELECT_PROJECT';
 export const SELECT_ENVIRONMENT = '[FEATURES] SELECT_ENVIRONMENT';
+export const OPEN_DELETE_CONFIRM_DIALOG = '[FEATURES] OPEN_DELETE_CONFIRM_DIALOG';
 
 export interface LoadFeaturesPayload {
   environmentId: string;
@@ -52,4 +53,10 @@ export class SelectEnvironment implements Action {
   readonly type = SELECT_ENVIRONMENT;
 
   constructor(public payload: Environment) {}
+}
+
+export class OpenDeleteConfirmDialog implements Action {
+  readonly type = OPEN_DELETE_CONFIRM_DIALOG;
+
+  constructor(public payload: FeatureTargeting) {}
 }

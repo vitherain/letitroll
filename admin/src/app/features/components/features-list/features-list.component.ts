@@ -1,11 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FeaturesTableDataSource } from '../../data-sources/features.table.data-source';
 import { config } from '../../../../config/config';
-import { MatDialog, MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatSort } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { FeaturesState } from '../../store/features.state';
-import { DeleteFeatureDialogComponent } from '../delete-feature-dialog/delete-feature-dialog.component';
-import { Feature } from '../../models/feature.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { getProjectsEntities } from '../../../projects/store/projects.state';
@@ -15,7 +13,13 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
 import { Project } from '../../../projects/models/project.model';
 import { Environment } from '../../../environments/models/environment.model';
 import { findEnvironment, findProject } from '../../utils/features-utils';
-import { SelectEnvironment, SelectProject, ToggleFeaturesSideNav } from '../../store/features.actions';
+import {
+  OpenDeleteConfirmDialog,
+  SelectEnvironment,
+  SelectProject,
+  ToggleFeaturesSideNav
+} from '../../store/features.actions';
+import { FeatureTargeting } from '../../models/feature-targeting.model';
 
 @Component({
   selector: 'app-features-list',
@@ -37,7 +41,7 @@ export class FeaturesListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private initSubscription: Subscription;
 
-  constructor(private store: Store<FeaturesState>, private dialog: MatDialog, private activatedRoute: ActivatedRoute) {}
+  constructor(private store: Store<FeaturesState>, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.dataSource = new FeaturesTableDataSource(this.store);
@@ -64,14 +68,8 @@ export class FeaturesListComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  openDeleteDialog(feature: Feature): void {
-    const dialogRef = this.dialog.open(DeleteFeatureDialogComponent, {
-      data: { feature: feature }
-    });
-
-    dialogRef.afterClosed().subscribe((deleteIt: boolean) => {
-      console.log('The dialog was closed', deleteIt);
-    });
+  openDeleteDialog(featureTargeting: FeatureTargeting): void {
+    this.store.dispatch(new OpenDeleteConfirmDialog(featureTargeting));
   }
 
   ngOnDestroy(): void {

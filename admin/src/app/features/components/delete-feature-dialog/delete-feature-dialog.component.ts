@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { FeatureTargeting } from '../../models/feature-targeting.model';
 
 @Component({
   selector: 'app-delete-feature-dialog',
@@ -11,7 +12,7 @@ export class DeleteFeatureDialogComponent {
 
   constructor(
     private dialogRef: MatDialogRef<DeleteFeatureDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: { featureTargeting: FeatureTargeting }
   ) {}
 
   onCancel(): void {

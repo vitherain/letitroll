@@ -8,7 +8,7 @@ import {
 import { Store } from '@ngrx/store';
 import { Feature } from '../models/feature.model';
 import { Subscription } from 'rxjs/Subscription';
-import { LoadFeatures, LoadFeaturesPayload } from '../store/features.actions';
+import { LoadFeaturesPayload, LoadFeatureTargetings } from '../store/features.actions';
 import { SortDefinition } from '../../shared/tables/table-request.payload';
 import { DataSource } from '@angular/cdk/table';
 import { delay, startWith } from 'rxjs/operators';
@@ -85,7 +85,7 @@ export class FeaturesTableDataSource extends DataSource<Feature> {
         environmentId: this._environmentId,
         tableRequest: tableRequest
       };
-      this.store.dispatch(new LoadFeatures(payload));
+      this.store.dispatch(new LoadFeatureTargetings(payload));
     }
   }
 }

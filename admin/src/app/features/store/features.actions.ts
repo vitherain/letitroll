@@ -7,9 +7,12 @@ import { Environment } from '../../environments/models/environment.model';
 import { FeatureTargeting } from '../models/feature-targeting.model';
 import { Feature } from '../models/feature.model';
 
-export const LOAD_FEATURES = '[FEATURES] LOAD_FEATURES';
-export const LOAD_FEATURES_SUCCESS = '[FEATURES] LOAD_FEATURES_SUCCESS';
-export const LOAD_FEATURES_FAILURE = '[FEATURES] LOAD_FEATURES_FAILURE';
+export const LOAD_FEATURE_TARGETINGS = '[FEATURES] LOAD_FEATURE_TARGETINGS';
+export const LOAD_FEATURE_TARGETINGS_SUCCESS = '[FEATURES] LOAD_FEATURE_TARGETINGS_SUCCESS';
+export const LOAD_FEATURE_TARGETINGS_FAILURE = '[FEATURES] LOAD_FEATURE_TARGETINGS_FAILURE';
+export const LOAD_FEATURE_TARGETING = '[FEATURES] LOAD_FEATURE_TARGETING';
+export const LOAD_FEATURE_TARGETING_SUCCESS = '[FEATURES] LOAD_FEATURE_TARGETING_SUCCESS';
+export const LOAD_FEATURE_TARGETING_FAILURE = '[FEATURES] LOAD_FEATURE_TARGETING_FAILURE';
 export const DELETE_FEATURE = '[FEATURES] DELETE_FEATURE';
 export const DELETE_FEATURE_SUCCESS = '[FEATURES] DELETE_FEATURE_SUCCESS';
 export const DELETE_FEATURE_FAILURE = '[FEATURES] DELETE_FEATURE_FAILURE';
@@ -24,20 +27,38 @@ export interface LoadFeaturesPayload {
   tableRequest: TableRequestPayload;
 }
 
-export class LoadFeatures implements Action {
-  readonly type = LOAD_FEATURES;
+export class LoadFeatureTargetings implements Action {
+  readonly type = LOAD_FEATURE_TARGETINGS;
 
   constructor(public payload: LoadFeaturesPayload) {}
 }
 
-export class LoadFeaturesSuccess implements Action {
-  readonly type = LOAD_FEATURES_SUCCESS;
+export class LoadFeatureTargetingsSuccess implements Action {
+  readonly type = LOAD_FEATURE_TARGETINGS_SUCCESS;
 
   constructor(public payload: ListPayload<FeatureTargeting>) {}
 }
 
-export class LoadFeaturesFailure implements Action {
-  readonly type = LOAD_FEATURES_FAILURE;
+export class LoadFeatureTargetingsFailure implements Action {
+  readonly type = LOAD_FEATURE_TARGETINGS_FAILURE;
+
+  constructor(public payload: HttpErrorInfo) {}
+}
+
+export class LoadFeatureTargeting implements Action {
+  readonly type = LOAD_FEATURE_TARGETING;
+
+  constructor(public payload: { targetingId: string }) {}
+}
+
+export class LoadFeatureTargetingSuccess implements Action {
+  readonly type = LOAD_FEATURE_TARGETING_SUCCESS;
+
+  constructor(public payload: FeatureTargeting) {}
+}
+
+export class LoadFeatureTargetingFailure implements Action {
+  readonly type = LOAD_FEATURE_TARGETING_FAILURE;
 
   constructor(public payload: HttpErrorInfo) {}
 }

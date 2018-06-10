@@ -53,6 +53,14 @@ public class FeatureController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping(value = ApiUrls.TARGETED_FEATURES_TARGETED_FEATURE)
+    public FeatureTargetingDto getTargetedFeature(@PathVariable("targetingId") final String targetingId) {
+        return featureTargetingRepository.findById(new ObjectId(targetingId))
+                .map(featureTargetingEntity2DtoMapper::map)
+                .orElse(null);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping(value = ApiUrls.PROJECTS_PROJECT_FEATURES_FEATURE)
     public ResponseEntity<?> deleteProjectFeature(
             @PathVariable final String projectId,

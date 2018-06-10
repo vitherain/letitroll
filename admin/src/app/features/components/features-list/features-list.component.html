@@ -8,7 +8,9 @@
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <span class="feature-name">{{element.feature.name}}</span>
+        <a [routerLink]="['feature-targetings', element.id]">
+          <span class="feature-name">{{element.feature.name}}</span>
+        </a>
       </mat-cell>
     </ng-container>
 

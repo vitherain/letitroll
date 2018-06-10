@@ -6,9 +6,12 @@ import {
   DeleteFeature,
   DeleteFeatureFailure,
   DeleteFeatureSuccess,
-  LoadFeatures,
-  LoadFeaturesFailure,
-  LoadFeaturesSuccess,
+  LoadFeatureTargeting,
+  LoadFeatureTargetingFailure,
+  LoadFeatureTargetings,
+  LoadFeatureTargetingsFailure,
+  LoadFeatureTargetingsSuccess,
+  LoadFeatureTargetingSuccess,
   OpenDeleteConfirmDialog
 } from './features.actions';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -31,9 +34,9 @@ export class FeaturesEffects {
   constructor(private actions$: Actions, private dialog: MatDialog, private httpClient: HttpClient) {}
 
   @Effect()
-  features$ = this.actions$
-    .pipe(ofAction(LoadFeatures))
-    .switchMap((action: LoadFeatures) => {
+  featuresTargetings$ = this.actions$
+    .pipe(ofAction(LoadFeatureTargetings))
+    .switchMap((action: LoadFeatureTargetings) => {
       const params = toHttpParams(action.payload.tableRequest);
       return this.httpClient.get<FeatureTargetingsResponse>(
         `/api/v1/environments/${action.payload.environmentId}/targeted-features`,
@@ -41,10 +44,26 @@ export class FeaturesEffects {
       );
     })
     .map((targetings: FeatureTargetingsResponse) => {
-      return new LoadFeaturesSuccess({ entities: targetings.content, totalElements: targetings.totalElements });
+      return new LoadFeatureTargetingsSuccess({
+        entities: targetings.content,
+        totalElements: targetings.totalElements
+      });
     })
     .catch((err: HttpErrorResponse) => {
-      return Observable.of(new LoadFeaturesFailure({ statusCode: err.status }));
+      return Observable.of(new LoadFeatureTargetingsFailure({ statusCode: err.status }));
+    });
+
+  @Effect()
+  featureTargeting$ = this.actions$
+    .pipe(ofAction(LoadFeatureTargeting))
+    .switchMap((action: LoadFeatureTargeting) => {
+      return this.httpClient.get<FeatureTargeting>(`/api/v1/targeted-features/${action.payload.targetingId}`);
+    })
+    .map((targeting: FeatureTargeting) => {
+      return new LoadFeatureTargetingSuccess(targeting);
+    })
+    .catch((err: HttpErrorResponse) => {
+      return Observable.of(new LoadFeatureTargetingFailure({ statusCode: err.status }));
     });
 
   @Effect()

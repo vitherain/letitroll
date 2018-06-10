@@ -13,9 +13,16 @@ import { DeleteFeatureDialogComponent } from './components/delete-feature-dialog
 import { FormsModule } from '@angular/forms';
 import { NgrxActionsModule } from 'ngrx-actions';
 import { UnselectedProjectComponent } from './components/unselected-project/unselected-project.component';
+import { TargetingComponent } from './components/targeting/targeting.component';
 
 @NgModule({
-  declarations: [FeaturesComponent, FeaturesListComponent, DeleteFeatureDialogComponent, UnselectedProjectComponent],
+  declarations: [
+    FeaturesComponent,
+    FeaturesListComponent,
+    DeleteFeatureDialogComponent,
+    UnselectedProjectComponent,
+    TargetingComponent
+  ],
   entryComponents: [DeleteFeatureDialogComponent],
   imports: [
     CommonModule,

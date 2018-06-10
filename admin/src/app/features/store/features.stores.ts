@@ -1,8 +1,9 @@
 import { Action, createReducer, Store } from 'ngrx-actions';
 import {
-  LoadFeatures,
-  LoadFeaturesFailure,
-  LoadFeaturesSuccess,
+  LoadFeatureTargetings,
+  LoadFeatureTargetingsFailure,
+  LoadFeatureTargetingsSuccess,
+  LoadFeatureTargetingSuccess,
   SelectEnvironment,
   SelectProject,
   ToggleFeaturesSideNav
@@ -12,32 +13,33 @@ import { Features } from './features.state';
 import { ActionReducerMap } from '@ngrx/store';
 import { Project } from '../../projects/models/project.model';
 import { Environment } from '../../environments/models/environment.model';
+import { FeatureTargeting } from '../models/feature-targeting.model';
 
 @Store([])
 export class FeaturesEntitiesStore {
-  @Action(LoadFeaturesSuccess)
-  loadSuccess(state: Array<Feature>, action: LoadFeaturesSuccess) {
+  @Action(LoadFeatureTargetingsSuccess)
+  loadSuccess(state: Array<Feature>, action: LoadFeatureTargetingsSuccess) {
     return [...action.payload.entities];
   }
 }
 
 @Store(0)
 export class FeaturesTotalElementsStore {
-  @Action(LoadFeaturesSuccess)
-  loadSuccess(state: number, action: LoadFeaturesSuccess) {
+  @Action(LoadFeatureTargetingsSuccess)
+  loadSuccess(state: number, action: LoadFeatureTargetingsSuccess) {
     return action.payload.totalElements;
   }
 }
 
 @Store(false)
 export class FeaturesLoadingStore {
-  @Action(LoadFeatures)
-  load(state: boolean, action: LoadFeatures) {
+  @Action(LoadFeatureTargetings)
+  load(state: boolean, action: LoadFeatureTargetings) {
     return true;
   }
 
-  @Action(LoadFeaturesSuccess, LoadFeaturesFailure)
-  loadSuccessOrFailure(state: boolean, action: LoadFeaturesSuccess | LoadFeaturesFailure) {
+  @Action(LoadFeatureTargetingsSuccess, LoadFeatureTargetingsFailure)
+  loadSuccessOrFailure(state: boolean, action: LoadFeatureTargetingsSuccess | LoadFeatureTargetingsFailure) {
     return false;
   }
 }
@@ -66,6 +68,14 @@ export class SelectedEnvironmentStore {
   }
 }
 
+@Store(null)
+export class SelectedFeatureTargetingStore {
+  @Action(LoadFeatureTargetingSuccess)
+  load(state: FeatureTargeting, action: LoadFeatureTargetingSuccess) {
+    return action.payload;
+  }
+}
+
 export function entitiesReducer(state, action) {
   return createReducer(FeaturesEntitiesStore)(state, action);
 }
@@ -90,11 +100,16 @@ export function selectedEnvironmentReducer(state, action) {
   return createReducer(SelectedEnvironmentStore)(state, action);
 }
 
+export function selectedFeatureTargetingReducer(state, action) {
+  return createReducer(SelectedFeatureTargetingStore)(state, action);
+}
+
 export const featuresReducers: ActionReducerMap<Features> = {
   entities: entitiesReducer,
   totalElements: totalElementsReducer,
   loading: loadingReducer,
   sideNavOpened: sideNavReducer,
   selectedProject: selectedProjectReducer,
-  selectedEnvironment: selectedEnvironmentReducer
+  selectedEnvironment: selectedEnvironmentReducer,
+  selectedFeatureTargeting: selectedFeatureTargetingReducer
 };

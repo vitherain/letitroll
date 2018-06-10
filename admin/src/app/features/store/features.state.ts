@@ -15,6 +15,7 @@ export interface Features {
   sideNavOpened: boolean;
   selectedProject: Project;
   selectedEnvironment: Environment;
+  selectedFeatureTargeting: FeatureTargeting;
 }
 
 // I don't understand why this returns Features and not FeaturesState effectively :-(
@@ -31,3 +32,8 @@ export const getSideNavOpened = createSelector(getFeaturesState, (state: Feature
 export const getSelectedProject = createSelector(getFeaturesState, (state: Features) => state.selectedProject);
 
 export const getSelectedEnvironment = createSelector(getFeaturesState, (state: Features) => state.selectedEnvironment);
+
+export const getSelectedFeatureTargeting = createSelector(
+  getFeaturesState,
+  (state: Features) => state.selectedFeatureTargeting
+);

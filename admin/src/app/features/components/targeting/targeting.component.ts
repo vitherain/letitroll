@@ -16,6 +16,7 @@ import { Select } from 'ngrx-actions';
 export class TargetingComponent implements OnInit, OnDestroy {
   @Select(getSelectedFeatureTargeting) model: Observable<FeatureTargeting>;
   paramsSub: Subscription;
+  userTargetingVisible = false;
 
   constructor(private store: Store<FeaturesState>, private route: ActivatedRoute) {}
 
@@ -24,6 +25,10 @@ export class TargetingComponent implements OnInit, OnDestroy {
       const targetingId = params['targetingId'];
       this.store.dispatch(new LoadFeatureTargeting({ targetingId }));
     });
+  }
+
+  expandUserTargeting(): void {
+    this.userTargetingVisible = true;
   }
 
   ngOnDestroy(): void {

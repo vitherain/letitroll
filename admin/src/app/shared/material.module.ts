@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CdkTableModule } from '@angular/cdk/table';
 import {
   MatButtonModule,
+  MatCardModule,
   MatCheckboxModule,
   MatDialogModule,
   MatDividerModule,
@@ -16,6 +17,7 @@ import {
   MatSlideToggleModule,
   MatSortModule,
   MatTableModule,
+  MatTabsModule,
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
@@ -24,6 +26,7 @@ import {
   imports: [
     CdkTableModule,
     MatButtonModule,
+    MatCardModule,
     MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
@@ -38,12 +41,14 @@ import {
     MatSortModule,
     MatProgressSpinnerModule,
     MatTableModule,
+    MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
   ],
   exports: [
     CdkTableModule,
     MatButtonModule,
+    MatCardModule,
     MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
@@ -58,6 +63,7 @@ import {
     MatSortModule,
     MatProgressSpinnerModule,
     MatTableModule,
+    MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
   ]

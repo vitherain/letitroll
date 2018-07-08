@@ -3,6 +3,7 @@ import { Actions, Effect } from '@ngrx/effects';
 
 import {
   CloseDeleteConfirmDialog,
+  CloseToggleFeatureTargetingConfirmDialog,
   DeleteFeature,
   DeleteFeatureFailure,
   DeleteFeatureSuccess,
@@ -12,7 +13,8 @@ import {
   LoadFeatureTargetingsFailure,
   LoadFeatureTargetingsSuccess,
   LoadFeatureTargetingSuccess,
-  OpenDeleteConfirmDialog
+  OpenDeleteConfirmDialog,
+  OpenToggleFeatureTargetingConfirmDialog
 } from './features.actions';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -23,6 +25,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { DeleteFeatureDialogComponent } from '../components/delete-feature-dialog/delete-feature-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Feature } from '../models/feature.model';
+import { ToggleFeatureTargetingDialogComponent } from '../components/toggle-feature-targeting-dialog/toggle-feature-targeting-dialog.component';
 
 export interface FeatureTargetingsResponse {
   content: Array<FeatureTargeting>;
@@ -102,4 +105,24 @@ export class FeaturesEffects {
       }
     })
   );
+
+  @Effect()
+  openToggleFeatureTargetingConfirmDialog$ = this.actions$
+    .pipe(ofAction(OpenToggleFeatureTargetingConfirmDialog))
+    .pipe(
+      switchMap((action: OpenToggleFeatureTargetingConfirmDialog) => {
+        const dialogRef = this.dialog.open(ToggleFeatureTargetingDialogComponent, {
+          data: { featureTargeting: action.payload }
+        });
+        return dialogRef.afterClosed();
+      })
+    )
+    .pipe(
+      map((data: { newValue: boolean; featureTargeting: FeatureTargeting }) => {
+        return new CloseToggleFeatureTargetingConfirmDialog({
+          newValue: data.newValue,
+          featureTargeting: data.featureTargeting
+        });
+      })
+    );
 }

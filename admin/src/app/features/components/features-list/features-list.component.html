@@ -42,7 +42,7 @@
     <ng-container matColumnDef="targeting">
       <mat-header-cell *matHeaderCellDef> Targeting </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <mat-slide-toggle color="primary" [checked]="element.turnedOn"></mat-slide-toggle>
+        <mat-slide-toggle color="primary" [checked]="element.turnedOn" (change)="onTargetingToggle($event, element)"></mat-slide-toggle>
       </mat-cell>
     </ng-container>
 

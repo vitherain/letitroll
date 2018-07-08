@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FeaturesTableDataSource } from '../../data-sources/features.table.data-source';
 import { config } from '../../../../config/config';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatSlideToggleChange, MatSort } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { FeaturesState } from '../../store/features.state';
 import { ActivatedRoute } from '@angular/router';
@@ -15,6 +15,7 @@ import { Environment } from '../../../environments/models/environment.model';
 import { findEnvironment, findProject } from '../../utils/features-utils';
 import {
   OpenDeleteConfirmDialog,
+  OpenToggleFeatureTargetingConfirmDialog,
   SelectEnvironment,
   SelectProject,
   ToggleFeaturesSideNav
@@ -70,6 +71,12 @@ export class FeaturesListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openDeleteDialog(featureTargeting: FeatureTargeting): void {
     this.store.dispatch(new OpenDeleteConfirmDialog(featureTargeting));
+  }
+
+  onTargetingToggle($event: MatSlideToggleChange, featureTargeting: FeatureTargeting): void {
+    if ($event.checked) {
+      this.store.dispatch(new OpenToggleFeatureTargetingConfirmDialog(featureTargeting));
+    }
   }
 
   ngOnDestroy(): void {

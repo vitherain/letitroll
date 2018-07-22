@@ -25,7 +25,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { DeleteFeatureDialogComponent } from '../components/delete-feature-dialog/delete-feature-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Feature } from '../models/feature.model';
-import { ToggleFeatureTargetingDialogComponent } from '../components/toggle-feature-targeting-dialog/toggle-feature-targeting-dialog.component';
+import { ToggleFeatureDialogComponent } from '../components/toggle-feature-dialog/toggle-feature-dialog.component';
 
 export interface FeatureTargetingsResponse {
   content: Array<FeatureTargeting>;
@@ -111,7 +111,7 @@ export class FeaturesEffects {
     .pipe(ofAction(OpenToggleFeatureTargetingConfirmDialog))
     .pipe(
       switchMap((action: OpenToggleFeatureTargetingConfirmDialog) => {
-        const dialogRef = this.dialog.open(ToggleFeatureTargetingDialogComponent, {
+        const dialogRef = this.dialog.open(ToggleFeatureDialogComponent, {
           data: { featureTargeting: action.payload }
         });
         return dialogRef.afterClosed();

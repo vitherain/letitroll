@@ -3,13 +3,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FeatureTargeting } from '../../models/feature-targeting.model';
 
 @Component({
-  selector: 'app-toggle-feature-targeting-dialog',
-  templateUrl: './toggle-feature-targeting-dialog.component.html',
-  styleUrls: ['./toggle-feature-targeting-dialog.component.scss']
+  selector: 'app-toggle-feature-dialog',
+  templateUrl: './toggle-feature-dialog.component.html',
+  styleUrls: ['./toggle-feature-dialog.component.scss']
 })
-export class ToggleFeatureTargetingDialogComponent implements OnInit {
+export class ToggleFeatureDialogComponent implements OnInit {
   constructor(
-    private dialogRef: MatDialogRef<ToggleFeatureTargetingDialogComponent>,
+    private dialogRef: MatDialogRef<ToggleFeatureDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { featureTargeting: FeatureTargeting }
   ) {}
 

@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { NgrxActionsModule } from 'ngrx-actions';
 import { UnselectedProjectComponent } from './components/unselected-project/unselected-project.component';
 import { TargetingComponent } from './components/targeting/targeting.component';
-import { ToggleFeatureTargetingDialogComponent } from './components/toggle-feature-targeting-dialog/toggle-feature-targeting-dialog.component';
+import { ToggleFeatureDialogComponent } from './components/toggle-feature-dialog/toggle-feature-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +23,9 @@ import { ToggleFeatureTargetingDialogComponent } from './components/toggle-featu
     DeleteFeatureDialogComponent,
     UnselectedProjectComponent,
     TargetingComponent,
-    ToggleFeatureTargetingDialogComponent
+    ToggleFeatureDialogComponent
   ],
-  entryComponents: [DeleteFeatureDialogComponent, ToggleFeatureTargetingDialogComponent],
+  entryComponents: [DeleteFeatureDialogComponent, ToggleFeatureDialogComponent],
   imports: [
     CommonModule,
     FeaturesRoutingModule,

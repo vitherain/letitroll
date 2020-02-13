@@ -39,48 +39,6 @@ jobs:
           path: ~/junit
       - store_artifacts:
           path: ~/junit
-  build_admin:
-    working_directory: ~/repo/admin
-
-    docker:
-      - image: circleci/node:9-stretch-browsers
-
-    steps:
-      - checkout:
-          path: ~/repo
-      - restore_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
-      - run:
-          name: install-dependencies
-          command: yarn install
-      - save_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-            - ./node_modules
-      - run:
-          name: angular-build
-          command: yarn ng -- build --prod --aot --no-progress
-      - run:
-          name: angular-test
-          command: yarn test -- --single-run --no-progress
-#      - run:
-#          name: angular-e2e
-#          command: yarn e2e
-      - run:
-          name: Save test results
-          command: |
-            mkdir -p ~/junit/
-            find . -type f -regex ".*/junitresults.xml" -exec cp {} ~/junit/ \;
-            find . -type f -regex ".*/test-results.xml" -exec cp {} ~/junit/ \;
-          when: always
-      - store_test_results:
-          path: ~/junit
-      - store_artifacts:
-          path: ./junit
-      - run:
-          name: angular-lint
-          command: yarn lint --format stylish
 workflows:
   version: 2
   pipeline:
